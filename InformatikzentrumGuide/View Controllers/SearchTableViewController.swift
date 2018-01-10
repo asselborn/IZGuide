@@ -16,6 +16,8 @@ class SearchTableViewController: UITableViewController {
     var places: [Place] = []
     // Places matching the search, at beginning containing also all places
     var filteredPlaces: [Place] = []
+    // Can be used to transfer search data to map VC
+    var handleMapSearchDelegate: HandleMapSearch? = nil
     
     override func viewDidLoad() {
         
@@ -105,4 +107,11 @@ extension SearchTableViewController {
             cell.textLabel?.text = place.value(forKeyPath: "name") as? String
             return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedItem = filteredPlaces[indexPath.row]
+        handleMapSearchDelegate?.placePin(location: selectedItem)
+        dismiss(animated: true, completion: nil)
+    }
+    
 }

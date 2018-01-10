@@ -9,6 +9,10 @@
 import UIKit
 import MapKit
 
+protocol HandleMapSearch {
+    func placePin(location: Place)
+}
+
 class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     var resultSearchController: UISearchController? = nil
@@ -74,6 +78,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         resultSearchController?.hidesNavigationBarDuringPresentation = false
         resultSearchController?.dimsBackgroundDuringPresentation = true
         definesPresentationContext = true
+        
+        locationSearchTable.handleMapSearchDelegate = self
 
     }
 }
@@ -99,6 +105,12 @@ extension MapViewController: MKMapViewDelegate {
     }
 }
 
-extension MapViewController: UISearchBarDelegate {
-    
+extension MapViewController: HandleMapSearch {
+    func placePin(location: Place) {
+        mapView.removeAnnotations(mapView.annotations)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+        annotation.title = location.name
+        mapView.addAnnotation(annotation)
+    }
 }
