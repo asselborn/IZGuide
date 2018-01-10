@@ -11,6 +11,8 @@ import MapKit
 
 class MapViewController: UIViewController, CLLocationManagerDelegate {
     
+    var resultSearchController: UISearchController? = nil
+    
     let mapOverlay = MapOverlay(imageName: "OverlayBase")
     
     let locationManager = CLLocationManager()
@@ -38,14 +40,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         // Init overlay for indoor map, base floor
         self.mapView.add(mapOverlay)
         
-        // Test marker overlay for later navigation
-        var vertices = Array<CLLocationCoordinate2D>()
-        vertices.append(CLLocationCoordinate2D(latitude: 50.7788, longitude: 6.0592))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.7788, longitude: 6.0594))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.779, longitude: 6.0594))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.779, longitude: 6.0592))
-        let marker = MKPolygon(coordinates: vertices, count: 4)
-        self.mapView.add(marker)
+//        // Test marker overlay for later navigation
+//        var vertices = Array<CLLocationCoordinate2D>()
+//        vertices.append(CLLocationCoordinate2D(latitude: 50.7788, longitude: 6.0592))
+//        vertices.append(CLLocationCoordinate2D(latitude: 50.7788, longitude: 6.0594))
+//        vertices.append(CLLocationCoordinate2D(latitude: 50.779, longitude: 6.0594))
+//        vertices.append(CLLocationCoordinate2D(latitude: 50.779, longitude: 6.0592))
+//        let marker = MKPolygon(coordinates: vertices, count: 4)
+//        self.mapView.add(marker)
         
         // Show user location (Set at Ahornstr. entrance in simulator)
         locationManager.requestAlwaysAuthorization()
@@ -57,6 +59,22 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             localPosition = locationManager.location?.coordinate
         }
         mapView.showsUserLocation = true
+        
+        
+        
+        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "SearchTableViewController") as! SearchTableViewController
+        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController?.searchResultsUpdater = locationSearchTable
+        
+        let searchBar = resultSearchController!.searchBar
+        searchBar.sizeToFit()
+        searchBar.placeholder = "Search for places"
+        navigationItem.titleView = resultSearchController?.searchBar
+        
+        resultSearchController?.hidesNavigationBarDuringPresentation = false
+        resultSearchController?.dimsBackgroundDuringPresentation = true
+        definesPresentationContext = true
+
     }
 }
 
