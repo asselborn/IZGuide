@@ -11,33 +11,37 @@ import MapKit
 
 protocol HandleMapSearch {
     func placePin(location: Place)
+    func clearAnnotations()
 }
 
 class MapViewController: UIViewController, CLLocationManagerDelegate {
     
-    var resultSearchController: UISearchController? = nil
-    
-    let mapOverlay = MapOverlay(imageName: "OverlayBase")
-    
-    let locationManager = CLLocationManager()
-    var localPosition: CLLocationCoordinate2D?
+    // Define stylish green color used throughout the app, can of course be changed
+    let green = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
     
     @IBOutlet weak var startNavigationButton: UIButton!
-    
     @IBOutlet weak var plusLevelButton: UIButton!
-    
     @IBOutlet weak var minusLevelButton: UIButton!
+    @IBOutlet weak var levelLabel: UILabel!
     
-    @IBOutlet weak var levelTextfield: UITextField!
-    
-    // saves the user level
+    // Saves the user level
     var userLevel: Int = 0
     
     // Reference to map
     @IBOutlet weak var mapView: MKMapView!
     
+    let locationManager = CLLocationManager()
+    var localPosition: CLLocationCoordinate2D?
+    
+    let mapOverlay = MapOverlay(imageName: "OverlayBase")
+
+    var searchResult: UISearchController? = nil
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.isToolbarHidden = true
         
         // Set map type
         self.mapView.mapType = MKMapType.mutedStandard
@@ -74,32 +78,37 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         }
         mapView.showsUserLocation = true
         
+        navigationItem.title = "IZGuide"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: green, NSAttributedStringKey.font: UIFont(name: "Helvetica Neue", size: 20)!]
         
-        
-        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "SearchTableViewController") as! SearchTableViewController
-        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
-        resultSearchController?.searchResultsUpdater = locationSearchTable
-        
-        let searchBar = resultSearchController!.searchBar
-        searchBar.sizeToFit()
-        searchBar.placeholder = "Search for places"
-        navigationItem.titleView = resultSearchController?.searchBar
-        
-        resultSearchController?.hidesNavigationBarDuringPresentation = false
-        resultSearchController?.dimsBackgroundDuringPresentation = true
+        // Init new view controller to handle display of search results
+        let searchVC = storyboard!.instantiateViewController(withIdentifier: "SearchResultsViewController") as! SearchResultsViewController
+        // Init new search controller to handle calculation of search results
+        searchResult = UISearchController(searchResultsController: searchVC)
+        searchResult?.searchBar.tintColor = green
+        searchResult?.searchResultsUpdater = searchVC
+        searchResult?.searchBar.placeholder = "Search for places"
+        navigationItem.searchController = searchResult
         definesPresentationContext = true
         
-        locationSearchTable.handleMapSearchDelegate = self
+        // Init scope bar
+        searchResult?.searchBar.scopeButtonTitles = ["All", "Room", "Chair", "Person"]
+        searchResult?.searchBar.delegate = searchVC
+        
+        // Setup connection between the two VC to exchange information to set pin
+        searchVC.handleMapSearchDelegate = self
         
         startScanning()
-        
-        // hide startNavigation button
-        startNavigationButton.isHidden = true
-        
+
         // round corners of buttons
-        startNavigationButton.layer.cornerRadius = 6
-        plusLevelButton.layer.cornerRadius = 6
-        minusLevelButton.layer.cornerRadius = 6
+        startNavigationButton.layer.cornerRadius = 9
+        plusLevelButton.layer.cornerRadius = 9
+        minusLevelButton.layer.cornerRadius = 9
+        
+        levelLabel.layer.borderWidth = 1
+        
+        // Add navigation button to toolbar
+        self.toolbarItems = [UIBarButtonItem(customView: startNavigationButton)]
     }
     
     func startScanning() {
@@ -134,8 +143,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func startNavigationButtonPressed(_ sender: UIButton) {
         
-        startNavigationButton.isHidden = true
-        
         // TODO
         // start the navigation using the predefined tree
         
@@ -146,7 +153,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         // check that maximum level is 3
         if userLevel > 3 { userLevel = 3 }
-        levelTextfield.text = String(userLevel)
+        levelLabel.text = String(userLevel)
         
         // TODO
         // change building overlay to the next level
@@ -157,7 +164,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         // check that minimum level is -1
         if userLevel < -1 { userLevel = -1 }
-        levelTextfield.text = String(userLevel)
+        levelLabel.text = String(userLevel)
         
         // TODO
         // change building overlay to the previous level
@@ -165,7 +172,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     
 }
-
 
 
 // Extension containing used MKMapViewDelegate functions
@@ -185,19 +191,52 @@ extension MapViewController: MKMapViewDelegate {
         }
         return MKOverlayRenderer()
     }
+    
+     // Gets called when annotation is in view and needs to be displayed
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
+    {
+        if !(annotation is MKPointAnnotation) {
+            return nil
+        }
+        
+        let annotationIdentifier = "AnnotationIdentifier"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier)
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+            annotationView!.canShowCallout = true
+        }
+        else {
+            annotationView!.annotation = annotation
+        }
+        
+        let pinImage = UIImage(named: "Pin_Star")
+        annotationView!.image = pinImage
+        // Set pin position at location, at default it would be in center of custom image
+        annotationView?.centerOffset = CGPoint(x: 0, y: -(annotationView?.frame.size.height)! / 2)
+        return annotationView
+    }
 }
+
+
 
 extension MapViewController: HandleMapSearch {
     func placePin(location: Place) {
         // Enter full text of selection into search textfield
-        resultSearchController?.searchBar.text = location.name
+        searchResult?.searchBar.text = location.name
         mapView.removeAnnotations(mapView.annotations)
         let annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
         annotation.title = location.name
+        annotation.subtitle = "Floor: \(location.floor)"
         mapView.addAnnotation(annotation)
         
         // show the navigation button
-        startNavigationButton.isHidden = false
+        navigationController?.isToolbarHidden = false
+    }
+    
+    func clearAnnotations() {
+        mapView.removeAnnotations(mapView.annotations)
+        navigationController?.isToolbarHidden = true
     }
 }

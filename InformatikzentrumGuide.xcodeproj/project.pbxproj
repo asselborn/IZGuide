@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		631AA8E720063B6700680591 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631AA8E620063B6700680591 /* SearchTableViewController.swift */; };
+		631AA8E720063B6700680591 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631AA8E620063B6700680591 /* SearchResultsViewController.swift */; };
 		63D67A7A1FFBA96D00334B9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D67A791FFBA96D00334B9E /* AppDelegate.swift */; };
 		63D67A7F1FFBA96D00334B9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63D67A7D1FFBA96D00334B9E /* Main.storyboard */; };
 		63D67A821FFBA96D00334B9E /* InformatikzentrumGuide.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 63D67A801FFBA96D00334B9E /* InformatikzentrumGuide.xcdatamodeld */; };
@@ -19,7 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		631AA8E620063B6700680591 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		631AA8E620063B6700680591 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		63D67A761FFBA96D00334B9E /* InformatikzentrumGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InformatikzentrumGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63D67A791FFBA96D00334B9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63D67A7E1FFBA96D00334B9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -78,7 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				63D67A8F1FFBA9E700334B9E /* MapViewController.swift */,
-				631AA8E620063B6700680591 /* SearchTableViewController.swift */,
+				631AA8E620063B6700680591 /* SearchResultsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -164,7 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				631AA8E720063B6700680591 /* SearchTableViewController.swift in Sources */,
+				631AA8E720063B6700680591 /* SearchResultsViewController.swift in Sources */,
 				63D67A7A1FFBA96D00334B9E /* AppDelegate.swift in Sources */,
 				63D67A901FFBA9E700334B9E /* MapViewController.swift in Sources */,
 				63D67A821FFBA96D00334B9E /* InformatikzentrumGuide.xcdatamodeld in Sources */,

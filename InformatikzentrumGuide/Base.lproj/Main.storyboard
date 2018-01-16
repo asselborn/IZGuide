@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Search Table View Controller-->
+        <!--Search Results View Controller-->
         <scene sceneID="OGp-Ux-fDU">
             <objects>
-                <tableViewController storyboardIdentifier="SearchTableViewController" id="cpq-gp-2CB" customClass="SearchTableViewController" customModule="InformatikzentrumGuide" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SearchResultsViewController" id="cpq-gp-2CB" customClass="SearchResultsViewController" customModule="InformatikzentrumGuide" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="UnF-d6-9QL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -56,72 +56,63 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="9WL-cs-l03">
-                                <rect key="frame" x="0.0" y="76" width="375" height="591"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="iWt-rN-8n3"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3sA-dH-ZxH">
-                                <rect key="frame" x="72" y="515" width="230" height="53"/>
-                                <color key="backgroundColor" white="0.79118652109999998" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="Start Navigation"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3sA-dH-ZxH">
+                                <rect key="frame" x="121" y="631" width="133" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Guide Me">
+                                    <color key="titleColor" red="0.28396239876747131" green="0.78622764348983765" blue="0.28479877114295959" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="startNavigationButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Iqr-b4-dDC"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lam-JB-xo7">
-                                <rect key="frame" x="7" y="604" width="36" height="30"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="-"/>
-                                <connections>
-                                    <action selector="minusLevelButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="P6m-Ds-9Py"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWX-fY-W4U">
-                                <rect key="frame" x="100" y="604" width="36" height="30"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="36" id="wpU-gD-uPl"/>
-                                </constraints>
-                                <state key="normal" title="+"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWX-fY-W4U">
+                                <rect key="frame" x="309" y="470" width="45" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <state key="normal" title="↑">
+                                    <color key="titleColor" red="0.28396239876747131" green="0.78622764348983765" blue="0.28479877114295959" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="plusLevelButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VGU-ED-igf"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" text="0" borderStyle="roundedRect" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NfO-uh-jBK">
-                                <rect key="frame" x="48" y="603" width="47" height="33"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="47" id="IBP-vM-kax"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8o-IZ-CUl">
+                                <rect key="frame" x="304" y="518" width="55" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lam-JB-xo7">
+                                <rect key="frame" x="309" y="566" width="45" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <state key="normal" title="↓">
+                                    <color key="titleColor" red="0.28396239876747131" green="0.78622764348983765" blue="0.28479877114295959" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="minusLevelButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="P6m-Ds-9Py"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="NfO-uh-jBK" firstAttribute="leading" secondItem="lam-JB-xo7" secondAttribute="trailing" constant="5" id="5rS-eD-PG6"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DWX-fY-W4U" secondAttribute="trailing" constant="239" id="CY8-R0-9me"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="lam-JB-xo7" secondAttribute="bottom" constant="33" id="GyI-M3-LfI"/>
-                            <constraint firstItem="3sA-dH-ZxH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="72" id="Iuy-o0-WJp"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="NfO-uh-jBK" secondAttribute="bottom" constant="31" id="O1y-rk-NRq"/>
-                            <constraint firstItem="DWX-fY-W4U" firstAttribute="leading" secondItem="NfO-uh-jBK" secondAttribute="trailing" constant="5" id="XNk-5J-rUg"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3sA-dH-ZxH" secondAttribute="bottom" constant="99" id="aUS-sS-iTP"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3sA-dH-ZxH" secondAttribute="trailing" constant="73" id="fx0-9n-DtX"/>
-                            <constraint firstItem="lam-JB-xo7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="7" id="hEl-la-DGC"/>
-                            <constraint firstItem="DWX-fY-W4U" firstAttribute="leading" secondItem="NfO-uh-jBK" secondAttribute="trailing" constant="5" id="hkU-I3-Dw9"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="DWX-fY-W4U" secondAttribute="bottom" constant="33" id="nF7-8B-9xF"/>
-                            <constraint firstItem="DWX-fY-W4U" firstAttribute="leading" secondItem="NfO-uh-jBK" secondAttribute="trailing" constant="5" id="nh0-Gg-tsA"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="dCG-Mb-DYa"/>
                     <connections>
                         <outlet property="StartNavigationButton" destination="8bC-Xf-vdC" id="ZLX-ut-t80"/>
-                        <outlet property="levelTextfield" destination="NfO-uh-jBK" id="Td6-ef-L98"/>
+                        <outlet property="levelLabel" destination="h8o-IZ-CUl" id="0kF-e5-38w"/>
                         <outlet property="mapView" destination="9WL-cs-l03" id="oAz-pI-vCi"/>
                         <outlet property="minusLevelButton" destination="lam-JB-xo7" id="39y-JW-JkM"/>
                         <outlet property="plusLevelButton" destination="DWX-fY-W4U" id="ZpX-jm-4mv"/>
@@ -144,13 +135,17 @@
         <!--Navigation Controller-->
         <scene sceneID="RJc-Wm-Kpm">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KeQ-ah-4tI" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="KeQ-ah-4tI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="W6Z-sb-MJn">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="y2p-hp-sIe">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="j49-gC-RBl"/>
                     </connections>

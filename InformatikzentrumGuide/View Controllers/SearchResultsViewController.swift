@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class SearchTableViewController: UITableViewController {
+class SearchResultsViewController: UITableViewController {
     
     // All places fetched from Core Data
     var places: [Place] = []
@@ -20,24 +20,25 @@ class SearchTableViewController: UITableViewController {
     var handleMapSearchDelegate: HandleMapSearch? = nil
     
     override func viewDidLoad() {
+        self.load()
         
-        // Do ONCE to get it into Core Data for testing, otherwise you get duplicates
-//        self.save(name: "Mensa", latitude: 50.7795, longitude: 6.0595)
-//        self.save(name: "Aula 2", latitude: 50.7794, longitude: 6.0585)
-//        self.save(name: "Fachschaft", latitude: 50.7790, longitude: 6.0591)
+        // Dummy data for testing
+        self.save(name: "Aula 2", latitude: 50.7794, longitude: 6.0585, category: "Room", floor: 0)
+        self.save(name: "AH 4", latitude: 50.7796, longitude: 6.0591, category: "Room", floor: 0)
+        self.save(name: "Cafeteria", latitude: 50.7794, longitude: 6.0594, category: "Room", floor: 0)
+        self.save(name: "Informatik 10", latitude: 50.7790, longitude: 6.0591, category: "Chair", floor: 2)
+        self.save(name: "Prof. Dr. Jan Borchers", latitude: 50.7790, longitude: 6.0591, category: "Person", floor: 2)
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        // Fetch data from storage into places array to use it for search
-        super.viewWillAppear(animated)
-        
+    // Fetch data from storage into places array to use it for search
+    func load() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         
         let managedContext = appDelegate.persistentContainer.viewContext
-
+        
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Place")
-
+        
         do {
             places = try managedContext.fetch(fetchRequest) as! [Place]
         } catch let error as NSError {
@@ -48,17 +49,26 @@ class SearchTableViewController: UITableViewController {
     }
 
     // Used to enter data into persistent storage
-    func save(name: String, latitude: Double, longitude: Double) {
+    func save(name: String, latitude: Double, longitude: Double, category: String, floor: Int16) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+        // Check first to avoid duplicates
+        for place in places {
+            if (place.name == name) {
+                return
+            }
+        }
         let managedContext = appDelegate.persistentContainer.viewContext
 
         let entity = NSEntityDescription.entity(forEntityName: "Place", in: managedContext)!
         
         let place = NSManagedObject(entity: entity, insertInto: managedContext)
 
+        
         place.setValue(name, forKeyPath: "name")
         place.setValue(latitude, forKey: "latitude")
         place.setValue(longitude, forKey: "longitude")
+        place.setValue(category, forKey: "category")
+        place.setValue(floor, forKey: "floor")
 
         do {
             try managedContext.save()
@@ -71,29 +81,39 @@ class SearchTableViewController: UITableViewController {
     // Search for appearance of entered string in any place name
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
         filteredPlaces = places.filter({( place : Place) -> Bool in
-            return (place.name?.lowercased().contains(searchText.lowercased()))!
+            let categoryCheck = (scope == "All" || place.category == scope)
+            if (searchText == "") {
+                self.handleMapSearchDelegate?.clearAnnotations()
+                return categoryCheck
+            }
+            else {
+                return categoryCheck && (place.name?.lowercased().contains(searchText.lowercased()))!
+            }
         })
-        // Reset filter if no text is entered to show all places
-        if (searchText == "") {
-            filteredPlaces = places
-        }
         tableView.reloadData()
     }
 }
 
 // Includes all searchResult delegates
-extension SearchTableViewController: UISearchResultsUpdating {
+extension SearchResultsViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         // Used to display all places when search bar is tapped but no text is entered yet
         searchController.searchResultsController?.view.isHidden = false
         // Adapt tableView content based on updated search input
-        filterContentForSearchText(searchController.searchBar.text!)
+        let scope = searchController.searchBar.scopeButtonTitles![searchController.searchBar.selectedScopeButtonIndex]
+        filterContentForSearchText(searchController.searchBar.text!, scope: scope)
+    }
+}
+
+extension SearchResultsViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
     }
 }
 
 
 // Includes all tableView delegates
-extension SearchTableViewController {
+extension SearchResultsViewController {
     
     // Filter according to search input
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
