@@ -107,6 +107,8 @@ extension MapViewController: MKMapViewDelegate {
 
 extension MapViewController: HandleMapSearch {
     func placePin(location: Place) {
+        // Enter full text of selection into search textfield
+        resultSearchController?.searchBar.text = location.name
         mapView.removeAnnotations(mapView.annotations)
         let annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
