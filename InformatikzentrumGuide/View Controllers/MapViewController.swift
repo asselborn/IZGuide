@@ -80,7 +80,38 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         definesPresentationContext = true
         
         locationSearchTable.handleMapSearchDelegate = self
+        
+        startScanning()
+    }
+    
+    func startScanning() {
+        let uuid = UUID(uuidString: "C2A94B61-726C-4954-3230-313478303031")
+        let beaconRegion = CLBeaconRegion(proximityUUID: uuid!, identifier: "Test")
+        locationManager.startMonitoring(for: beaconRegion)
+        locationManager.startRangingBeacons(in: beaconRegion)
+    }
+    
+    func update(distance: CLProximity) {
+        switch distance {
+        case .unknown:
+            print("Unknown")
+            
+        case .far:
+            print("Far")
+            
+        case .near:
+            print("Near")
+            
+        case .immediate:
+            print("Right Here")
+        }
+    }
 
+    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
+        if beacons.count > 0 {
+            let beacon = beacons[0]
+            update(distance: beacon.proximity)
+        }
     }
 }
 
