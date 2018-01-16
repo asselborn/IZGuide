@@ -25,7 +25,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var levelLabel: UILabel!
     
     // Saves the user level
-    var userLevel: Int = 0
+    var userLevel: Int16 = 0
     
     // Reference to map
     @IBOutlet weak var mapView: MKMapView!
@@ -36,6 +36,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     let mapOverlay = MapOverlay(imageName: "OverlayBase")
 
     var searchResult: UISearchController? = nil
+    var searchVC: SearchResultsViewController? = nil
 
     
     override func viewDidLoad() {
@@ -82,7 +83,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: green, NSAttributedStringKey.font: UIFont(name: "Helvetica Neue", size: 20)!]
         
         // Init new view controller to handle display of search results
-        let searchVC = storyboard!.instantiateViewController(withIdentifier: "SearchResultsViewController") as! SearchResultsViewController
+        searchVC = storyboard!.instantiateViewController(withIdentifier: "SearchResultsViewController") as? SearchResultsViewController
         // Init new search controller to handle calculation of search results
         searchResult = UISearchController(searchResultsController: searchVC)
         searchResult?.searchBar.tintColor = green
@@ -96,7 +97,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         searchResult?.searchBar.delegate = searchVC
         
         // Setup connection between the two VC to exchange information to set pin
-        searchVC.handleMapSearchDelegate = self
+        searchVC?.handleMapSearchDelegate = self
         
         startScanning()
 
@@ -154,7 +155,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         // check that maximum level is 3
         if userLevel > 3 { userLevel = 3 }
         levelLabel.text = String(userLevel)
-        
+        self.adjustAnnotations()
         // TODO
         // change building overlay to the next level
     }
@@ -165,11 +166,27 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         // check that minimum level is -1
         if userLevel < -1 { userLevel = -1 }
         levelLabel.text = String(userLevel)
+        self.adjustAnnotations()
         
         // TODO
         // change building overlay to the previous level
     }
     
+    // Reset annotation images depending to adapt to current floor
+    func adjustAnnotations() {
+        for annotation in self.mapView.annotations {
+            let annotationView = self.mapView.view(for: annotation)
+            if (userLevel == self.searchVC?.getFloor(name: (annotation.title)!!)) {
+                annotationView?.image = #imageLiteral(resourceName: "Pin_Star")
+            }
+            else if (userLevel < (self.searchVC?.getFloor(name: (annotation.title)!!))!) {
+                annotationView?.image = #imageLiteral(resourceName: "Pin_Star_Up")
+            }
+            else if (userLevel > (self.searchVC?.getFloor(name: (annotation.title)!!))!) {
+                annotationView?.image = #imageLiteral(resourceName: "Pin_Star_Down")
+            }
+        }
+    }
     
 }
 
@@ -209,9 +226,15 @@ extension MapViewController: MKMapViewDelegate {
         else {
             annotationView!.annotation = annotation
         }
-        
-        let pinImage = UIImage(named: "Pin_Star")
-        annotationView!.image = pinImage
+        if (userLevel == self.searchVC?.getFloor(name: (annotation.title)!!)) {
+            annotationView?.image = #imageLiteral(resourceName: "Pin_Star")
+        }
+        else if (userLevel < (self.searchVC?.getFloor(name: (annotation.title)!!))!) {
+            annotationView?.image = #imageLiteral(resourceName: "Pin_Star_Up")
+        }
+        else if (userLevel > (self.searchVC?.getFloor(name: (annotation.title)!!))!) {
+            annotationView?.image = #imageLiteral(resourceName: "Pin_Star_Down")
+        }
         // Set pin position at location, at default it would be in center of custom image
         annotationView?.centerOffset = CGPoint(x: 0, y: -(annotationView?.frame.size.height)! / 2)
         return annotationView

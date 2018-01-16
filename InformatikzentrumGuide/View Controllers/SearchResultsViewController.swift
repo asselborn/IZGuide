@@ -92,6 +92,15 @@ class SearchResultsViewController: UITableViewController {
         })
         tableView.reloadData()
     }
+    
+    func getFloor(name: String) -> Int16 {
+        for place in places {
+            if (name == place.name) {
+                return place.floor
+            }
+        }
+        return 0
+    }
 }
 
 // Includes all searchResult delegates
