@@ -62,14 +62,71 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="iWt-rN-8n3"/>
                                 </connections>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3sA-dH-ZxH">
+                                <rect key="frame" x="72" y="515" width="230" height="53"/>
+                                <color key="backgroundColor" white="0.79118652109999998" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Start Navigation"/>
+                                <connections>
+                                    <action selector="startNavigationButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Iqr-b4-dDC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lam-JB-xo7">
+                                <rect key="frame" x="7" y="604" width="36" height="30"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="-"/>
+                                <connections>
+                                    <action selector="minusLevelButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="P6m-Ds-9Py"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWX-fY-W4U">
+                                <rect key="frame" x="100" y="604" width="36" height="30"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="36" id="wpU-gD-uPl"/>
+                                </constraints>
+                                <state key="normal" title="+"/>
+                                <connections>
+                                    <action selector="plusLevelButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VGU-ED-igf"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" text="0" borderStyle="roundedRect" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NfO-uh-jBK">
+                                <rect key="frame" x="48" y="603" width="47" height="33"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="47" id="IBP-vM-kax"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="NfO-uh-jBK" firstAttribute="leading" secondItem="lam-JB-xo7" secondAttribute="trailing" constant="5" id="5rS-eD-PG6"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DWX-fY-W4U" secondAttribute="trailing" constant="239" id="CY8-R0-9me"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="lam-JB-xo7" secondAttribute="bottom" constant="33" id="GyI-M3-LfI"/>
+                            <constraint firstItem="3sA-dH-ZxH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="72" id="Iuy-o0-WJp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="NfO-uh-jBK" secondAttribute="bottom" constant="31" id="O1y-rk-NRq"/>
+                            <constraint firstItem="DWX-fY-W4U" firstAttribute="leading" secondItem="NfO-uh-jBK" secondAttribute="trailing" constant="5" id="XNk-5J-rUg"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3sA-dH-ZxH" secondAttribute="bottom" constant="99" id="aUS-sS-iTP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3sA-dH-ZxH" secondAttribute="trailing" constant="73" id="fx0-9n-DtX"/>
+                            <constraint firstItem="lam-JB-xo7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="7" id="hEl-la-DGC"/>
+                            <constraint firstItem="DWX-fY-W4U" firstAttribute="leading" secondItem="NfO-uh-jBK" secondAttribute="trailing" constant="5" id="hkU-I3-Dw9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="DWX-fY-W4U" secondAttribute="bottom" constant="33" id="nF7-8B-9xF"/>
+                            <constraint firstItem="DWX-fY-W4U" firstAttribute="leading" secondItem="NfO-uh-jBK" secondAttribute="trailing" constant="5" id="nh0-Gg-tsA"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="dCG-Mb-DYa"/>
                     <connections>
+                        <outlet property="StartNavigationButton" destination="8bC-Xf-vdC" id="ZLX-ut-t80"/>
+                        <outlet property="levelTextfield" destination="NfO-uh-jBK" id="Td6-ef-L98"/>
                         <outlet property="mapView" destination="9WL-cs-l03" id="oAz-pI-vCi"/>
+                        <outlet property="minusLevelButton" destination="lam-JB-xo7" id="39y-JW-JkM"/>
+                        <outlet property="plusLevelButton" destination="DWX-fY-W4U" id="ZpX-jm-4mv"/>
                         <outlet property="searchDisplayController" destination="Ttt-OL-Tty" id="GeJ-ul-sch"/>
+                        <outlet property="startNavigationButton" destination="3sA-dH-ZxH" id="mwF-qu-Seg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -82,7 +139,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="273" y="381"/>
+            <point key="canvasLocation" x="271.19999999999999" y="380.05997001499253"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RJc-Wm-Kpm">

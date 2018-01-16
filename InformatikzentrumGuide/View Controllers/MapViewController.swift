@@ -21,7 +21,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
     var localPosition: CLLocationCoordinate2D?
-
+    
+    @IBOutlet weak var startNavigationButton: UIButton!
+    
+    @IBOutlet weak var plusLevelButton: UIButton!
+    
+    @IBOutlet weak var minusLevelButton: UIButton!
+    
+    @IBOutlet weak var levelTextfield: UITextField!
+    
+    // saves the user level
+    var userLevel: Int = 0
     
     // Reference to map
     @IBOutlet weak var mapView: MKMapView!
@@ -82,6 +92,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         locationSearchTable.handleMapSearchDelegate = self
         
         startScanning()
+        
+        // hide startNavigation button
+        startNavigationButton.isHidden = true
+        
+        // round corners of buttons
+        startNavigationButton.layer.cornerRadius = 6
+        plusLevelButton.layer.cornerRadius = 6
+        minusLevelButton.layer.cornerRadius = 6
     }
     
     func startScanning() {
@@ -113,6 +131,39 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             update(distance: beacon.proximity)
         }
     }
+    
+    @IBAction func startNavigationButtonPressed(_ sender: UIButton) {
+        
+        startNavigationButton.isHidden = true
+        
+        // TODO
+        // start the navigation using the predefined tree
+        
+    }
+    
+    @IBAction func plusLevelButtonPressed(_ sender: UIButton) {
+        userLevel = userLevel + 1
+        
+        // check that maximum level is 3
+        if userLevel > 3 { userLevel = 3 }
+        levelTextfield.text = String(userLevel)
+        
+        // TODO
+        // change building overlay to the next level
+    }
+    
+    @IBAction func minusLevelButtonPressed(_ sender: UIButton) {
+        userLevel = userLevel - 1
+        
+        // check that minimum level is -1
+        if userLevel < -1 { userLevel = -1 }
+        levelTextfield.text = String(userLevel)
+        
+        // TODO
+        // change building overlay to the previous level
+    }
+    
+    
 }
 
 
@@ -145,5 +196,8 @@ extension MapViewController: HandleMapSearch {
         annotation.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
         annotation.title = location.name
         mapView.addAnnotation(annotation)
+        
+        // show the navigation button
+        startNavigationButton.isHidden = false
     }
 }
