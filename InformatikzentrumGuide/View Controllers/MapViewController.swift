@@ -114,6 +114,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         // Add navigation button to toolbar
         self.toolbarItems = [UIBarButtonItem(customView: startNavigationButton)]
+        
+        createTree()
     }
     
     func startScanning() {
