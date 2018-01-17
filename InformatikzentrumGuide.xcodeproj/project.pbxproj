@@ -16,6 +16,7 @@
 		63D67A901FFBA9E700334B9E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D67A8F1FFBA9E700334B9E /* MapViewController.swift */; };
 		63D67A931FFBCC2300334B9E /* MapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D67A921FFBCC2300334B9E /* MapOverlay.swift */; };
 		63D67A951FFBD3D500334B9E /* MapOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D67A941FFBD3D500334B9E /* MapOverlayView.swift */; };
+		A6E27AE1200FC038000374AF /* IZGroundfloor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E27AE0200FC038000374AF /* IZGroundfloor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		63D67A8F1FFBA9E700334B9E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		63D67A921FFBCC2300334B9E /* MapOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOverlay.swift; sourceTree = "<group>"; };
 		63D67A941FFBD3D500334B9E /* MapOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOverlayView.swift; sourceTree = "<group>"; };
+		A6E27AE0200FC038000374AF /* IZGroundfloor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IZGroundfloor.swift; path = "/Users/LucasD/Documents/Studium Aachen/7. Semester/iOS Development/Project/IZGuide/InformatikzentrumGuide/Overlay/IZGroundfloor.swift"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 		63D67A911FFBCC1300334B9E /* Overlay */ = {
 			isa = PBXGroup;
 			children = (
+				A6E27AE0200FC038000374AF /* IZGroundfloor.swift */,
 				63D67A921FFBCC2300334B9E /* MapOverlay.swift */,
 				63D67A941FFBD3D500334B9E /* MapOverlayView.swift */,
 			);
@@ -167,6 +170,7 @@
 				631AA8E720063B6700680591 /* SearchResultsViewController.swift in Sources */,
 				63D67A7A1FFBA96D00334B9E /* AppDelegate.swift in Sources */,
 				63D67A901FFBA9E700334B9E /* MapViewController.swift in Sources */,
+				A6E27AE1200FC038000374AF /* IZGroundfloor.swift in Sources */,
 				63D67A821FFBA96D00334B9E /* InformatikzentrumGuide.xcdatamodeld in Sources */,
 				63D67A931FFBCC2300334B9E /* MapOverlay.swift in Sources */,
 				63D67A951FFBD3D500334B9E /* MapOverlayView.swift in Sources */,

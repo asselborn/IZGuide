@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:InformatikzentrumGuide.xcodeproj">
+      location = "group:/Users/LucasD/Documents/Studium Aachen/7. Semester/iOS Development/Project/IZGuide/InformatikzentrumGuide/Overlay/IZGroundfloor.swift">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>

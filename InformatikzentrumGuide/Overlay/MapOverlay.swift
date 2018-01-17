@@ -13,20 +13,19 @@ import MapKit
 class MapOverlay: NSObject, MKOverlay {
     var coordinate: CLLocationCoordinate2D
     var boundingMapRect: MKMapRect
-    var imageName: String
 
-    init(imageName: String) {
-        let topLeft = CLLocationCoordinate2D(latitude: 50.78025, longitude: 6.05795)
-        let topRight = CLLocationCoordinate2D(latitude: 50.78025, longitude: 6.06)
-        let bottomLeft = CLLocationCoordinate2D(latitude: 50.7785, longitude: 6.05795)
+    override init() {
+        let topLeft = CLLocationCoordinate2D(latitude: 50.77980, longitude: 6.05837)
+        let topRight = CLLocationCoordinate2D(latitude: 50.77980, longitude: 6.06140)
+        let bottomLeft = CLLocationCoordinate2D(latitude: 50.77795, longitude: 6.05837)
         
-        self.coordinate = CLLocationCoordinate2D(latitude: 50.7788, longitude: 6.0592)
+        self.coordinate = CLLocationCoordinate2D(latitude: 50.77884, longitude: 6.05975)
         let origin = MKMapPointForCoordinate(topLeft)
         let size = MKMapSize(width: fabs(MKMapPointForCoordinate(topLeft).x - MKMapPointForCoordinate(topRight).x),
                              height: fabs(MKMapPointForCoordinate(topLeft).y - MKMapPointForCoordinate(bottomLeft).y))
         self.boundingMapRect = MKMapRect(origin: origin, size: size)
-        
-        self.imageName = imageName
     }
+    
+    
     
 }

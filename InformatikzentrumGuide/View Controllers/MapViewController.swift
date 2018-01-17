@@ -33,10 +33,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     var localPosition: CLLocationCoordinate2D?
     
-    let mapOverlay = MapOverlay(imageName: "OverlayBase")
+    // Unnecessary to hand over image, since image is declared belor
+    let mapOverlay = MapOverlay()
 
     var searchResult: UISearchController? = nil
     var searchVC: SearchResultsViewController? = nil
+    
+    // The image for the map overlay
+    let imageForOverlay: UIImage = IZGroundfloor.imageOfCanvas1
 
     
     override func viewDidLoad() {
@@ -51,7 +55,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         self.mapView.delegate = self
         
         // Center map on Informatikzentrum
-        let position = CLLocationCoordinate2D(latitude: 50.7788, longitude: 6.0592)
+        let position = CLLocationCoordinate2D(latitude: 50.77884046, longitude: 6.05975926)
         let span = MKCoordinateSpanMake(0.003, 0.003)
         let region = MKCoordinateRegionMake(position, span)
         mapView.region = region
@@ -193,12 +197,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
 
 // Extension containing used MKMapViewDelegate functions
 extension MapViewController: MKMapViewDelegate {
-    
     // Gets called when overlay is in view and needs to be rendered
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        if let mapOverlay = overlay as? MapOverlay, let image = UIImage(named: mapOverlay.imageName) {
-            return MapOverlayView(overlay: overlay, overlayImage: image)
+        if let mapOverlay = overlay as? MapOverlay {
+            return MapOverlayView(overlay: mapOverlay, overlayImage: imageForOverlay)
         }
+        
         else if let marker = overlay as? MKPolygon {
             let markerView = MKPolygonRenderer(polygon: marker)
             markerView.lineWidth = 0
@@ -251,7 +255,8 @@ extension MapViewController: HandleMapSearch {
         let annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
         annotation.title = location.name
-        annotation.subtitle = "Floor: \(location.floor)"
+        let floor = location.floor
+        annotation.subtitle = "Floor: \(floor)"
         mapView.addAnnotation(annotation)
         
         // show the navigation button
