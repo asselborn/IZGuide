@@ -12,6 +12,7 @@ import MapKit
 protocol HandleMapSearch {
     func placePin(location: Place)
     func clearAnnotations()
+    func disableToolbar()
 }
 
 class MapViewController: UIViewController, CLLocationManagerDelegate {
@@ -27,6 +28,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     // Saves the user level
     var userLevel: Int16 = 0
     
+    // Saves the currently chosen place
+    var currentPlace: Place?
+    
     // Reference to map
     @IBOutlet weak var mapView: MKMapView!
     
@@ -35,13 +39,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     // Unnecessary to hand over image, since image is declared belor
     let mapOverlay = MapOverlay()
-
+    
     var searchResult: UISearchController? = nil
     var searchVC: SearchResultsViewController? = nil
     
     // The image for the map overlay
     let imageForOverlay: UIImage = IZGroundfloor.imageOfCanvas1
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +54,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         // Set map type
         self.mapView.mapType = MKMapType.mutedStandard
-
+        self.mapView.showsPointsOfInterest = false
+        self.mapView.tintColor = green
+        
         // Set VC as delegate to handle custom rendering
         self.mapView.delegate = self
         
@@ -59,18 +65,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         let span = MKCoordinateSpanMake(0.003, 0.003)
         let region = MKCoordinateRegionMake(position, span)
         mapView.region = region
-
+        
         // Init overlay for indoor map, base floor
         self.mapView.add(mapOverlay)
         
-//        // Test marker overlay for later navigation
-//        var vertices = Array<CLLocationCoordinate2D>()
-//        vertices.append(CLLocationCoordinate2D(latitude: 50.7788, longitude: 6.0592))
-//        vertices.append(CLLocationCoordinate2D(latitude: 50.7788, longitude: 6.0594))
-//        vertices.append(CLLocationCoordinate2D(latitude: 50.779, longitude: 6.0594))
-//        vertices.append(CLLocationCoordinate2D(latitude: 50.779, longitude: 6.0592))
-//        let marker = MKPolygon(coordinates: vertices, count: 4)
-//        self.mapView.add(marker)
+        //        // Test marker overlay for later navigation
+        //        var vertices = Array<CLLocationCoordinate2D>()
+        //        vertices.append(CLLocationCoordinate2D(latitude: 50.7788, longitude: 6.0592))
+        //        vertices.append(CLLocationCoordinate2D(latitude: 50.7788, longitude: 6.0594))
+        //        vertices.append(CLLocationCoordinate2D(latitude: 50.779, longitude: 6.0594))
+        //        vertices.append(CLLocationCoordinate2D(latitude: 50.779, longitude: 6.0592))
+        //        let marker = MKPolygon(coordinates: vertices, count: 4)
+        //        self.mapView.add(marker)
         
         // Show user location (Set at Ahornstr. entrance in simulator)
         locationManager.requestAlwaysAuthorization()
@@ -104,7 +110,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         searchVC?.handleMapSearchDelegate = self
         
         startScanning()
-
+        
         // round corners of buttons
         startNavigationButton.layer.cornerRadius = 9
         plusLevelButton.layer.cornerRadius = 9
@@ -140,7 +146,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             print("Right Here")
         }
     }
-
+    
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         if beacons.count > 0 {
             let beacon = beacons[0]
@@ -181,15 +187,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     // Reset annotation images depending to adapt to current floor
     func adjustAnnotations() {
         for annotation in self.mapView.annotations {
-            let annotationView = self.mapView.view(for: annotation)
-            if (userLevel == self.searchVC?.getFloor(name: (annotation.title)!!)) {
-                annotationView?.image = #imageLiteral(resourceName: "Pin_Star")
-            }
-            else if (userLevel < (self.searchVC?.getFloor(name: (annotation.title)!!))!) {
-                annotationView?.image = #imageLiteral(resourceName: "Pin_Star_Up")
-            }
-            else if (userLevel > (self.searchVC?.getFloor(name: (annotation.title)!!))!) {
-                annotationView?.image = #imageLiteral(resourceName: "Pin_Star_Down")
+            if (annotation is MKPointAnnotation) {
+                let annotationView = self.mapView.view(for: annotation)
+                if (userLevel == currentPlace?.floor) {
+                    annotationView?.image = #imageLiteral(resourceName: "Pin_Star")
+                }
+                else if (userLevel < (currentPlace?.floor)!) {
+                    annotationView?.image = #imageLiteral(resourceName: "Pin_Star_Up")
+                }
+                else if (userLevel > (currentPlace?.floor)!) {
+                    annotationView?.image = #imageLiteral(resourceName: "Pin_Star_Down")
+                }
             }
         }
     }
@@ -204,7 +212,7 @@ extension MapViewController: MKMapViewDelegate {
         if let mapOverlay = overlay as? MapOverlay {
             return MapOverlayView(overlay: mapOverlay, overlayImage: imageForOverlay)
         }
-        
+            
         else if let marker = overlay as? MKPolygon {
             let markerView = MKPolygonRenderer(polygon: marker)
             markerView.lineWidth = 0
@@ -215,7 +223,7 @@ extension MapViewController: MKMapViewDelegate {
         return MKOverlayRenderer()
     }
     
-     // Gets called when annotation is in view and needs to be displayed
+    // Gets called when annotation is in view and needs to be displayed
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
     {
         if !(annotation is MKPointAnnotation) {
@@ -232,18 +240,24 @@ extension MapViewController: MKMapViewDelegate {
         else {
             annotationView!.annotation = annotation
         }
-        if (userLevel == self.searchVC?.getFloor(name: (annotation.title)!!)) {
+        if (userLevel == currentPlace?.floor) {
             annotationView?.image = #imageLiteral(resourceName: "Pin_Star")
         }
-        else if (userLevel < (self.searchVC?.getFloor(name: (annotation.title)!!))!) {
+        else if (userLevel < (currentPlace?.floor)!) {
             annotationView?.image = #imageLiteral(resourceName: "Pin_Star_Up")
         }
-        else if (userLevel > (self.searchVC?.getFloor(name: (annotation.title)!!))!) {
+        else if (userLevel > (currentPlace?.floor)!) {
             annotationView?.image = #imageLiteral(resourceName: "Pin_Star_Down")
         }
+        let infoButton = UIButton(type: .infoLight)
+        infoButton.addTarget(self, action: #selector(infoButtonPressed), for: .touchUpInside)
+        annotationView?.rightCalloutAccessoryView = infoButton
         // Set pin position at location, at default it would be in center of custom image
         annotationView?.centerOffset = CGPoint(x: 0, y: -(annotationView?.frame.size.height)! / 2)
         return annotationView
+    }
+    @objc func infoButtonPressed() {
+        UIApplication.shared.open(URL(string: (self.currentPlace?.url)!)!)
     }
 }
 
@@ -251,6 +265,7 @@ extension MapViewController: MKMapViewDelegate {
 
 extension MapViewController: HandleMapSearch {
     func placePin(location: Place) {
+        self.currentPlace = location
         // Enter full text of selection into search textfield
         searchResult?.searchBar.text = location.name
         mapView.removeAnnotations(mapView.annotations)
@@ -266,7 +281,13 @@ extension MapViewController: HandleMapSearch {
     }
     
     func clearAnnotations() {
+        self.currentPlace = nil
         mapView.removeAnnotations(mapView.annotations)
         navigationController?.isToolbarHidden = true
     }
+    
+    func disableToolbar() {
+        navigationController?.isToolbarHidden = true
+    }
 }
+

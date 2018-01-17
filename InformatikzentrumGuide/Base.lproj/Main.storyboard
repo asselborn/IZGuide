@@ -62,17 +62,6 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="iWt-rN-8n3"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3sA-dH-ZxH">
-                                <rect key="frame" x="121" y="631" width="133" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Guide Me">
-                                    <color key="titleColor" red="0.28396239876747131" green="0.78622764348983765" blue="0.28479877114295959" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="startNavigationButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Iqr-b4-dDC"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWX-fY-W4U">
                                 <rect key="frame" x="309" y="470" width="45" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -103,6 +92,17 @@
                                 </state>
                                 <connections>
                                     <action selector="minusLevelButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="P6m-Ds-9Py"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3sA-dH-ZxH">
+                                <rect key="frame" x="67" y="623" width="240" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Guide Me">
+                                    <color key="titleColor" red="0.28396239876747131" green="0.78622764348983765" blue="0.28479877114295959" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="startNavigationButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Iqr-b4-dDC"/>
                                 </connections>
                             </button>
                         </subviews>
