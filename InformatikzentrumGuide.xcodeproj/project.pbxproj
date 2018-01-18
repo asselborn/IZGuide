@@ -71,12 +71,12 @@
 				63D67A791FFBA96D00334B9E /* AppDelegate.swift */,
 				63D67A911FFBCC1300334B9E /* Overlay */,
 				63D67A8E1FFBA9CD00334B9E /* View Controllers */,
+				11E168A7200FCEF10067050F /* NavigationTree.swift */,
 				63D67A7D1FFBA96D00334B9E /* Main.storyboard */,
 				63D67A831FFBA96D00334B9E /* Assets.xcassets */,
 				63D67A851FFBA96D00334B9E /* LaunchScreen.storyboard */,
 				63D67A881FFBA96D00334B9E /* Info.plist */,
 				63D67A801FFBA96D00334B9E /* InformatikzentrumGuide.xcdatamodeld */,
-				11E168A7200FCEF10067050F /* NavigationTree.swift */,
 			);
 			path = InformatikzentrumGuide;
 			sourceTree = "<group>";
@@ -93,10 +93,10 @@
 		63D67A911FFBCC1300334B9E /* Overlay */ = {
 			isa = PBXGroup;
 			children = (
+				A6CB623E2010EC1C00E45311 /* IZBasement.swift */,
 				A6E27AE0200FC038000374AF /* IZGroundfloor.swift */,
 				63D67A921FFBCC2300334B9E /* MapOverlay.swift */,
 				63D67A941FFBD3D500334B9E /* MapOverlayView.swift */,
-				A6CB623E2010EC1C00E45311 /* IZBasement.swift */,
 			);
 			path = Overlay;
 			sourceTree = "<group>";

@@ -11,11 +11,22 @@ import MapKit
 
 protocol HandleMapSearch {
     func placePin(location: Place)
-    func clearAnnotations()
-    func disableToolbar()
+    func reset()
 }
 
 class MapViewController: UIViewController, CLLocationManagerDelegate {
+    
+    // Define marker areas for buildings and stairs
+    var e1Marker: MKPolygon?
+    // TODO
+    var e2Marker: MKPolygon?
+    var e3Marker: MKPolygon?
+    var hauptbauMarker: MKPolygon?
+    var stairsHauptbau_1: MKPolygon?
+    var stairsHauptbau_2: MKPolygon?
+    var stairsE1: MKPolygon?
+    var stairsE2: MKPolygon?
+    var stairsE3: MKPolygon?
     
     // Define stylish green color used throughout the app, can of course be changed
     let green = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
@@ -37,7 +48,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     var localPosition: CLLocationCoordinate2D?
     
-    // Unnecessary to hand over image, since image is declared belor
+    // Unnecessary to hand over image, since image is declared below
     let mapOverlay = MapOverlay()
     
     var searchResult: UISearchController? = nil
@@ -54,7 +65,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         navigationController?.isToolbarHidden = true
         
         // Set map type
-        self.mapView.mapType = MKMapType.satellite
+        self.mapView.mapType = MKMapType.mutedStandard
         self.mapView.showsPointsOfInterest = false
         self.mapView.tintColor = green
         
@@ -70,16 +81,23 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         // Init overlay for indoor map, base floor
         self.mapView.add(mapOverlay)
         
-        //        // Test marker overlay for later navigation
-        //        var vertices = Array<CLLocationCoordinate2D>()
-        //        vertices.append(CLLocationCoordinate2D(latitude: 50.7788, longitude: 6.0592))
-        //        vertices.append(CLLocationCoordinate2D(latitude: 50.7788, longitude: 6.0594))
-        //        vertices.append(CLLocationCoordinate2D(latitude: 50.779, longitude: 6.0594))
-        //        vertices.append(CLLocationCoordinate2D(latitude: 50.779, longitude: 6.0592))
-        //        let marker = MKPolygon(coordinates: vertices, count: 4)
-        //        self.mapView.add(marker)
-        
-        // Show user location (Set at Ahornstr. entrance in simulator)
+        // Test marker overlay for later navigation
+        var vertices = Array<CLLocationCoordinate2D>()
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778856766109392, longitude: 6.0599851211412172))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778538833045197, longitude: 6.0601530394202516))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778513038381043, longitude: 6.0600496321184956))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.77831927800711, longitude: 6.0601463985844122))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778295282858508, longitude: 6.0600249661566608))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778278486247125, longitude: 6.0600429912826561))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778256290715724, longitude: 6.059967096015324))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.77860421945573, longitude: 6.0597821013011579))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778622215699464, longitude: 6.0598779190762118))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778788980561892, longitude: 6.0597953829728368))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778810575968222, longitude: 6.0599111232556124))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778838170084008, longitude: 6.0598987902745929))
+        e1Marker = MKPolygon(coordinates: vertices, count: 12)
+
+        // Show user location
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
         if (CLLocationManager.locationServicesEnabled()) {
@@ -91,11 +109,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         mapView.showsUserLocation = true
         
         navigationItem.title = "IZGuide"
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor(red: 72/255, green: 200/255, blue: 73/255, alpha: 1), NSAttributedStringKey.font: UIFont(name: "Helvetica Neue", size: 26)!]
-        
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor(red: 72/255, green: 200/255, blue: 73/255, alpha: 1),
+                                                                   NSAttributedStringKey.font: UIFont(name: "Helvetica Neue", size: 26)!]
         
         // Init new view controller to handle display of search results
         searchVC = storyboard!.instantiateViewController(withIdentifier: "SearchResultsViewController") as? SearchResultsViewController
+        
         // Init new search controller to handle calculation of search results
         searchResult = UISearchController(searchResultsController: searchVC)
         searchResult?.searchBar.tintColor = green
@@ -128,6 +147,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         createTree()
     }
     
+    // Prints tapped location in helpful format to quickly get location information to setup markers
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let position = touches.first?.preciseLocation(in: self.mapView)
+        print("vertices.append(\(self.mapView.convert(position!, toCoordinateFrom: self.mapView)))")
+    }
+    
     func startScanning() {
         let uuid = UUID(uuidString: "C2A94B61-726C-4954-3230-313478303031")
         let beaconRegion = CLBeaconRegion(proximityUUID: uuid!, identifier: "Test")
@@ -135,22 +160,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.startRangingBeacons(in: beaconRegion)
     }
     
-    func update(distance: CLProximity) {
-        switch distance {
-        case .unknown:
-            print("Unknown")
-            
-        case .far:
-            print("Far")
-            
-        case .near:
-            print("Near")
-            
-        case .immediate:
-            print("Right Here")
-        }
-    }
-    
+    // Gets called when registered beacons are in range
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         if beacons.count > 0 {
             let beacon = beacons[0]
@@ -158,12 +168,47 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    func update(distance: CLProximity) {
+        switch distance {
+        case .unknown:
+            print("Unknown")
+        case .far:
+            print("Far")
+        case .near:
+            print("Near")
+        case .immediate:
+            print("Right Here")
+        }
+    }
+    
     @IBAction func startNavigationButtonPressed(_ sender: UIButton) {
+        startNavigationButton.isEnabled = false
+        self.adjustGuidance()
+    }
+    
+    // Should be called whenever a defined CLRegion is entered (one for Hauptbau, E1, E2, E3) or the userLevel is changed
+    func adjustGuidance() {
         
         // TODO
-        // start the navigation using the predefined tree
+        // Check if yor are at correct building
+            // If yes check if you are at correct floor
+                // If yes just show pin
+                // If no highlight next stairs
+            // If not check if you are on groundfloor
+                // If yes highlight correct building
+                // If not highlight next stairs
         
+        // Small test
+        if let destination = self.currentPlace {
+            let text = NSMutableAttributedString(string: "Go to \((destination.building)!) Building")
+            text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
+                                NSAttributedStringKey.foregroundColor: UIColor.black],
+                               range: NSMakeRange(0, 5))
+            startNavigationButton.setAttributedTitle(text, for: .disabled)
+        }
+    
     }
+    
     
     @IBAction func plusLevelButtonPressed(_ sender: UIButton) {
         userLevel = userLevel + 1
@@ -171,7 +216,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         // check that maximum level is 3
         if userLevel > 3 { userLevel = 3 }
         levelLabel.text = String(userLevel)
+        
         self.adjustAnnotations()
+        self.adjustGuidance()
         
         // change building overlay to the previous level
         mapView.removeOverlays(mapView.overlays)
@@ -184,14 +231,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         // check that minimum level is -1
         if userLevel < -1 { userLevel = -1 }
         levelLabel.text = String(userLevel)
+        
         self.adjustAnnotations()
+        self.adjustGuidance()
         
         // change building overlay to the previous level
         mapView.removeOverlays(mapView.overlays)
         mapView.add(mapOverlay)
     }
     
-    // Reset annotation images depending to adapt to current floor
+    // Reset annotation images to adapt to current floor
     func adjustAnnotations() {
         for annotation in self.mapView.annotations {
             if (annotation is MKPointAnnotation) {
@@ -209,14 +258,23 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    // If available open URL connected to current place
+    @objc func infoButtonPressed() {
+        guard let urlString = self.currentPlace?.url, let url = URL(string: urlString) else {
+            return
+        }
+        UIApplication.shared.open(url)
+    }
 }
 
 
 // Extension containing used MKMapViewDelegate functions
 extension MapViewController: MKMapViewDelegate {
+    
     // Gets called when overlay is in view and needs to be rendered
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if let mapOverlay = overlay as? MapOverlay {
+            
             // Select the overlay image dependent on current floor
             switch(userLevel) {
             case -1:
@@ -234,33 +292,37 @@ extension MapViewController: MKMapViewDelegate {
             }
         }
             
+        // Define properties of guidance markers
         else if let marker = overlay as? MKPolygon {
             let markerView = MKPolygonRenderer(polygon: marker)
             markerView.lineWidth = 0
-            markerView.fillColor = UIColor.green
-            markerView.alpha = 0.3
+            markerView.fillColor = green
+            markerView.alpha = 0.5
             return markerView
         }
+        
         return MKOverlayRenderer()
     }
     
     // Gets called when annotation is in view and needs to be displayed
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
     {
+        // Ignore user location
         if !(annotation is MKPointAnnotation) {
             return nil
         }
         
         let annotationIdentifier = "AnnotationIdentifier"
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier)
-        
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
-            annotationView!.canShowCallout = true
         }
         else {
             annotationView!.annotation = annotation
         }
+        annotationView!.canShowCallout = true
+        
+        // Set image based on relative position to floor of location
         if (userLevel == currentPlace?.floor) {
             annotationView?.image = #imageLiteral(resourceName: "Pin_Star")
         }
@@ -270,25 +332,35 @@ extension MapViewController: MKMapViewDelegate {
         else if (userLevel > (currentPlace?.floor)!) {
             annotationView?.image = #imageLiteral(resourceName: "Pin_Star_Down")
         }
-        let infoButton = UIButton(type: .infoLight)
-        infoButton.addTarget(self, action: #selector(infoButtonPressed), for: .touchUpInside)
-        annotationView?.rightCalloutAccessoryView = infoButton
-        // Set pin position at location, at default it would be in center of custom image
+        
+        // Add an info button if URL is available
+        if (self.currentPlace?.url) != nil {
+            let infoButton = UIButton(type: .infoLight)
+            infoButton.addTarget(self, action: #selector(infoButtonPressed), for: .touchUpInside)
+            annotationView?.rightCalloutAccessoryView = infoButton
+        }
+        
+        // Shift image position, at default location would be in center of custom image
         annotationView?.centerOffset = CGPoint(x: 0, y: -(annotationView?.frame.size.height)! / 2)
+        
         return annotationView
-    }
-    @objc func infoButtonPressed() {
-        UIApplication.shared.open(URL(string: (self.currentPlace?.url)!)!)
     }
 }
 
 
-
+// Handle communication coming from SearchResultsVC
 extension MapViewController: HandleMapSearch {
+    
+    // Place a pin for the selected Place
     func placePin(location: Place) {
+        
+        // Set current location
         self.currentPlace = location
+        
         // Enter full text of selection into search textfield
         searchResult?.searchBar.text = location.name
+        
+        // Add annotation
         mapView.removeAnnotations(mapView.annotations)
         let annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
@@ -297,17 +369,24 @@ extension MapViewController: HandleMapSearch {
         annotation.subtitle = "Floor: \(floor)"
         mapView.addAnnotation(annotation)
         
-        // show the navigation button
+        // Show the navigation button to offer guidance
         navigationController?.isToolbarHidden = false
     }
-    
-    func clearAnnotations() {
+
+    // Remove annotation pin and any marker overlay. Enable "Guide Me" button again, toolbar is hidden till a new pin is placed.
+    func reset() {
+        
+        // Reset location
         self.currentPlace = nil
         mapView.removeAnnotations(mapView.annotations)
-        navigationController?.isToolbarHidden = true
-    }
-    
-    func disableToolbar() {
+        
+        // Reset overlays
+        self.mapView.removeOverlays(mapView.overlays)
+        self.mapView.add(mapOverlay)
+        
+        // Reset toolbar
+        startNavigationButton.isEnabled = true
+        startNavigationButton.setTitle("Guide Me", for: .normal)
         navigationController?.isToolbarHidden = true
     }
 }
