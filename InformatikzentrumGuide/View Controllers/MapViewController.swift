@@ -81,7 +81,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         // Init overlay for indoor map, base floor
         self.mapView.add(mapOverlay)
         
-        // Test marker overlay for later navigation
+        // Set markers
         var vertices = Array<CLLocationCoordinate2D>()
         vertices.append(CLLocationCoordinate2D(latitude: 50.778856766109392, longitude: 6.0599851211412172))
         vertices.append(CLLocationCoordinate2D(latitude: 50.778538833045197, longitude: 6.0601530394202516))
@@ -96,6 +96,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         vertices.append(CLLocationCoordinate2D(latitude: 50.778810575968222, longitude: 6.0599111232556124))
         vertices.append(CLLocationCoordinate2D(latitude: 50.778838170084008, longitude: 6.0598987902745929))
         e1Marker = MKPolygon(coordinates: vertices, count: 12)
+        
 
         // Show user location
         locationManager.requestAlwaysAuthorization()
@@ -186,10 +187,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         self.adjustGuidance()
     }
     
-    // Should be called whenever a defined CLRegion is entered (one for Hauptbau, E1, E2, E3) or the userLevel is changed
+    // Should be called whenever a defined location area is entered (one for Hauptbau, E1, E2, E3) or the userLevel is changed
     func adjustGuidance() {
         
         // TODO
+        // STRUCTURE
         // Check if yor are at correct building
             // If yes check if you are at correct floor
                 // If yes just show pin
@@ -198,15 +200,47 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                 // If yes highlight correct building
                 // If not highlight next stairs
         
-        // Small test
+        // Test
         if let destination = self.currentPlace {
-            let text = NSMutableAttributedString(string: "Go to \((destination.building)!) Building")
-            text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
-                                NSAttributedStringKey.foregroundColor: UIColor.black],
-                               range: NSMakeRange(0, 5))
-            startNavigationButton.setAttributedTitle(text, for: .disabled)
+            
+            // TODO: Check if yor are at correct building
+            if (false) {
+                // Check if you are at correct floor
+                if (userLevel == destination.floor) {
+                    let text = NSMutableAttributedString(string: "Go to Pin")
+                    text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
+                                        NSAttributedStringKey.foregroundColor: UIColor.black],
+                                       range: NSMakeRange(0, 5))
+                    startNavigationButton.setAttributedTitle(text, for: .disabled)
+                }
+                else {
+                    let text = NSMutableAttributedString(string: "Go to Stairs")
+                    text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
+                                        NSAttributedStringKey.foregroundColor: UIColor.black],
+                                       range: NSMakeRange(0, 5))
+                    startNavigationButton.setAttributedTitle(text, for: .disabled)
+                }
+            }
+            
+            // Not at correct building
+            else {
+                // Check if you are at groundfloor to change buildings
+                if (userLevel == 0) {
+                    let text = NSMutableAttributedString(string: "Go to \((destination.building)!) Building")
+                    text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
+                                        NSAttributedStringKey.foregroundColor: UIColor.black],
+                                       range: NSMakeRange(0, 5))
+                    startNavigationButton.setAttributedTitle(text, for: .disabled)
+                }
+                else {
+                    let text = NSMutableAttributedString(string: "Go to Stairs")
+                    text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
+                                        NSAttributedStringKey.foregroundColor: UIColor.black],
+                                       range: NSMakeRange(0, 5))
+                    startNavigationButton.setAttributedTitle(text, for: .disabled)
+                }
+            }
         }
-    
     }
     
     
