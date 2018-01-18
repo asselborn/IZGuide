@@ -91,7 +91,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         mapView.showsUserLocation = true
         
         navigationItem.title = "IZGuide"
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: green, NSAttributedStringKey.font: UIFont(name: "Helvetica Neue", size: 20)!]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor(red: 72/255, green: 200/255, blue: 73/255, alpha: 1), NSAttributedStringKey.font: UIFont(name: "Helvetica Neue", size: 26)!]
+        
         
         // Init new view controller to handle display of search results
         searchVC = storyboard!.instantiateViewController(withIdentifier: "SearchResultsViewController") as? SearchResultsViewController
@@ -118,6 +119,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         minusLevelButton.layer.cornerRadius = 9
         
         levelLabel.layer.borderWidth = 1
+        levelLabel.layer.cornerRadius = 9
         
         // Add navigation button to toolbar
         self.toolbarItems = [UIBarButtonItem(customView: startNavigationButton)]
