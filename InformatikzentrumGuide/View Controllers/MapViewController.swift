@@ -54,7 +54,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         navigationController?.isToolbarHidden = true
         
         // Set map type
-        self.mapView.mapType = MKMapType.mutedStandard
+        self.mapView.mapType = MKMapType.satellite
         self.mapView.showsPointsOfInterest = false
         self.mapView.tintColor = green
         
@@ -62,8 +62,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         self.mapView.delegate = self
         
         // Center map on Informatikzentrum
-        let position = CLLocationCoordinate2D(latitude: 50.77884046, longitude: 6.05975926)
-        let span = MKCoordinateSpanMake(0.003, 0.003)
+        let position = CLLocationCoordinate2D(latitude: 50.77884, longitude: 6.05975)
+        let span = MKCoordinateSpanMake(0.0025, 0.0025)
         let region = MKCoordinateRegionMake(position, span)
         mapView.region = region
         
@@ -116,10 +116,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         // round corners of buttons
         startNavigationButton.layer.cornerRadius = 9
         plusLevelButton.layer.cornerRadius = 9
+        plusLevelButton.layer.borderWidth = 1
         minusLevelButton.layer.cornerRadius = 9
+        minusLevelButton.layer.borderWidth = 1
         
         levelLabel.layer.borderWidth = 1
-        levelLabel.layer.cornerRadius = 9
         
         // Add navigation button to toolbar
         self.toolbarItems = [UIBarButtonItem(customView: startNavigationButton)]
