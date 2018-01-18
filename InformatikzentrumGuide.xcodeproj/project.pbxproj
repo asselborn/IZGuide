@@ -17,6 +17,7 @@
 		63D67A901FFBA9E700334B9E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D67A8F1FFBA9E700334B9E /* MapViewController.swift */; };
 		63D67A931FFBCC2300334B9E /* MapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D67A921FFBCC2300334B9E /* MapOverlay.swift */; };
 		63D67A951FFBD3D500334B9E /* MapOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D67A941FFBD3D500334B9E /* MapOverlayView.swift */; };
+		A6CB623F2010EC1C00E45311 /* IZBasement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CB623E2010EC1C00E45311 /* IZBasement.swift */; };
 		A6E27AE1200FC038000374AF /* IZGroundfloor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E27AE0200FC038000374AF /* IZGroundfloor.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		63D67A8F1FFBA9E700334B9E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		63D67A921FFBCC2300334B9E /* MapOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOverlay.swift; sourceTree = "<group>"; };
 		63D67A941FFBD3D500334B9E /* MapOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOverlayView.swift; sourceTree = "<group>"; };
+		A6CB623E2010EC1C00E45311 /* IZBasement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IZBasement.swift; path = InformatikzentrumGuide/Overlay/IZBasement.swift; sourceTree = SOURCE_ROOT; };
 		A6E27AE0200FC038000374AF /* IZGroundfloor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IZGroundfloor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +96,7 @@
 				A6E27AE0200FC038000374AF /* IZGroundfloor.swift */,
 				63D67A921FFBCC2300334B9E /* MapOverlay.swift */,
 				63D67A941FFBD3D500334B9E /* MapOverlayView.swift */,
+				A6CB623E2010EC1C00E45311 /* IZBasement.swift */,
 			);
 			path = Overlay;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6CB623F2010EC1C00E45311 /* IZBasement.swift in Sources */,
 				631AA8E720063B6700680591 /* SearchResultsViewController.swift in Sources */,
 				63D67A7A1FFBA96D00334B9E /* AppDelegate.swift in Sources */,
 				63D67A901FFBA9E700334B9E /* MapViewController.swift in Sources */,

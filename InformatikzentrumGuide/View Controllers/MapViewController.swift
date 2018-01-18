@@ -43,8 +43,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     var searchResult: UISearchController? = nil
     var searchVC: SearchResultsViewController? = nil
     
-    // The image for the map overlay
-    let imageForOverlay: UIImage = IZGroundfloor.imageOfCanvas1
+    // The images for the map overlay
+    let groundfloorImage: UIImage = IZGroundfloor.imageOfCanvas1
+    let basementImage: UIImage = IZBasement.imageOfCanvas1
     
     
     override func viewDidLoad() {
@@ -168,8 +169,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         if userLevel > 3 { userLevel = 3 }
         levelLabel.text = String(userLevel)
         self.adjustAnnotations()
-        // TODO
-        // change building overlay to the next level
+        
+        // change building overlay to the previous level
+        mapView.removeOverlays(mapView.overlays)
+        mapView.add(mapOverlay)
     }
     
     @IBAction func minusLevelButtonPressed(_ sender: UIButton) {
@@ -180,8 +183,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         levelLabel.text = String(userLevel)
         self.adjustAnnotations()
         
-        // TODO
         // change building overlay to the previous level
+        mapView.removeOverlays(mapView.overlays)
+        mapView.add(mapOverlay)
     }
     
     // Reset annotation images depending to adapt to current floor
@@ -210,7 +214,21 @@ extension MapViewController: MKMapViewDelegate {
     // Gets called when overlay is in view and needs to be rendered
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if let mapOverlay = overlay as? MapOverlay {
-            return MapOverlayView(overlay: mapOverlay, overlayImage: imageForOverlay)
+            // Select the overlay image dependent on current floor
+            switch(userLevel) {
+            case -1:
+                return MapOverlayView(overlay: mapOverlay, overlayImage: basementImage)
+            case 0:
+                return MapOverlayView(overlay: mapOverlay, overlayImage: groundfloorImage)
+            case 1:
+                return MapOverlayView(overlay: mapOverlay, overlayImage: groundfloorImage)
+            case 2:
+                return MapOverlayView(overlay: mapOverlay, overlayImage: groundfloorImage)
+            case 3:
+                return MapOverlayView(overlay: mapOverlay, overlayImage: groundfloorImage)
+            default:
+                return MapOverlayView(overlay: mapOverlay, overlayImage: groundfloorImage)
+            }
         }
             
         else if let marker = overlay as? MKPolygon {

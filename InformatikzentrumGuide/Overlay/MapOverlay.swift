@@ -15,9 +15,9 @@ class MapOverlay: NSObject, MKOverlay {
     var boundingMapRect: MKMapRect
 
     override init() {
-        let topLeft = CLLocationCoordinate2D(latitude: 50.77980, longitude: 6.05837)
-        let topRight = CLLocationCoordinate2D(latitude: 50.77980, longitude: 6.06140)
-        let bottomLeft = CLLocationCoordinate2D(latitude: 50.77795, longitude: 6.05837)
+        let topLeft = CLLocationCoordinate2D(latitude: 50.77981, longitude: 6.05826)
+        let topRight = CLLocationCoordinate2D(latitude: 50.77981, longitude: 6.06134)
+        let bottomLeft = CLLocationCoordinate2D(latitude: 50.77794, longitude: 6.05826)
         
         self.coordinate = CLLocationCoordinate2D(latitude: 50.77884, longitude: 6.05975)
         let origin = MKMapPointForCoordinate(topLeft)
