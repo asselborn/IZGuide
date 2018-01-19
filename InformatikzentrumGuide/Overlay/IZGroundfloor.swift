@@ -1,5 +1,5 @@
 //
-//  IZGroundfloor.swift
+//  IZGroundFloor.swift
 //  InfozentrumGuide
 //
 //  Created by RWTH on 19.01.18.
@@ -15,7 +15,7 @@
 
 import UIKit
 
-public class IZGroundfloor : NSObject {
+public class IZGroundFloor : NSObject {
 
     //// Cache
 
@@ -2715,7 +2715,7 @@ public class IZGroundfloor : NSObject {
         }
 
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 1343, height: 1308), false, 0)
-            IZGroundfloor.drawCanvas1()
+            IZGroundFloor.drawCanvas1()
 
         Cache.imageOfCanvas1 = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
@@ -2730,7 +2730,7 @@ public class IZGroundfloor : NSObject {
         set {
             Cache.canvas1Targets = newValue
             for target: AnyObject in newValue {
-                let _ = target.perform(NSSelectorFromString("setImage:"), with: IZGroundfloor.imageOfCanvas1)
+                let _ = target.perform(NSSelectorFromString("setImage:"), with: IZGroundFloor.imageOfCanvas1)
             }
         }
     }
@@ -2738,7 +2738,7 @@ public class IZGroundfloor : NSObject {
 
 
 
-    @objc(IZGroundfloorResizingBehavior)
+    @objc(IZGroundFloorResizingBehavior)
     public enum ResizingBehavior: Int {
         case aspectFit /// The content is proportionally resized to fit into the target rectangle.
         case aspectFill /// The content is proportionally resized to completely fill the target rectangle.

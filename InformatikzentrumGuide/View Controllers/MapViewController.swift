@@ -55,10 +55,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     var searchVC: SearchResultsViewController? = nil
     
     // The images for the map overlay
-    let groundfloorImage: UIImage = IZGroundfloor.imageOfCanvas1
+    let groundfloorImage: UIImage = IZGroundFloor.imageOfCanvas1
     let basementImage: UIImage = IZBasement.imageOfCanvas1
     let firstFloorImage: UIImage = IZFirstFloor.imageOfCanvas1
     let secondFloorImage: UIImage = IZSecondFloor.imageOfCanvas1
+    let thirdFloorImage: UIImage = IZThirdFloor.imageOfCanvas1
     
     
     override func viewDidLoad() {
@@ -320,7 +321,7 @@ extension MapViewController: MKMapViewDelegate {
             case 2:
                 return MapOverlayView(overlay: mapOverlay, overlayImage: secondFloorImage)
             case 3:
-                return MapOverlayView(overlay: mapOverlay, overlayImage: groundfloorImage)
+                return MapOverlayView(overlay: mapOverlay, overlayImage: thirdFloorImage)
             default:
                 return MapOverlayView(overlay: mapOverlay, overlayImage: groundfloorImage)
             }

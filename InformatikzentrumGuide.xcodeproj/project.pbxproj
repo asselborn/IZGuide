@@ -17,9 +17,10 @@
 		63D67A931FFBCC2300334B9E /* MapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D67A921FFBCC2300334B9E /* MapOverlay.swift */; };
 		63D67A951FFBD3D500334B9E /* MapOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D67A941FFBD3D500334B9E /* MapOverlayView.swift */; };
 		A66C0BA3201212CC008A449F /* IZSecondFloor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66C0BA2201212CC008A449F /* IZSecondFloor.swift */; };
+		A66C0BA620122076008A449F /* IZThirdFloor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66C0BA420122076008A449F /* IZThirdFloor.swift */; };
+		A66C0BA720122076008A449F /* IZGroundFloor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66C0BA520122076008A449F /* IZGroundFloor.swift */; };
 		A6CB623F2010EC1C00E45311 /* IZBasement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CB623E2010EC1C00E45311 /* IZBasement.swift */; };
 		A6CB62432011FFA200E45311 /* IZFirstFloor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CB62422011FFA200E45311 /* IZFirstFloor.swift */; };
-		A6E27AE1200FC038000374AF /* IZGroundfloor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E27AE0200FC038000374AF /* IZGroundfloor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,9 +36,10 @@
 		63D67A921FFBCC2300334B9E /* MapOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOverlay.swift; sourceTree = "<group>"; };
 		63D67A941FFBD3D500334B9E /* MapOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOverlayView.swift; sourceTree = "<group>"; };
 		A66C0BA2201212CC008A449F /* IZSecondFloor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IZSecondFloor.swift; sourceTree = "<group>"; };
+		A66C0BA420122076008A449F /* IZThirdFloor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IZThirdFloor.swift; sourceTree = "<group>"; };
+		A66C0BA520122076008A449F /* IZGroundFloor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IZGroundFloor.swift; sourceTree = "<group>"; };
 		A6CB623E2010EC1C00E45311 /* IZBasement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IZBasement.swift; path = InformatikzentrumGuide/Overlay/IZBasement.swift; sourceTree = SOURCE_ROOT; };
 		A6CB62422011FFA200E45311 /* IZFirstFloor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IZFirstFloor.swift; sourceTree = "<group>"; };
-		A6E27AE0200FC038000374AF /* IZGroundfloor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IZGroundfloor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,10 +96,11 @@
 		63D67A911FFBCC1300334B9E /* Overlay */ = {
 			isa = PBXGroup;
 			children = (
+				A66C0BA520122076008A449F /* IZGroundFloor.swift */,
+				A66C0BA420122076008A449F /* IZThirdFloor.swift */,
 				A66C0BA2201212CC008A449F /* IZSecondFloor.swift */,
 				A6CB62422011FFA200E45311 /* IZFirstFloor.swift */,
 				A6CB623E2010EC1C00E45311 /* IZBasement.swift */,
-				A6E27AE0200FC038000374AF /* IZGroundfloor.swift */,
 				63D67A921FFBCC2300334B9E /* MapOverlay.swift */,
 				63D67A941FFBD3D500334B9E /* MapOverlayView.swift */,
 			);
@@ -179,13 +182,14 @@
 				A6CB623F2010EC1C00E45311 /* IZBasement.swift in Sources */,
 				A6CB62432011FFA200E45311 /* IZFirstFloor.swift in Sources */,
 				631AA8E720063B6700680591 /* SearchResultsViewController.swift in Sources */,
+				A66C0BA620122076008A449F /* IZThirdFloor.swift in Sources */,
 				63D67A7A1FFBA96D00334B9E /* AppDelegate.swift in Sources */,
 				63D67A901FFBA9E700334B9E /* MapViewController.swift in Sources */,
-				A6E27AE1200FC038000374AF /* IZGroundfloor.swift in Sources */,
 				63D67A821FFBA96D00334B9E /* InformatikzentrumGuide.xcdatamodeld in Sources */,
 				63D67A931FFBCC2300334B9E /* MapOverlay.swift in Sources */,
 				63D67A951FFBD3D500334B9E /* MapOverlayView.swift in Sources */,
 				A66C0BA3201212CC008A449F /* IZSecondFloor.swift in Sources */,
+				A66C0BA720122076008A449F /* IZGroundFloor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
