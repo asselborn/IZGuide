@@ -58,6 +58,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     let groundfloorImage: UIImage = IZGroundfloor.imageOfCanvas1
     let basementImage: UIImage = IZBasement.imageOfCanvas1
     let firstFloorImage: UIImage = IZFirstFloor.imageOfCanvas1
+    let secondFloorImage: UIImage = IZSecondFloor.imageOfCanvas1
     
     
     override func viewDidLoad() {
@@ -317,7 +318,7 @@ extension MapViewController: MKMapViewDelegate {
             case 1:
                 return MapOverlayView(overlay: mapOverlay, overlayImage: firstFloorImage)
             case 2:
-                return MapOverlayView(overlay: mapOverlay, overlayImage: groundfloorImage)
+                return MapOverlayView(overlay: mapOverlay, overlayImage: secondFloorImage)
             case 3:
                 return MapOverlayView(overlay: mapOverlay, overlayImage: groundfloorImage)
             default:

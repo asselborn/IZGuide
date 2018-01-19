@@ -1280,7 +1280,7 @@ public class IZBasement : NSObject {
         bezier2Path.addLine(to: CGPoint(x: 91, y: 0))
         bezier2Path.addLine(to: CGPoint(x: 0, y: 34))
         bezier2Path.close()
-        greyedOutBackground.setFill()
+        background.setFill()
         bezier2Path.fill()
         UIColor.darkGray.setStroke()
         bezier2Path.lineWidth = 2
@@ -1785,6 +1785,28 @@ public class IZBasement : NSObject {
         bezier86Path.lineCapStyle = .round
         bezier86Path.lineJoinStyle = .round
         bezier86Path.stroke()
+
+
+        //// Bezier 100 Drawing
+        context.saveGState()
+        context.translateBy(x: 868.88, y: 403.56)
+        context.rotate(by: -64.4 * CGFloat.pi/180)
+        context.scaleBy(x: 2.7, y: 2.7)
+
+        let bezier100Path = UIBezierPath()
+        bezier100Path.move(to: CGPoint(x: 0, y: 6))
+        bezier100Path.addLine(to: CGPoint(x: 0, y: 1))
+        bezier100Path.addLine(to: CGPoint(x: 5, y: 1))
+        bezier100Path.addLine(to: CGPoint(x: 0, y: 6))
+        UIColor.darkGray.setFill()
+        bezier100Path.fill()
+        UIColor.darkGray.setStroke()
+        bezier100Path.lineWidth = 0.5
+        bezier100Path.lineCapStyle = .round
+        bezier100Path.lineJoinStyle = .round
+        bezier100Path.stroke()
+
+        context.restoreGState()
 
 
 

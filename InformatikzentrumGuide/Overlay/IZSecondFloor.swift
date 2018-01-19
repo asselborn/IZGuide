@@ -1,5 +1,5 @@
 //
-//  IZGroundfloor.swift
+//  IZSecondFloor.swift
 //  InfozentrumGuide
 //
 //  Created by RWTH on 19.01.18.
@@ -15,7 +15,7 @@
 
 import UIKit
 
-public class IZGroundfloor : NSObject {
+public class IZSecondFloor : NSObject {
 
     //// Cache
 
@@ -39,7 +39,178 @@ public class IZGroundfloor : NSObject {
 
         //// Color Declarations
         let grass = UIColor(red: 0.788, green: 0.906, blue: 0.725, alpha: 1.000)
-        let background = UIColor(red: 0.933, green: 0.929, blue: 0.910, alpha: 1.000)
+        let background = UIColor(red: 0.934, green: 0.928, blue: 0.910, alpha: 1.000)
+        let greyedOutBackground = UIColor(red: 0.627, green: 0.627, blue: 0.627, alpha: 1.000)
+
+        //// pool_bg Drawing
+        context.saveGState()
+        context.translateBy(x: 276.45, y: 307.28)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let pool_bgPath = UIBezierPath()
+        pool_bgPath.move(to: CGPoint(x: 83.55, y: -1.01))
+        pool_bgPath.addLine(to: CGPoint(x: -21.13, y: 35.91))
+        pool_bgPath.addLine(to: CGPoint(x: 133, y: 481))
+        pool_bgPath.addLine(to: CGPoint(x: 120, y: 486))
+        pool_bgPath.addLine(to: CGPoint(x: 126, y: 501))
+        pool_bgPath.addLine(to: CGPoint(x: 165, y: 487))
+        pool_bgPath.addLine(to: CGPoint(x: 188, y: 555))
+        pool_bgPath.addLine(to: CGPoint(x: 282, y: 521))
+        pool_bgPath.addLine(to: CGPoint(x: 259, y: 453))
+        pool_bgPath.addLine(to: CGPoint(x: 243, y: 459))
+        pool_bgPath.addLine(to: CGPoint(x: 83.55, y: -1.01))
+        pool_bgPath.close()
+        background.setFill()
+        pool_bgPath.fill()
+
+        context.restoreGState()
+
+
+        //// rbi_bg Drawing
+        context.saveGState()
+        context.translateBy(x: 659.88, y: 660.14)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let rbi_bgPath = UIBezierPath()
+        rbi_bgPath.move(to: CGPoint(x: 87, y: 413))
+        rbi_bgPath.addLine(to: CGPoint(x: 0, y: 178))
+        rbi_bgPath.addLine(to: CGPoint(x: 48, y: 160))
+        rbi_bgPath.addLine(to: CGPoint(x: 7, y: 47))
+        rbi_bgPath.addLine(to: CGPoint(x: 59, y: 28))
+        rbi_bgPath.addLine(to: CGPoint(x: 54, y: 14))
+        rbi_bgPath.addLine(to: CGPoint(x: 92, y: 0))
+        rbi_bgPath.addLine(to: CGPoint(x: 170, y: 222))
+        rbi_bgPath.addLine(to: CGPoint(x: 122, y: 239))
+        rbi_bgPath.addLine(to: CGPoint(x: 169, y: 370))
+        rbi_bgPath.addLine(to: CGPoint(x: 115, y: 388))
+        rbi_bgPath.addLine(to: CGPoint(x: 119, y: 401))
+        rbi_bgPath.addLine(to: CGPoint(x: 87, y: 413))
+        rbi_bgPath.close()
+        background.setFill()
+        rbi_bgPath.fill()
+
+        context.restoreGState()
+
+
+        //// mvdr_bg Drawing
+        context.saveGState()
+        context.translateBy(x: 769.85, y: 893.11)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let mvdr_bgPath = UIBezierPath()
+        mvdr_bgPath.move(to: CGPoint(x: 336.17, y: 229.97))
+        mvdr_bgPath.addLine(to: CGPoint(x: 384, y: 214))
+        mvdr_bgPath.addLine(to: CGPoint(x: 438, y: 368))
+        mvdr_bgPath.addLine(to: CGPoint(x: 522, y: 338))
+        mvdr_bgPath.addLine(to: CGPoint(x: 444, y: 116))
+        mvdr_bgPath.addLine(to: CGPoint(x: 398, y: 132))
+        mvdr_bgPath.addLine(to: CGPoint(x: 352, y: 0))
+        mvdr_bgPath.addLine(to: CGPoint(x: 266, y: 29))
+        mvdr_bgPath.addLine(to: CGPoint(x: 313, y: 162))
+        mvdr_bgPath.addLine(to: CGPoint(x: 336.17, y: 229.97))
+        mvdr_bgPath.close()
+        background.setFill()
+        mvdr_bgPath.fill()
+
+        context.restoreGState()
+
+
+        //// Greyed out Drawing
+        context.saveGState()
+        context.translateBy(x: 16.5, y: 13.5)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let greyedOutPath = UIBezierPath()
+        greyedOutPath.move(to: CGPoint(x: 630, y: 259))
+        greyedOutPath.addLine(to: CGPoint(x: 590, y: 144))
+        greyedOutPath.addLine(to: CGPoint(x: 611, y: 136))
+        greyedOutPath.addLine(to: CGPoint(x: 562, y: 0))
+        greyedOutPath.addLine(to: CGPoint(x: 463, y: 34))
+        greyedOutPath.addLine(to: CGPoint(x: 492, y: 114))
+        greyedOutPath.addLine(to: CGPoint(x: 400, y: 147))
+        greyedOutPath.addLine(to: CGPoint(x: 400, y: 84))
+        greyedOutPath.addLine(to: CGPoint(x: 366, y: 87))
+        greyedOutPath.addLine(to: CGPoint(x: 333, y: 95))
+        greyedOutPath.addLine(to: CGPoint(x: 301, y: 110))
+        greyedOutPath.addLine(to: CGPoint(x: 277, y: 127))
+        greyedOutPath.addLine(to: CGPoint(x: 313, y: 175))
+        greyedOutPath.addLine(to: CGPoint(x: 136, y: 236))
+        greyedOutPath.addLine(to: CGPoint(x: 120, y: 188))
+        greyedOutPath.addLine(to: CGPoint(x: 0, y: 229))
+        greyedOutPath.addLine(to: CGPoint(x: 65, y: 427))
+        greyedOutPath.addLine(to: CGPoint(x: 87, y: 419))
+        greyedOutPath.addLine(to: CGPoint(x: 101, y: 459))
+        greyedOutPath.addLine(to: CGPoint(x: 271, y: 415))
+        greyedOutPath.addLine(to: CGPoint(x: 262, y: 390))
+        greyedOutPath.addLine(to: CGPoint(x: 241.37, y: 327.41))
+        greyedOutPath.addLine(to: CGPoint(x: 346.05, y: 290.49))
+        greyedOutPath.addLine(to: CGPoint(x: 368, y: 353))
+        greyedOutPath.addLine(to: CGPoint(x: 630, y: 259))
+        greyedOutPath.close()
+        greyedOutBackground.setFill()
+        greyedOutPath.fill()
+
+        context.restoreGState()
+
+
+        //// Greyed out 2 Drawing
+        context.saveGState()
+        context.translateBy(x: 347.7, y: 794.42)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let greyedOut2Path = UIBezierPath()
+        greyedOut2Path.move(to: CGPoint(x: 90, y: 0))
+        greyedOut2Path.addLine(to: CGPoint(x: 50, y: 15))
+        greyedOut2Path.addLine(to: CGPoint(x: 49, y: 200))
+        greyedOut2Path.addLine(to: CGPoint(x: 0, y: 200))
+        greyedOut2Path.addLine(to: CGPoint(x: 1, y: 318))
+        greyedOut2Path.addLine(to: CGPoint(x: 158, y: 321))
+        greyedOut2Path.addLine(to: CGPoint(x: 158, y: 238))
+        greyedOut2Path.addLine(to: CGPoint(x: 129, y: 238))
+        greyedOut2Path.addLine(to: CGPoint(x: 129, y: 97))
+        greyedOut2Path.addLine(to: CGPoint(x: 240, y: 97))
+        greyedOut2Path.addLine(to: CGPoint(x: 295, y: 262))
+        greyedOut2Path.addLine(to: CGPoint(x: 275, y: 269))
+        greyedOut2Path.addLine(to: CGPoint(x: 297, y: 334))
+        greyedOut2Path.addLine(to: CGPoint(x: 386, y: 303))
+        greyedOut2Path.addLine(to: CGPoint(x: 440, y: 465))
+        greyedOut2Path.addLine(to: CGPoint(x: 500, y: 444))
+        greyedOut2Path.addLine(to: CGPoint(x: 491, y: 418))
+        greyedOut2Path.addLine(to: CGPoint(x: 508.5, y: 411.5))
+        greyedOut2Path.addLine(to: CGPoint(x: 534.63, y: 493.93))
+        greyedOut2Path.addLine(to: CGPoint(x: 546.66, y: 496.83))
+        greyedOut2Path.addLine(to: CGPoint(x: 557.66, y: 496.73))
+        greyedOut2Path.addLine(to: CGPoint(x: 570.65, y: 495.62))
+        greyedOut2Path.addLine(to: CGPoint(x: 582.62, y: 492.51))
+        greyedOut2Path.addLine(to: CGPoint(x: 602.55, y: 484.34))
+        greyedOut2Path.addLine(to: CGPoint(x: 619.45, y: 472.19))
+        greyedOut2Path.addLine(to: CGPoint(x: 631.32, y: 458.09))
+        greyedOut2Path.addLine(to: CGPoint(x: 625.16, y: 439.14))
+        greyedOut2Path.addLine(to: CGPoint(x: 638.16, y: 439.03))
+        greyedOut2Path.addLine(to: CGPoint(x: 656.14, y: 436.87))
+        greyedOut2Path.addLine(to: CGPoint(x: 671.1, y: 431.74))
+        greyedOut2Path.addLine(to: CGPoint(x: 686.02, y: 423.61))
+        greyedOut2Path.addLine(to: CGPoint(x: 698.93, y: 412.5))
+        greyedOut2Path.addLine(to: CGPoint(x: 679.41, y: 352.66))
+        greyedOut2Path.addLine(to: CGPoint(x: 759.17, y: 324.97))
+        greyedOut2Path.addLine(to: CGPoint(x: 721, y: 216))
+        greyedOut2Path.addLine(to: CGPoint(x: 636, y: 245))
+        greyedOut2Path.addLine(to: CGPoint(x: 617, y: 187))
+        greyedOut2Path.addLine(to: CGPoint(x: 480, y: 233))
+        greyedOut2Path.addLine(to: CGPoint(x: 426, y: 251))
+        greyedOut2Path.addLine(to: CGPoint(x: 430, y: 264))
+        greyedOut2Path.addLine(to: CGPoint(x: 398, y: 276))
+        greyedOut2Path.addLine(to: CGPoint(x: 325, y: 78))
+        greyedOut2Path.addLine(to: CGPoint(x: 196, y: 81))
+        greyedOut2Path.addLine(to: CGPoint(x: 183, y: 43))
+        greyedOut2Path.addLine(to: CGPoint(x: 113, y: 68))
+        greyedOut2Path.addLine(to: CGPoint(x: 90, y: 0))
+        greyedOut2Path.close()
+        greyedOutBackground.setFill()
+        greyedOut2Path.fill()
+
+        context.restoreGState()
+
 
         //// Bezier Drawing
         context.saveGState()
@@ -63,7 +234,9 @@ public class IZGroundfloor : NSObject {
         bezierPath.addLine(to: CGPoint(x: 611, y: 136))
         bezierPath.addLine(to: CGPoint(x: 590, y: 144))
         bezierPath.addLine(to: CGPoint(x: 630, y: 259))
+        bezierPath.addLine(to: CGPoint(x: 380.5, y: 347.5))
         bezierPath.addLine(to: CGPoint(x: 368, y: 352))
+        bezierPath.addLine(to: CGPoint(x: 371, y: 360.72))
         bezierPath.addLine(to: CGPoint(x: 505, y: 751))
         bezierPath.addLine(to: CGPoint(x: 521, y: 745))
         bezierPath.addLine(to: CGPoint(x: 544.5, y: 812.5))
@@ -131,8 +304,6 @@ public class IZGroundfloor : NSObject {
         bezierPath.addLine(to: CGPoint(x: 87, y: 419))
         bezierPath.addLine(to: CGPoint(x: 65, y: 427))
         bezierPath.addLine(to: CGPoint(x: 0, y: 229))
-        background.setFill()
-        bezierPath.fill()
         UIColor.darkGray.setStroke()
         bezierPath.lineWidth = 2
         bezierPath.lineCapStyle = .round
@@ -166,8 +337,7 @@ public class IZGroundfloor : NSObject {
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier3Path = UIBezierPath()
-        bezier3Path.move(to: CGPoint(x: 20, y: 237))
-        bezier3Path.addLine(to: CGPoint(x: 0, y: 181))
+        bezier3Path.move(to: CGPoint(x: 0, y: 181))
         bezier3Path.addLine(to: CGPoint(x: 184, y: 116))
         bezier3Path.addLine(to: CGPoint(x: 143, y: 0))
         bezier3Path.addLine(to: CGPoint(x: 131, y: 4))
@@ -284,7 +454,7 @@ public class IZGroundfloor : NSObject {
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier9Path = UIBezierPath()
-        bezier9Path.move(to: CGPoint(x: 27, y: 76))
+        bezier9Path.move(to: CGPoint(x: 26.8, y: 75.8))
         bezier9Path.addLine(to: CGPoint(x: 0, y: 0))
         UIColor.darkGray.setStroke()
         bezier9Path.lineWidth = 2
@@ -303,8 +473,7 @@ public class IZGroundfloor : NSObject {
         let bezier10Path = UIBezierPath()
         bezier10Path.move(to: CGPoint(x: 0, y: 54))
         bezier10Path.addLine(to: CGPoint(x: 52.51, y: 40.42))
-        bezier10Path.addLine(to: CGPoint(x: 69.6, y: 36))
-        bezier10Path.addLine(to: CGPoint(x: 172, y: 0))
+        bezier10Path.addLine(to: CGPoint(x: 66.42, y: 36.73))
         UIColor.darkGray.setStroke()
         bezier10Path.lineWidth = 2
         bezier10Path.lineCapStyle = .round
@@ -321,7 +490,7 @@ public class IZGroundfloor : NSObject {
 
         let bezier11Path = UIBezierPath()
         bezier11Path.move(to: CGPoint(x: 0, y: -0))
-        bezier11Path.addLine(to: CGPoint(x: 6, y: 24))
+        bezier11Path.addLine(to: CGPoint(x: 6.67, y: 24.8))
         UIColor.darkGray.setStroke()
         bezier11Path.lineWidth = 2
         bezier11Path.lineCapStyle = .round
@@ -409,9 +578,8 @@ public class IZGroundfloor : NSObject {
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier16Path = UIBezierPath()
-        bezier16Path.move(to: CGPoint(x: 0, y: 0))
-        bezier16Path.addLine(to: CGPoint(x: 83, y: 240))
-        bezier16Path.addLine(to: CGPoint(x: 44, y: 254))
+        bezier16Path.move(to: CGPoint(x: -21.26, y: -63.44))
+        bezier16Path.addLine(to: CGPoint(x: 62.88, y: 180.83))
         UIColor.darkGray.setStroke()
         bezier16Path.lineWidth = 2
         bezier16Path.lineCapStyle = .round
@@ -423,17 +591,16 @@ public class IZGroundfloor : NSObject {
 
         //// Bezier 17 Drawing
         context.saveGState()
-        context.translateBy(x: 339.78, y: 383.84)
+        context.translateBy(x: 351.62, y: 401.94)
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier17Path = UIBezierPath()
-        bezier17Path.move(to: CGPoint(x: 0, y: -0))
-        bezier17Path.addLine(to: CGPoint(x: 76.32, y: 218.22))
-        bezier17Path.addLine(to: CGPoint(x: 87.51, y: 214.7))
-        bezier17Path.addLine(to: CGPoint(x: 111.93, y: 284.59))
-        bezier17Path.addLine(to: CGPoint(x: 99.72, y: 288.61))
-        bezier17Path.addLine(to: CGPoint(x: 116, y: 335.87))
-        bezier17Path.addLine(to: CGPoint(x: 52.91, y: 358.5))
+        bezier17Path.move(to: CGPoint(x: 24.99, y: -44.7))
+        bezier17Path.addLine(to: CGPoint(x: -14.89, y: -30.81))
+        bezier17Path.addLine(to: CGPoint(x: 64.32, y: 200.22))
+        bezier17Path.addLine(to: CGPoint(x: 87.72, y: 270.61))
+        bezier17Path.addLine(to: CGPoint(x: 104.5, y: 318))
+        bezier17Path.addLine(to: CGPoint(x: 40, y: 340))
         UIColor.darkGray.setStroke()
         bezier17Path.lineWidth = 2
         bezier17Path.lineCapStyle = .round
@@ -443,74 +610,9 @@ public class IZGroundfloor : NSObject {
         context.restoreGState()
 
 
-        //// Bezier 18 Drawing
-        context.saveGState()
-        context.translateBy(x: 373.2, y: 680.14)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier18Path = UIBezierPath()
-        bezier18Path.move(to: CGPoint(x: 0, y: 14))
-        bezier18Path.addLine(to: CGPoint(x: 40, y: 0))
-        bezier18Path.addLine(to: CGPoint(x: 56, y: 47))
-        UIColor.darkGray.setStroke()
-        bezier18Path.lineWidth = 2
-        bezier18Path.lineCapStyle = .round
-        bezier18Path.lineJoinStyle = .round
-        bezier18Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 19 Drawing
-        context.saveGState()
-        context.translateBy(x: 284.36, y: 431.35)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier19Path = UIBezierPath()
-        bezier19Path.move(to: CGPoint(x: -6.3, y: 1))
-        bezier19Path.addLine(to: CGPoint(x: 39, y: -14))
-        UIColor.darkGray.setStroke()
-        bezier19Path.lineWidth = 2
-        bezier19Path.lineCapStyle = .round
-        bezier19Path.lineJoinStyle = .round
-        bezier19Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 20 Drawing
-        context.saveGState()
-        context.translateBy(x: 291.28, y: 440.41)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier20Path = UIBezierPath()
-        bezier20Path.move(to: CGPoint(x: 0, y: 14))
-        bezier20Path.addLine(to: CGPoint(x: 41, y: 0))
-        UIColor.darkGray.setStroke()
-        bezier20Path.lineWidth = 2
-        bezier20Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 21 Drawing
-        context.saveGState()
-        context.translateBy(x: 315.66, y: 512.63)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier21Path = UIBezierPath()
-        bezier21Path.move(to: CGPoint(x: 0, y: 14))
-        bezier21Path.addLine(to: CGPoint(x: 41, y: 0))
-        UIColor.darkGray.setStroke()
-        bezier21Path.lineWidth = 2
-        bezier21Path.stroke()
-
-        context.restoreGState()
-
-
         //// Bezier 22 Drawing
         context.saveGState()
-        context.translateBy(x: 324.45, y: 536.71)
+        context.translateBy(x: 320.52, y: 525.68)
         context.rotate(by: 0.5 * CGFloat.pi/180)
         context.scaleBy(x: 0.97, y: 0.97)
 
@@ -524,59 +626,9 @@ public class IZGroundfloor : NSObject {
         context.restoreGState()
 
 
-        //// Bezier 23 Drawing
-        context.saveGState()
-        context.translateBy(x: 332.24, y: 560.78)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier23Path = UIBezierPath()
-        bezier23Path.move(to: CGPoint(x: 0, y: 14))
-        bezier23Path.addLine(to: CGPoint(x: 41, y: 0))
-        UIColor.darkGray.setStroke()
-        bezier23Path.lineWidth = 2
-        bezier23Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 24 Drawing
-        context.saveGState()
-        context.translateBy(x: 341.03, y: 584.85)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-        context.scaleBy(x: 0.98, y: 0.98)
-
-        let bezier24Path = UIBezierPath()
-        bezier24Path.move(to: CGPoint(x: 0, y: 14))
-        bezier24Path.addLine(to: CGPoint(x: 40, y: 0))
-        UIColor.darkGray.setStroke()
-        bezier24Path.lineWidth = 2
-        bezier24Path.lineCapStyle = .round
-        bezier24Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 25 Drawing
-        context.saveGState()
-        context.translateBy(x: 348.82, y: 608.92)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-        context.scaleBy(x: 0.96, y: 0.96)
-
-        let bezier25Path = UIBezierPath()
-        bezier25Path.move(to: CGPoint(x: 0, y: 14.6))
-        bezier25Path.addLine(to: CGPoint(x: 41, y: 0))
-        UIColor.darkGray.setStroke()
-        bezier25Path.lineWidth = 2
-        bezier25Path.lineCapStyle = .round
-        bezier25Path.lineJoinStyle = .round
-        bezier25Path.stroke()
-
-        context.restoreGState()
-
-
         //// Bezier 26 Drawing
         context.saveGState()
-        context.translateBy(x: 406.22, y: 563.42)
+        context.translateBy(x: 402.12, y: 551.64)
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier26Path = UIBezierPath()
@@ -589,24 +641,9 @@ public class IZGroundfloor : NSObject {
         context.restoreGState()
 
 
-        //// Bezier 27 Drawing
-        context.saveGState()
-        context.translateBy(x: 397.43, y: 539.34)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier27Path = UIBezierPath()
-        bezier27Path.move(to: CGPoint(x: 0, y: 14))
-        bezier27Path.addLine(to: CGPoint(x: 41, y: 0))
-        UIColor.darkGray.setStroke()
-        bezier27Path.lineWidth = 2
-        bezier27Path.stroke()
-
-        context.restoreGState()
-
-
         //// Bezier 28 Drawing
         context.saveGState()
-        context.translateBy(x: 389.64, y: 515.28)
+        context.translateBy(x: 394.12, y: 527.64)
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier28Path = UIBezierPath()
@@ -621,7 +658,7 @@ public class IZGroundfloor : NSObject {
 
         //// Bezier 29 Drawing
         context.saveGState()
-        context.translateBy(x: 380.85, y: 491.2)
+        context.translateBy(x: 385.82, y: 503.21)
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier29Path = UIBezierPath()
@@ -636,7 +673,7 @@ public class IZGroundfloor : NSObject {
 
         //// Bezier 30 Drawing
         context.saveGState()
-        context.translateBy(x: 357.48, y: 417.99)
+        context.translateBy(x: 361.41, y: 431.01)
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier30Path = UIBezierPath()
@@ -645,54 +682,6 @@ public class IZGroundfloor : NSObject {
         UIColor.darkGray.setStroke()
         bezier30Path.lineWidth = 2
         bezier30Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 31 Drawing
-        context.saveGState()
-        context.translateBy(x: 424.99, y: 589.09)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-        context.scaleBy(x: 1.01, y: 1)
-
-        let bezier31Path = UIBezierPath()
-        bezier31Path.move(to: CGPoint(x: -1.98, y: 11))
-        bezier31Path.addLine(to: CGPoint(x: 29, y: 0))
-        UIColor.darkGray.setStroke()
-        bezier31Path.lineWidth = 2
-        bezier31Path.lineCapStyle = .round
-        bezier31Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 32 Drawing
-        context.saveGState()
-        context.translateBy(x: 432.8, y: 611.66)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier32Path = UIBezierPath()
-        bezier32Path.move(to: CGPoint(x: 0, y: 10))
-        bezier32Path.addLine(to: CGPoint(x: 29, y: 0))
-        UIColor.darkGray.setStroke()
-        bezier32Path.lineWidth = 2
-        bezier32Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 33 Drawing
-        context.saveGState()
-        context.translateBy(x: 446.38, y: 659.28)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier33Path = UIBezierPath()
-        bezier33Path.move(to: CGPoint(x: 0, y: 11))
-        bezier33Path.addLine(to: CGPoint(x: 31, y: 0))
-        UIColor.darkGray.setStroke()
-        bezier33Path.lineWidth = 2
-        bezier33Path.lineCapStyle = .round
-        bezier33Path.stroke()
 
         context.restoreGState()
 
@@ -732,33 +721,15 @@ public class IZGroundfloor : NSObject {
 
         //// Bezier 36 Drawing
         context.saveGState()
-        context.translateBy(x: 452.84, y: 720.83)
+        context.translateBy(x: 453.34, y: 720.84)
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier36Path = UIBezierPath()
         bezier36Path.move(to: CGPoint(x: 0, y: 0))
-        bezier36Path.addLine(to: CGPoint(x: 21, y: 62))
+        bezier36Path.addLine(to: CGPoint(x: 21.5, y: 62))
         UIColor.darkGray.setStroke()
         bezier36Path.lineWidth = 2
         bezier36Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 37 Drawing
-        context.saveGState()
-        context.translateBy(x: 460.77, y: 729.46)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-        context.scaleBy(x: 0.96, y: 0.96)
-
-        let bezier37Path = UIBezierPath()
-        bezier37Path.move(to: CGPoint(x: 0, y: 15.04))
-        bezier37Path.addLine(to: CGPoint(x: 42.71, y: -0.58))
-        UIColor.darkGray.setStroke()
-        bezier37Path.lineWidth = 2
-        bezier37Path.lineCapStyle = .round
-        bezier37Path.lineJoinStyle = .round
-        bezier37Path.stroke()
 
         context.restoreGState()
 
@@ -864,42 +835,13 @@ public class IZGroundfloor : NSObject {
         let bezier43Path = UIBezierPath()
         bezier43Path.move(to: CGPoint(x: 0, y: 22))
         bezier43Path.addLine(to: CGPoint(x: 64, y: 0))
+        bezier43Path.addLine(to: CGPoint(x: 80, y: 47))
         bezier43Path.addLine(to: CGPoint(x: 111, y: 140))
         UIColor.darkGray.setStroke()
         bezier43Path.lineWidth = 2
         bezier43Path.lineCapStyle = .round
         bezier43Path.lineJoinStyle = .round
         bezier43Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 45 Drawing
-        context.saveGState()
-        context.translateBy(x: 760.91, y: 1172.54)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier45Path = UIBezierPath()
-        bezier45Path.move(to: CGPoint(x: 0, y: 21))
-        bezier45Path.addLine(to: CGPoint(x: 60, y: 0))
-        UIColor.darkGray.setStroke()
-        bezier45Path.lineWidth = 2
-        bezier45Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 44 Drawing
-        context.saveGState()
-        context.translateBy(x: 745.81, y: 1127.41)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier44Path = UIBezierPath()
-        bezier44Path.move(to: CGPoint(x: 0, y: 21))
-        bezier44Path.addLine(to: CGPoint(x: 60, y: 0))
-        UIColor.darkGray.setStroke()
-        bezier44Path.lineWidth = 2
-        bezier44Path.stroke()
 
         context.restoreGState()
 
@@ -1017,44 +959,10 @@ public class IZGroundfloor : NSObject {
 
         let bezier52Path = UIBezierPath()
         bezier52Path.move(to: CGPoint(x: 0, y: 0))
-        bezier52Path.addLine(to: CGPoint(x: 19.5, y: 56))
+        bezier52Path.addLine(to: CGPoint(x: 19.5, y: 57))
         UIColor.darkGray.setStroke()
         bezier52Path.lineWidth = 2
         bezier52Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 53 Drawing
-        context.saveGState()
-        context.translateBy(x: 1002.3, y: 1014.64)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier53Path = UIBezierPath()
-        bezier53Path.move(to: CGPoint(x: 0, y: 24))
-        bezier53Path.addLine(to: CGPoint(x: 14, y: 66))
-        bezier53Path.addLine(to: CGPoint(x: 79, y: 43))
-        bezier53Path.addLine(to: CGPoint(x: 64, y: 0))
-        UIColor.darkGray.setStroke()
-        bezier53Path.lineWidth = 2
-        bezier53Path.lineCapStyle = .round
-        bezier53Path.lineJoinStyle = .round
-        bezier53Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 54 Drawing
-        context.saveGState()
-        context.translateBy(x: 1081.18, y: 1028.33)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier54Path = UIBezierPath()
-        bezier54Path.move(to: CGPoint(x: 0, y: 30))
-        bezier54Path.addLine(to: CGPoint(x: 85, y: 0))
-        UIColor.darkGray.setStroke()
-        bezier54Path.lineWidth = 2
-        bezier54Path.stroke()
 
         context.restoreGState()
 
@@ -1066,7 +974,7 @@ public class IZGroundfloor : NSObject {
 
         let bezier55Path = UIBezierPath()
         bezier55Path.move(to: CGPoint(x: 0, y: 0))
-        bezier55Path.addLine(to: CGPoint(x: 46, y: 133))
+        bezier55Path.addLine(to: CGPoint(x: 70.55, y: 200.13))
         UIColor.darkGray.setStroke()
         bezier55Path.lineWidth = 2
         bezier55Path.stroke()
@@ -1081,33 +989,21 @@ public class IZGroundfloor : NSObject {
 
         let bezier56Path = UIBezierPath()
         bezier56Path.move(to: CGPoint(x: 0, y: 0))
-        bezier56Path.addLine(to: CGPoint(x: 46, y: 132))
+        bezier56Path.addLine(to: CGPoint(x: 49.05, y: 137.97))
+        bezier56Path.addLine(to: CGPoint(x: 84.87, y: 125.5))
+        bezier56Path.addLine(to: CGPoint(x: 82, y: 116.94))
         UIColor.darkGray.setStroke()
         bezier56Path.lineWidth = 2
+        bezier56Path.lineCapStyle = .round
+        bezier56Path.lineJoinStyle = .round
         bezier56Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 57 Drawing
-        context.saveGState()
-        context.translateBy(x: 1043.99, y: 936)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier57Path = UIBezierPath()
-        bezier57Path.move(to: CGPoint(x: 37, y: 0))
-        bezier57Path.addLine(to: CGPoint(x: 0, y: 13))
-        UIColor.darkGray.setStroke()
-        bezier57Path.lineWidth = 2
-        bezier57Path.lineCapStyle = .round
-        bezier57Path.stroke()
 
         context.restoreGState()
 
 
         //// Bezier 58 Drawing
         context.saveGState()
-        context.translateBy(x: 1051.79, y: 959.07)
+        context.translateBy(x: 1053.79, y: 962.07)
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier58Path = UIBezierPath()
@@ -1123,7 +1019,7 @@ public class IZGroundfloor : NSObject {
 
         //// Bezier 59 Drawing
         context.saveGState()
-        context.translateBy(x: 1059.6, y: 980.14)
+        context.translateBy(x: 1061.6, y: 985.14)
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier59Path = UIBezierPath()
@@ -1131,30 +1027,15 @@ public class IZGroundfloor : NSObject {
         bezier59Path.addLine(to: CGPoint(x: 0, y: 13))
         UIColor.darkGray.setStroke()
         bezier59Path.lineWidth = 2
+        bezier59Path.lineCapStyle = .round
         bezier59Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 60 Drawing
-        context.saveGState()
-        context.translateBy(x: 1066.41, y: 1002.2)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier60Path = UIBezierPath()
-        bezier60Path.move(to: CGPoint(x: 37, y: 0))
-        bezier60Path.addLine(to: CGPoint(x: 0, y: 13))
-        UIColor.darkGray.setStroke()
-        bezier60Path.lineWidth = 2
-        bezier60Path.lineCapStyle = .round
-        bezier60Path.stroke()
 
         context.restoreGState()
 
 
         //// Bezier 61 Drawing
         context.saveGState()
-        context.translateBy(x: 1073.22, y: 1023.76)
+        context.translateBy(x: 1076.22, y: 1028.76)
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier61Path = UIBezierPath()
@@ -1169,7 +1050,7 @@ public class IZGroundfloor : NSObject {
 
         //// Bezier 62 Drawing
         context.saveGState()
-        context.translateBy(x: 1107.75, y: 964.06)
+        context.translateBy(x: 1109.75, y: 969.06)
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier62Path = UIBezierPath()
@@ -1184,7 +1065,7 @@ public class IZGroundfloor : NSObject {
 
         //// Bezier 63 Drawing
         context.saveGState()
-        context.translateBy(x: 1100.93, y: 943)
+        context.translateBy(x: 1101.93, y: 946)
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier63Path = UIBezierPath()
@@ -1199,12 +1080,12 @@ public class IZGroundfloor : NSObject {
 
         //// Bezier 64 Drawing
         context.saveGState()
-        context.translateBy(x: 1114.55, y: 986.12)
+        context.translateBy(x: 1116.56, y: 991.62)
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier64Path = UIBezierPath()
-        bezier64Path.move(to: CGPoint(x: 36, y: 0))
-        bezier64Path.addLine(to: CGPoint(x: 0, y: 12.5))
+        bezier64Path.move(to: CGPoint(x: 37, y: 0))
+        bezier64Path.addLine(to: CGPoint(x: 0, y: 13))
         UIColor.darkGray.setStroke()
         bezier64Path.lineWidth = 2
         bezier64Path.stroke()
@@ -1214,7 +1095,7 @@ public class IZGroundfloor : NSObject {
 
         //// Bezier 65 Drawing
         context.saveGState()
-        context.translateBy(x: 1122.37, y: 1007.69)
+        context.translateBy(x: 1125.37, y: 1012.69)
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier65Path = UIBezierPath()
@@ -1229,14 +1110,16 @@ public class IZGroundfloor : NSObject {
 
         //// Bezier 66 Drawing
         context.saveGState()
-        context.translateBy(x: 1188.59, y: 1097.27)
+        context.translateBy(x: 1180.29, y: 1074.2)
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier66Path = UIBezierPath()
-        bezier66Path.move(to: CGPoint(x: 0, y: 0))
-        bezier66Path.addLine(to: CGPoint(x: 53, y: 154))
+        bezier66Path.move(to: CGPoint(x: 0.73, y: 1.8))
+        bezier66Path.addLine(to: CGPoint(x: 61.5, y: 177))
         UIColor.darkGray.setStroke()
         bezier66Path.lineWidth = 2
+        bezier66Path.lineCapStyle = .round
+        bezier66Path.lineJoinStyle = .round
         bezier66Path.stroke()
 
         context.restoreGState()
@@ -1248,10 +1131,11 @@ public class IZGroundfloor : NSObject {
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier67Path = UIBezierPath()
-        bezier67Path.move(to: CGPoint(x: 0, y: 0))
+        bezier67Path.move(to: CGPoint(x: -22.21, y: -66.18))
         bezier67Path.addLine(to: CGPoint(x: 54, y: 155))
         UIColor.darkGray.setStroke()
         bezier67Path.lineWidth = 2
+        bezier67Path.lineCapStyle = .round
         bezier67Path.stroke()
 
         context.restoreGState()
@@ -1349,12 +1233,12 @@ public class IZGroundfloor : NSObject {
 
         //// Bezier 74 Drawing
         context.saveGState()
-        context.translateBy(x: 1237.78, y: 1189.7)
+        context.translateBy(x: 1237.79, y: 1188.7)
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier74Path = UIBezierPath()
-        bezier74Path.move(to: CGPoint(x: 34, y: 0))
-        bezier74Path.addLine(to: CGPoint(x: 0, y: 12))
+        bezier74Path.move(to: CGPoint(x: 35, y: 0))
+        bezier74Path.addLine(to: CGPoint(x: 0, y: 13))
         UIColor.darkGray.setStroke()
         bezier74Path.lineWidth = 2
         bezier74Path.stroke()
@@ -1422,87 +1306,14 @@ public class IZGroundfloor : NSObject {
         context.restoreGState()
 
 
-        //// Bezier 79 Drawing
-        context.saveGState()
-        context.translateBy(x: 1177.22, y: 1025.17)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier79Path = UIBezierPath()
-        bezier79Path.move(to: CGPoint(x: 24, y: 67))
-        bezier79Path.addLine(to: CGPoint(x: 0, y: 0))
-        UIColor.darkGray.setStroke()
-        bezier79Path.lineWidth = 2
-        bezier79Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 80 Drawing
-        context.saveGState()
-        context.translateBy(x: 1095.68, y: 1086.46)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier80Path = UIBezierPath()
-        bezier80Path.move(to: CGPoint(x: 57, y: 25))
-        bezier80Path.addLine(to: CGPoint(x: 48.5, y: 0))
-        bezier80Path.addLine(to: CGPoint(x: 0, y: 17))
-        bezier80Path.addLine(to: CGPoint(x: 8, y: 40))
-        UIColor.darkGray.setStroke()
-        bezier80Path.lineWidth = 2
-        bezier80Path.lineCapStyle = .round
-        bezier80Path.lineJoinStyle = .round
-        bezier80Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 81 Drawing
-        context.saveGState()
-        context.translateBy(x: 1081.04, y: 1045.33)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier81Path = UIBezierPath()
-        bezier81Path.move(to: CGPoint(x: 38, y: -0))
-        bezier81Path.addLine(to: CGPoint(x: 46, y: 22.5))
-        bezier81Path.addLine(to: CGPoint(x: 8, y: 36))
-        bezier81Path.addLine(to: CGPoint(x: 0, y: 13))
-        UIColor.darkGray.setStroke()
-        bezier81Path.lineWidth = 2
-        bezier81Path.lineCapStyle = .round
-        bezier81Path.lineJoinStyle = .round
-        bezier81Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 82 Drawing
-        context.saveGState()
-        context.translateBy(x: 1129.18, y: 1028.75)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier82Path = UIBezierPath()
-        bezier82Path.move(to: CGPoint(x: 37, y: 0))
-        bezier82Path.addLine(to: CGPoint(x: 45, y: 23))
-        bezier82Path.addLine(to: CGPoint(x: 8.5, y: 36))
-        bezier82Path.addLine(to: CGPoint(x: 0, y: 12))
-        UIColor.darkGray.setStroke()
-        bezier82Path.lineWidth = 2
-        bezier82Path.lineCapStyle = .round
-        bezier82Path.lineJoinStyle = .round
-        bezier82Path.stroke()
-
-        context.restoreGState()
-
-
         //// Bezier 83 Drawing
         context.saveGState()
-        context.translateBy(x: 671.94, y: 825.75)
+        context.translateBy(x: 694.94, y: 824.95)
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier83Path = UIBezierPath()
-        bezier83Path.move(to: CGPoint(x: 0, y: 49.5))
-        bezier83Path.addLine(to: CGPoint(x: 36, y: 36.5))
-        bezier83Path.addLine(to: CGPoint(x: 22, y: 0))
+        bezier83Path.move(to: CGPoint(x: 81.99, y: 221.34))
+        bezier83Path.addLine(to: CGPoint(x: 0, y: 0))
         UIColor.darkGray.setStroke()
         bezier83Path.lineWidth = 2
         bezier83Path.lineCapStyle = .round
@@ -1512,104 +1323,19 @@ public class IZGroundfloor : NSObject {
         context.restoreGState()
 
 
-        //// Bezier 84 Drawing
-        context.saveGState()
-        context.translateBy(x: 679.43, y: 883.82)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier84Path = UIBezierPath()
-        bezier84Path.move(to: CGPoint(x: 0, y: 13))
-        bezier84Path.addLine(to: CGPoint(x: 37, y: 0))
-        bezier84Path.addLine(to: CGPoint(x: 69, y: 86))
-        bezier84Path.addLine(to: CGPoint(x: 33, y: 99))
-        UIColor.darkGray.setStroke()
-        bezier84Path.lineWidth = 2
-        bezier84Path.lineCapStyle = .round
-        bezier84Path.lineJoinStyle = .round
-        bezier84Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 85 Drawing
-        context.saveGState()
-        context.translateBy(x: 692.15, y: 915.93)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier85Path = UIBezierPath()
-        bezier85Path.move(to: CGPoint(x: 36, y: 0))
-        bezier85Path.addLine(to: CGPoint(x: 0, y: 13))
-        UIColor.darkGray.setStroke()
-        bezier85Path.lineWidth = 2
-        bezier85Path.lineCapStyle = .round
-        bezier85Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 86 Drawing
-        context.saveGState()
-        context.translateBy(x: 703.86, y: 949.03)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier86Path = UIBezierPath()
-        bezier86Path.move(to: CGPoint(x: 36, y: 0))
-        bezier86Path.addLine(to: CGPoint(x: 0, y: 13))
-        UIColor.darkGray.setStroke()
-        bezier86Path.lineWidth = 2
-        bezier86Path.lineCapStyle = .round
-        bezier86Path.stroke()
-
-        context.restoreGState()
-
-
         //// Bezier 87 Drawing
         context.saveGState()
-        context.translateBy(x: 716.47, y: 879.54)
+        context.translateBy(x: 715.47, y: 879.54)
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier87Path = UIBezierPath()
-        bezier87Path.move(to: CGPoint(x: 82, y: 72.9))
-        bezier87Path.addLine(to: CGPoint(x: 44.7, y: 85.8))
+        bezier87Path.move(to: CGPoint(x: 72.95, y: 162.83))
         bezier87Path.addLine(to: CGPoint(x: 12.5, y: 0))
-        bezier87Path.addLine(to: CGPoint(x: 0, y: 4.6))
         UIColor.darkGray.setStroke()
         bezier87Path.lineWidth = 2
         bezier87Path.lineCapStyle = .round
         bezier87Path.lineJoinStyle = .round
         bezier87Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 88 Drawing
-        context.saveGState()
-        context.translateBy(x: 754.02, y: 931.47)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier88Path = UIBezierPath()
-        bezier88Path.move(to: CGPoint(x: 36, y: 0))
-        bezier88Path.addLine(to: CGPoint(x: 0, y: 13))
-        UIColor.darkGray.setStroke()
-        bezier88Path.lineWidth = 2
-        bezier88Path.lineCapStyle = .round
-        bezier88Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 89 Drawing
-        context.saveGState()
-        context.translateBy(x: 746.21, y: 909.4)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier89Path = UIBezierPath()
-        bezier89Path.move(to: CGPoint(x: 36, y: 0))
-        bezier89Path.addLine(to: CGPoint(x: 0, y: 13))
-        UIColor.darkGray.setStroke()
-        bezier89Path.lineWidth = 2
-        bezier89Path.lineCapStyle = .round
-        bezier89Path.stroke()
 
         context.restoreGState()
 
@@ -1622,7 +1348,7 @@ public class IZGroundfloor : NSObject {
         let bezier90Path = UIBezierPath()
         bezier90Path.move(to: CGPoint(x: 42, y: 13.6))
         bezier90Path.addLine(to: CGPoint(x: 37, y: 0))
-        bezier90Path.addLine(to: CGPoint(x: 0, y: 13.6))
+        bezier90Path.addLine(to: CGPoint(x: -1.99, y: 14.1))
         UIColor.darkGray.setStroke()
         bezier90Path.lineWidth = 2
         bezier90Path.lineCapStyle = .round
@@ -1685,7 +1411,7 @@ public class IZGroundfloor : NSObject {
 
         //// Bezier 95 Drawing
         context.saveGState()
-        context.translateBy(x: 696.37, y: 775.96)
+        context.translateBy(x: 705.24, y: 801.01)
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier95Path = UIBezierPath()
@@ -1701,7 +1427,7 @@ public class IZGroundfloor : NSObject {
 
         //// Bezier 96 Drawing
         context.saveGState()
-        context.translateBy(x: 687.57, y: 752.88)
+        context.translateBy(x: 696.43, y: 776.94)
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier96Path = UIBezierPath()
@@ -1717,7 +1443,7 @@ public class IZGroundfloor : NSObject {
 
         //// Bezier 97 Drawing
         context.saveGState()
-        context.translateBy(x: 679.77, y: 729.82)
+        context.translateBy(x: 681.12, y: 732.67)
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier97Path = UIBezierPath()
@@ -1733,7 +1459,7 @@ public class IZGroundfloor : NSObject {
 
         //// Bezier 98 Drawing
         context.saveGState()
-        context.translateBy(x: 731.94, y: 711.27)
+        context.translateBy(x: 737.81, y: 726.31)
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier98Path = UIBezierPath()
@@ -1748,7 +1474,7 @@ public class IZGroundfloor : NSObject {
 
         //// Bezier 99 Drawing
         context.saveGState()
-        context.translateBy(x: 739.74, y: 734.34)
+        context.translateBy(x: 744.12, y: 748.67)
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier99Path = UIBezierPath()
@@ -1761,41 +1487,9 @@ public class IZGroundfloor : NSObject {
         context.restoreGState()
 
 
-        //// Bezier 100 Drawing
-        context.saveGState()
-        context.translateBy(x: 748.53, y: 758.42)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier100Path = UIBezierPath()
-        bezier100Path.move(to: CGPoint(x: 36, y: 0))
-        bezier100Path.addLine(to: CGPoint(x: 0, y: 13))
-        UIColor.darkGray.setStroke()
-        bezier100Path.lineWidth = 2
-        bezier100Path.lineCapStyle = .round
-        bezier100Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 101 Drawing
-        context.saveGState()
-        context.translateBy(x: 756.33, y: 781.49)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier101Path = UIBezierPath()
-        bezier101Path.move(to: CGPoint(x: 36, y: 0))
-        bezier101Path.addLine(to: CGPoint(x: 0, y: 13))
-        UIColor.darkGray.setStroke()
-        bezier101Path.lineWidth = 2
-        bezier101Path.lineCapStyle = .round
-        bezier101Path.stroke()
-
-        context.restoreGState()
-
-
         //// Bezier 102 Drawing
         context.saveGState()
-        context.translateBy(x: 764.13, y: 803.55)
+        context.translateBy(x: 776.11, y: 836.69)
         context.rotate(by: 0.5 * CGFloat.pi/180)
 
         let bezier102Path = UIBezierPath()
@@ -1805,38 +1499,6 @@ public class IZGroundfloor : NSObject {
         bezier102Path.lineWidth = 2
         bezier102Path.lineCapStyle = .round
         bezier102Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 103 Drawing
-        context.saveGState()
-        context.translateBy(x: 771.93, y: 826.62)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier103Path = UIBezierPath()
-        bezier103Path.move(to: CGPoint(x: 36, y: 0))
-        bezier103Path.addLine(to: CGPoint(x: 0, y: 13))
-        UIColor.darkGray.setStroke()
-        bezier103Path.lineWidth = 2
-        bezier103Path.lineCapStyle = .round
-        bezier103Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 104 Drawing
-        context.saveGState()
-        context.translateBy(x: 780.74, y: 848.7)
-        context.rotate(by: 0.5 * CGFloat.pi/180)
-
-        let bezier104Path = UIBezierPath()
-        bezier104Path.move(to: CGPoint(x: 35, y: 0))
-        bezier104Path.addLine(to: CGPoint(x: 0, y: 13))
-        UIColor.darkGray.setStroke()
-        bezier104Path.lineWidth = 2
-        bezier104Path.lineCapStyle = .round
-        bezier104Path.stroke()
 
         context.restoreGState()
 
@@ -1867,182 +1529,6 @@ public class IZGroundfloor : NSObject {
         UIColor.darkGray.setStroke()
         bezier106Path.lineWidth = 2
         bezier106Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 133 Drawing
-        context.saveGState()
-        context.translateBy(x: 989.83, y: 1040.28)
-        context.rotate(by: -153.5 * CGFloat.pi/180)
-        context.scaleBy(x: 2.5, y: 2.5)
-
-        let bezier133Path = UIBezierPath()
-        bezier133Path.move(to: CGPoint(x: -0.2, y: 6))
-        bezier133Path.addLine(to: CGPoint(x: -0.2, y: 1))
-        bezier133Path.addLine(to: CGPoint(x: 4.8, y: 1))
-        bezier133Path.addLine(to: CGPoint(x: -0.2, y: 6))
-        UIColor.darkGray.setFill()
-        bezier133Path.fill()
-        UIColor.darkGray.setStroke()
-        bezier133Path.lineWidth = 0.5
-        bezier133Path.lineCapStyle = .round
-        bezier133Path.lineJoinStyle = .round
-        bezier133Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 131 Drawing
-        context.saveGState()
-        context.translateBy(x: 1051.94, y: 1145.59)
-        context.rotate(by: 26.2 * CGFloat.pi/180)
-        context.scaleBy(x: 2.5, y: 2.5)
-
-        let bezier131Path = UIBezierPath()
-        bezier131Path.move(to: CGPoint(x: -0.2, y: 6))
-        bezier131Path.addLine(to: CGPoint(x: -0.2, y: 1))
-        bezier131Path.addLine(to: CGPoint(x: 4.8, y: 1))
-        bezier131Path.addLine(to: CGPoint(x: -0.2, y: 6))
-        UIColor.darkGray.setFill()
-        bezier131Path.fill()
-        UIColor.darkGray.setStroke()
-        bezier131Path.lineWidth = 0.5
-        bezier131Path.lineCapStyle = .round
-        bezier131Path.lineJoinStyle = .round
-        bezier131Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 126 Drawing
-        context.saveGState()
-        context.translateBy(x: 1073.93, y: 1137.8)
-        context.rotate(by: 26.2 * CGFloat.pi/180)
-        context.scaleBy(x: 2.5, y: 2.5)
-
-        let bezier126Path = UIBezierPath()
-        bezier126Path.move(to: CGPoint(x: 0, y: 6))
-        bezier126Path.addLine(to: CGPoint(x: 0, y: 1))
-        bezier126Path.addLine(to: CGPoint(x: 5, y: 1))
-        bezier126Path.addLine(to: CGPoint(x: 0, y: 6))
-        UIColor.darkGray.setFill()
-        bezier126Path.fill()
-        UIColor.darkGray.setStroke()
-        bezier126Path.lineWidth = 0.5
-        bezier126Path.lineCapStyle = .round
-        bezier126Path.lineJoinStyle = .round
-        bezier126Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 127 Drawing
-        context.saveGState()
-        context.translateBy(x: 845.86, y: 1215.56)
-        context.rotate(by: 26.2 * CGFloat.pi/180)
-        context.scaleBy(x: 1.6, y: 1.6)
-
-        let bezier127Path = UIBezierPath()
-        bezier127Path.move(to: CGPoint(x: -0.5, y: 6))
-        bezier127Path.addLine(to: CGPoint(x: -0.5, y: 1))
-        bezier127Path.addLine(to: CGPoint(x: 4.5, y: 1))
-        bezier127Path.addLine(to: CGPoint(x: -0.5, y: 6))
-        UIColor.darkGray.setFill()
-        bezier127Path.fill()
-        UIColor.darkGray.setStroke()
-        bezier127Path.lineWidth = 0.5
-        bezier127Path.lineCapStyle = .round
-        bezier127Path.lineJoinStyle = .round
-        bezier127Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 128 Drawing
-        context.saveGState()
-        context.translateBy(x: 214.91, y: 227.74)
-        context.rotate(by: -153.8 * CGFloat.pi/180)
-        context.scaleBy(x: 2.5, y: 2.5)
-
-        let bezier128Path = UIBezierPath()
-        bezier128Path.move(to: CGPoint(x: -0.2, y: 6))
-        bezier128Path.addLine(to: CGPoint(x: -0.2, y: 1))
-        bezier128Path.addLine(to: CGPoint(x: 4.8, y: 1))
-        bezier128Path.addLine(to: CGPoint(x: -0.2, y: 6))
-        UIColor.darkGray.setFill()
-        bezier128Path.fill()
-        UIColor.darkGray.setStroke()
-        bezier128Path.lineWidth = 0.5
-        bezier128Path.lineCapStyle = .round
-        bezier128Path.lineJoinStyle = .round
-        bezier128Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 129 Drawing
-        context.saveGState()
-        context.translateBy(x: 236.9, y: 220.93)
-        context.rotate(by: -153.8 * CGFloat.pi/180)
-        context.scaleBy(x: 2.5, y: 2.5)
-
-        let bezier129Path = UIBezierPath()
-        bezier129Path.move(to: CGPoint(x: 0, y: 6))
-        bezier129Path.addLine(to: CGPoint(x: 0, y: 1))
-        bezier129Path.addLine(to: CGPoint(x: 5, y: 1))
-        bezier129Path.addLine(to: CGPoint(x: 0, y: 6))
-        UIColor.darkGray.setFill()
-        bezier129Path.fill()
-        UIColor.darkGray.setStroke()
-        bezier129Path.lineWidth = 0.5
-        bezier129Path.lineCapStyle = .round
-        bezier129Path.lineJoinStyle = .round
-        bezier129Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 130 Drawing
-        context.saveGState()
-        context.translateBy(x: 493.38, y: 135.67)
-        context.rotate(by: -153.8 * CGFloat.pi/180)
-        context.scaleBy(x: 2.5, y: 2.5)
-
-        let bezier130Path = UIBezierPath()
-        bezier130Path.move(to: CGPoint(x: 0, y: 6))
-        bezier130Path.addLine(to: CGPoint(x: 0, y: 1))
-        bezier130Path.addLine(to: CGPoint(x: 5, y: 1))
-        bezier130Path.addLine(to: CGPoint(x: 0, y: 6))
-        UIColor.darkGray.setFill()
-        bezier130Path.fill()
-        UIColor.darkGray.setStroke()
-        bezier130Path.lineWidth = 0.5
-        bezier130Path.lineCapStyle = .round
-        bezier130Path.lineJoinStyle = .round
-        bezier130Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 132 Drawing
-        context.saveGState()
-        context.translateBy(x: 254.16, y: 439.07)
-        context.rotate(by: 31 * CGFloat.pi/180)
-        context.scaleBy(x: 2.5, y: 2.5)
-
-        let bezier132Path = UIBezierPath()
-        bezier132Path.move(to: CGPoint(x: 0, y: 6))
-        bezier132Path.addLine(to: CGPoint(x: 0, y: 1))
-        bezier132Path.addLine(to: CGPoint(x: 5, y: 1))
-        bezier132Path.addLine(to: CGPoint(x: 0, y: 6))
-        UIColor.darkGray.setFill()
-        bezier132Path.fill()
-        UIColor.darkGray.setStroke()
-        bezier132Path.lineWidth = 0.5
-        bezier132Path.lineCapStyle = .round
-        bezier132Path.lineJoinStyle = .round
-        bezier132Path.stroke()
 
         context.restoreGState()
 
@@ -2091,30 +1577,14 @@ public class IZGroundfloor : NSObject {
         context.restoreGState()
 
 
-        //// Bezier 110 Drawing
-        context.saveGState()
-        context.translateBy(x: 858.69, y: 468.42)
-        context.rotate(by: 1.1 * CGFloat.pi/180)
-        context.scaleBy(x: 1.08, y: 1.08)
-
-        let bezier110Path = UIBezierPath()
-        bezier110Path.move(to: CGPoint(x: 11.55, y: 7.72))
-        bezier110Path.addLine(to: CGPoint(x: 33, y: 0))
-        UIColor.darkGray.setStroke()
-        bezier110Path.lineWidth = 2
-        bezier110Path.stroke()
-
-        context.restoreGState()
-
-
         //// Bezier 113 Drawing
         context.saveGState()
-        context.translateBy(x: 814.5, y: 534.36)
+        context.translateBy(x: 814.5, y: 536.36)
         context.rotate(by: 1.1 * CGFloat.pi/180)
         context.scaleBy(x: 1.08, y: 1.08)
 
         let bezier113Path = UIBezierPath()
-        bezier113Path.move(to: CGPoint(x: 58.8, y: -0.54))
+        bezier113Path.move(to: CGPoint(x: 90.98, y: -12.27))
         bezier113Path.addLine(to: CGPoint(x: 0, y: 20.7))
         UIColor.darkGray.setStroke()
         bezier113Path.lineWidth = 2
@@ -2127,37 +1597,20 @@ public class IZGroundfloor : NSObject {
 
         //// Bezier 114 Drawing
         context.saveGState()
-        context.translateBy(x: 866.08, y: 533.75)
+        context.translateBy(x: 874.08, y: 530.75)
         context.rotate(by: 1.1 * CGFloat.pi/180)
         context.scaleBy(x: 1.08, y: 1.08)
 
         let bezier114Path = UIBezierPath()
-        bezier114Path.move(to: CGPoint(x: 17.06, y: 46))
-        bezier114Path.addLine(to: CGPoint(x: 1.5, y: 4.84))
+        bezier114Path.move(to: CGPoint(x: 16.5, y: 46))
+        bezier114Path.addLine(to: CGPoint(x: -33.33, y: -91.74))
+        bezier114Path.addLine(to: CGPoint(x: -58.16, y: -82.93))
+        bezier114Path.addLine(to: CGPoint(x: -49.9, y: -59.94))
         UIColor.darkGray.setStroke()
         bezier114Path.lineWidth = 2
+        bezier114Path.lineCapStyle = .round
+        bezier114Path.lineJoinStyle = .round
         bezier114Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 112 Drawing
-        context.saveGState()
-        context.translateBy(x: 795.12, y: 293.47)
-        context.rotate(by: 1.1 * CGFloat.pi/180)
-        context.scaleBy(x: 1.08, y: 1.08)
-
-        let bezier112Path = UIBezierPath()
-        bezier112Path.move(to: CGPoint(x: -4.32, y: 70.4))
-        bezier112Path.addLine(to: CGPoint(x: 21.44, y: 61.21))
-        bezier112Path.addLine(to: CGPoint(x: 38, y: 106))
-        bezier112Path.addLine(to: CGPoint(x: 12.07, y: 115.5))
-        bezier112Path.addLine(to: CGPoint(x: -4.32, y: 70.4))
-        UIColor.darkGray.setStroke()
-        bezier112Path.lineWidth = 2
-        bezier112Path.lineCapStyle = .round
-        bezier112Path.lineJoinStyle = .round
-        bezier112Path.stroke()
 
         context.restoreGState()
 
@@ -2180,7 +1633,7 @@ public class IZGroundfloor : NSObject {
 
         //// Bezier 117 Drawing
         context.saveGState()
-        context.translateBy(x: 825.57, y: 339.42)
+        context.translateBy(x: 821.17, y: 325.91)
         context.rotate(by: 1.1 * CGFloat.pi/180)
         context.scaleBy(x: 1.08, y: 1.08)
 
@@ -2198,7 +1651,7 @@ public class IZGroundfloor : NSObject {
 
         //// Bezier 118 Drawing
         context.saveGState()
-        context.translateBy(x: 817.42, y: 313.34)
+        context.translateBy(x: 812.17, y: 298.91)
         context.rotate(by: 1.1 * CGFloat.pi/180)
         context.scaleBy(x: 1.08, y: 1.08)
 
@@ -2214,20 +1667,24 @@ public class IZGroundfloor : NSObject {
         context.restoreGState()
 
 
-        //// Bezier 120 Drawing
+        //// Bezier 121 Drawing
         context.saveGState()
-        context.translateBy(x: 781.39, y: 333.49)
+        context.translateBy(x: 792.67, y: 365.04)
         context.rotate(by: 1.1 * CGFloat.pi/180)
         context.scaleBy(x: 1.08, y: 1.08)
 
-        let bezier120Path = UIBezierPath()
-        bezier120Path.move(to: CGPoint(x: -1.12, y: 8.82))
-        bezier120Path.addLine(to: CGPoint(x: 26.48, y: -0.97))
+        let bezier121Path = UIBezierPath()
+        bezier121Path.move(to: CGPoint(x: 39, y: 42.5))
+        bezier121Path.addLine(to: CGPoint(x: 13.34, y: 51.57))
+        bezier121Path.addLine(to: CGPoint(x: -8.2, y: -9.14))
+        bezier121Path.addLine(to: CGPoint(x: 17, y: -18.52))
+        bezier121Path.addLine(to: CGPoint(x: 39, y: 42.5))
+        bezier121Path.close()
         UIColor.darkGray.setStroke()
-        bezier120Path.lineWidth = 2
-        bezier120Path.lineCapStyle = .round
-        bezier120Path.lineJoinStyle = .round
-        bezier120Path.stroke()
+        bezier121Path.lineWidth = 2
+        bezier121Path.lineCapStyle = .round
+        bezier121Path.lineJoinStyle = .round
+        bezier121Path.stroke()
 
         context.restoreGState()
 
@@ -2239,9 +1696,9 @@ public class IZGroundfloor : NSObject {
         context.scaleBy(x: 1.08, y: 1.08)
 
         let bezier122Path = UIBezierPath()
-        bezier122Path.move(to: CGPoint(x: 3.7, y: 14.6))
+        bezier122Path.move(to: CGPoint(x: 4.5, y: 17.36))
         bezier122Path.addLine(to: CGPoint(x: 0, y: 4.6))
-        bezier122Path.addLine(to: CGPoint(x: 13, y: 0))
+        bezier122Path.addLine(to: CGPoint(x: 11.57, y: 0.52))
         UIColor.darkGray.setStroke()
         bezier122Path.lineWidth = 2
         bezier122Path.lineCapStyle = .round
@@ -2251,59 +1708,357 @@ public class IZGroundfloor : NSObject {
         context.restoreGState()
 
 
-        //// Bezier 135 Drawing
+        //// Bezier 32 Drawing
         context.saveGState()
-        context.translateBy(x: 395.55, y: 832.11)
-        context.rotate(by: 136 * CGFloat.pi/180)
-        context.scaleBy(x: 2.5, y: 2.5)
+        context.translateBy(x: 418.12, y: 601.64)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
 
-        let bezier135Path = UIBezierPath()
-        bezier135Path.move(to: CGPoint(x: 0, y: 6))
-        bezier135Path.addLine(to: CGPoint(x: 0, y: 1))
-        bezier135Path.addLine(to: CGPoint(x: 5, y: 1))
-        bezier135Path.addLine(to: CGPoint(x: 0, y: 6))
-        UIColor.darkGray.setFill()
-        bezier135Path.fill()
+        let bezier32Path = UIBezierPath()
+        bezier32Path.move(to: CGPoint(x: 0, y: 14))
+        bezier32Path.addLine(to: CGPoint(x: 41, y: 0))
         UIColor.darkGray.setStroke()
-        bezier135Path.lineWidth = 0.5
-        bezier135Path.lineCapStyle = .round
-        bezier135Path.lineJoinStyle = .round
-        bezier135Path.stroke()
+        bezier32Path.lineWidth = 2
+        bezier32Path.stroke()
 
         context.restoreGState()
 
 
-        //// Bezier 136 Drawing
+        //// Bezier 33 Drawing
         context.saveGState()
-        context.translateBy(x: 395, y: 895.11)
-        context.rotate(by: 136 * CGFloat.pi/180)
-        context.scaleBy(x: 2.5, y: 2.5)
+        context.translateBy(x: 426.12, y: 626.64)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
 
-        let bezier136Path = UIBezierPath()
-        bezier136Path.move(to: CGPoint(x: 0, y: 6))
-        bezier136Path.addLine(to: CGPoint(x: 0, y: 1))
-        bezier136Path.addLine(to: CGPoint(x: 5, y: 1))
-        bezier136Path.addLine(to: CGPoint(x: 0, y: 6))
-        UIColor.darkGray.setFill()
-        bezier136Path.fill()
+        let bezier33Path = UIBezierPath()
+        bezier33Path.move(to: CGPoint(x: 0, y: 14))
+        bezier33Path.addLine(to: CGPoint(x: 41, y: 0))
         UIColor.darkGray.setStroke()
-        bezier136Path.lineWidth = 0.5
-        bezier136Path.lineCapStyle = .round
-        bezier136Path.lineJoinStyle = .round
-        bezier136Path.stroke()
+        bezier33Path.lineWidth = 2
+        bezier33Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 128 Drawing
+        context.saveGState()
+        context.translateBy(x: 458.97, y: 723.34)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier128Path = UIBezierPath()
+        bezier128Path.move(to: CGPoint(x: 0, y: 14.5))
+        bezier128Path.addLine(to: CGPoint(x: 41, y: 0))
+        UIColor.darkGray.setStroke()
+        bezier128Path.lineWidth = 2
+        bezier128Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 23 Drawing
+        context.saveGState()
+        context.translateBy(x: 370.12, y: 455.64)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier23Path = UIBezierPath()
+        bezier23Path.move(to: CGPoint(x: 0, y: 14))
+        bezier23Path.addLine(to: CGPoint(x: 41, y: 0))
+        UIColor.darkGray.setStroke()
+        bezier23Path.lineWidth = 2
+        bezier23Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 19 Drawing
+        context.saveGState()
+        context.translateBy(x: 275.58, y: 406.28)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier19Path = UIBezierPath()
+        bezier19Path.move(to: CGPoint(x: 9, y: 26))
+        bezier19Path.addLine(to: CGPoint(x: -21.13, y: -63.09))
+        bezier19Path.addLine(to: CGPoint(x: 83.55, y: -100.01))
+        UIColor.darkGray.setStroke()
+        bezier19Path.lineWidth = 2
+        bezier19Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 20 Drawing
+        context.saveGState()
+        context.translateBy(x: 342.53, y: 470.36)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier20Path = UIBezierPath()
+        UIColor.black.setStroke()
+        bezier20Path.lineWidth = 1
+        bezier20Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 132 Drawing
+        context.saveGState()
+        context.translateBy(x: 837.68, y: 1142.71)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier132Path = UIBezierPath()
+        UIColor.black.setStroke()
+        bezier132Path.lineWidth = 1
+        bezier132Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 138 Drawing
+        context.saveGState()
+        context.translateBy(x: 1080.92, y: 1058.33)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier138Path = UIBezierPath()
+        bezier138Path.move(to: CGPoint(x: 23.67, y: 67.47))
+        bezier138Path.addLine(to: CGPoint(x: 0, y: 0))
+        UIColor.darkGray.setStroke()
+        bezier138Path.lineWidth = 2
+        bezier138Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 140 Drawing
+        context.saveGState()
+        context.translateBy(x: 1093.11, y: 922.68)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier140Path = UIBezierPath()
+        bezier140Path.move(to: CGPoint(x: 37, y: 0))
+        bezier140Path.addLine(to: CGPoint(x: 0, y: 13))
+        UIColor.darkGray.setStroke()
+        bezier140Path.lineWidth = 2
+        bezier140Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 57 Drawing
+        context.saveGState()
+        context.translateBy(x: 1193.94, y: 1058.81)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier57Path = UIBezierPath()
+        bezier57Path.move(to: CGPoint(x: 35, y: 0))
+        bezier57Path.addLine(to: CGPoint(x: 0, y: 12.5))
+        UIColor.darkGray.setStroke()
+        bezier57Path.lineWidth = 2
+        bezier57Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 85 Drawing
+        context.saveGState()
+        context.translateBy(x: 677.86, y: 891.3)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier85Path = UIBezierPath()
+        UIColor.black.setStroke()
+        bezier85Path.lineWidth = 1
+        bezier85Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 86 Drawing
+        context.saveGState()
+        context.translateBy(x: 671.52, y: 873.75)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier86Path = UIBezierPath()
+        bezier86Path.move(to: CGPoint(x: 6, y: 18))
+        bezier86Path.addLine(to: CGPoint(x: 0, y: 0))
+        UIColor.darkGray.setStroke()
+        bezier86Path.lineWidth = 2
+        bezier86Path.lineCapStyle = .round
+        bezier86Path.lineJoinStyle = .round
+        bezier86Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 25 Drawing
+        context.saveGState()
+        context.translateBy(x: 337.12, y: 573.94)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+        context.scaleBy(x: 0.98, y: 0.98)
+
+        let bezier25Path = UIBezierPath()
+        bezier25Path.move(to: CGPoint(x: 0, y: 14))
+        bezier25Path.addLine(to: CGPoint(x: 40, y: 0))
+        UIColor.darkGray.setStroke()
+        bezier25Path.lineWidth = 2
+        bezier25Path.lineCapStyle = .round
+        bezier25Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 31 Drawing
+        context.saveGState()
+        context.translateBy(x: 329.12, y: 549.94)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+        context.scaleBy(x: 0.98, y: 0.98)
+
+        let bezier31Path = UIBezierPath()
+        bezier31Path.move(to: CGPoint(x: 0, y: 14))
+        bezier31Path.addLine(to: CGPoint(x: 40, y: 0))
+        UIColor.darkGray.setStroke()
+        bezier31Path.lineWidth = 2
+        bezier31Path.lineCapStyle = .round
+        bezier31Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 100 Drawing
+        context.saveGState()
+        context.translateBy(x: 362.12, y: 647.94)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+        context.scaleBy(x: 0.98, y: 0.98)
+
+        let bezier100Path = UIBezierPath()
+        bezier100Path.move(to: CGPoint(x: 0, y: 14))
+        bezier100Path.addLine(to: CGPoint(x: 40, y: 0))
+        UIColor.darkGray.setStroke()
+        bezier100Path.lineWidth = 2
+        bezier100Path.lineCapStyle = .round
+        bezier100Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 101 Drawing
+        context.saveGState()
+        context.translateBy(x: 371.12, y: 672.94)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+        context.scaleBy(x: 0.98, y: 0.98)
+
+        let bezier101Path = UIBezierPath()
+        bezier101Path.move(to: CGPoint(x: 0, y: 14))
+        bezier101Path.addLine(to: CGPoint(x: 40, y: 0))
+        UIColor.darkGray.setStroke()
+        bezier101Path.lineWidth = 2
+        bezier101Path.lineCapStyle = .round
+        bezier101Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 103 Drawing
+        context.saveGState()
+        context.translateBy(x: 287.12, y: 428.64)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier103Path = UIBezierPath()
+        bezier103Path.move(to: CGPoint(x: 0, y: 14))
+        bezier103Path.addLine(to: CGPoint(x: 41, y: 0))
+        UIColor.darkGray.setStroke()
+        bezier103Path.lineWidth = 2
+        bezier103Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 126 Drawing
+        context.saveGState()
+        context.translateBy(x: 271.12, y: 378.64)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier126Path = UIBezierPath()
+        bezier126Path.move(to: CGPoint(x: 0, y: 14))
+        bezier126Path.addLine(to: CGPoint(x: 41, y: 0))
+        UIColor.darkGray.setStroke()
+        bezier126Path.lineWidth = 2
+        bezier126Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 127 Drawing
+        context.saveGState()
+        context.translateBy(x: 263.12, y: 354.64)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier127Path = UIBezierPath()
+        bezier127Path.move(to: CGPoint(x: 0, y: 14))
+        bezier127Path.addLine(to: CGPoint(x: 41, y: 0))
+        UIColor.darkGray.setStroke()
+        bezier127Path.lineWidth = 2
+        bezier127Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 129 Drawing
+        context.saveGState()
+        context.translateBy(x: 304.12, y: 368.64)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier129Path = UIBezierPath()
+        bezier129Path.move(to: CGPoint(x: 7.97, y: 10.29))
+        bezier129Path.addLine(to: CGPoint(x: 32.9, y: 2.07))
+        UIColor.darkGray.setStroke()
+        bezier129Path.lineWidth = 2
+        bezier129Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 119 Drawing
+        context.saveGState()
+        context.translateBy(x: 830.17, y: 351.91)
+        context.rotate(by: 1.1 * CGFloat.pi/180)
+        context.scaleBy(x: 1.08, y: 1.08)
+
+        let bezier119Path = UIBezierPath()
+        bezier119Path.move(to: CGPoint(x: 0, y: 8))
+        bezier119Path.addLine(to: CGPoint(x: 22, y: 0))
+        UIColor.darkGray.setStroke()
+        bezier119Path.lineWidth = 2
+        bezier119Path.lineCapStyle = .round
+        bezier119Path.lineJoinStyle = .round
+        bezier119Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 130 Drawing
+        context.saveGState()
+        context.translateBy(x: 853.17, y: 418.91)
+        context.rotate(by: 1.1 * CGFloat.pi/180)
+        context.scaleBy(x: 1.08, y: 1.08)
+
+        let bezier130Path = UIBezierPath()
+        bezier130Path.move(to: CGPoint(x: 33.35, y: 105.02))
+        bezier130Path.addLine(to: CGPoint(x: -1.84, y: 8.46))
+        bezier130Path.addLine(to: CGPoint(x: 22, y: 0))
+        UIColor.darkGray.setStroke()
+        bezier130Path.lineWidth = 2
+        bezier130Path.lineCapStyle = .round
+        bezier130Path.lineJoinStyle = .round
+        bezier130Path.stroke()
 
         context.restoreGState()
 
 
         //// Bezier 108 Drawing
         context.saveGState()
-        context.translateBy(x: 861.08, y: 484.75)
+        context.translateBy(x: 860.17, y: 444.91)
         context.rotate(by: 1.1 * CGFloat.pi/180)
         context.scaleBy(x: 1.08, y: 1.08)
 
         let bezier108Path = UIBezierPath()
-        bezier108Path.move(to: CGPoint(x: 17.06, y: 46))
-        bezier108Path.addLine(to: CGPoint(x: -3.01, y: -8.04))
+        bezier108Path.move(to: CGPoint(x: 0, y: 8))
+        bezier108Path.addLine(to: CGPoint(x: 22.99, y: -0.35))
         UIColor.darkGray.setStroke()
         bezier108Path.lineWidth = 2
         bezier108Path.lineCapStyle = .round
@@ -2313,255 +2068,58 @@ public class IZGroundfloor : NSObject {
         context.restoreGState()
 
 
-        //// Rectangle Drawing
+        //// Bezier 110 Drawing
         context.saveGState()
-        context.translateBy(x: 813, y: 441.58)
-        context.rotate(by: -19 * CGFloat.pi/180)
-
-        let rectanglePath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 32.74, height: 33.93))
-        UIColor.darkGray.setStroke()
-        rectanglePath.lineWidth = 2
-        rectanglePath.lineCapStyle = .round
-        rectanglePath.lineJoinStyle = .round
-        rectanglePath.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 109 Drawing
-        context.saveGState()
-        context.translateBy(x: 835.17, y: 366.91)
+        context.translateBy(x: 870.17, y: 471.91)
         context.rotate(by: 1.1 * CGFloat.pi/180)
         context.scaleBy(x: 1.08, y: 1.08)
 
-        let bezier109Path = UIBezierPath()
-        bezier109Path.move(to: CGPoint(x: 0, y: 8))
-        bezier109Path.addLine(to: CGPoint(x: 22, y: 0))
+        let bezier110Path = UIBezierPath()
+        bezier110Path.move(to: CGPoint(x: 0, y: 8))
+        bezier110Path.addLine(to: CGPoint(x: 22.99, y: -0.35))
         UIColor.darkGray.setStroke()
-        bezier109Path.lineWidth = 2
-        bezier109Path.lineCapStyle = .round
-        bezier109Path.lineJoinStyle = .round
-        bezier109Path.stroke()
+        bezier110Path.lineWidth = 2
+        bezier110Path.lineCapStyle = .round
+        bezier110Path.lineJoinStyle = .round
+        bezier110Path.stroke()
 
         context.restoreGState()
 
 
-        //// Bezier 111 Drawing
-        let bezier111Path = UIBezierPath()
-        bezier111Path.move(to: CGPoint(x: 766, y: 303))
-        bezier111Path.addLine(to: CGPoint(x: 784, y: 356))
-        UIColor.darkGray.setStroke()
-        bezier111Path.lineWidth = 2
-        bezier111Path.stroke()
-
-
-        //// Bezier 116 Drawing
-        let bezier116Path = UIBezierPath()
-        bezier116Path.move(to: CGPoint(x: 797, y: 293))
-        bezier116Path.addLine(to: CGPoint(x: 815, y: 347))
-        UIColor.darkGray.setStroke()
-        bezier116Path.lineWidth = 2
-        bezier116Path.stroke()
-
-
-        //// Bezier 119 Drawing
-        let bezier119Path = UIBezierPath()
-        bezier119Path.move(to: CGPoint(x: 762, y: 326))
-        bezier119Path.addLine(to: CGPoint(x: 798, y: 432))
-        UIColor.darkGray.setStroke()
-        bezier119Path.lineWidth = 2
-        bezier119Path.lineCapStyle = .round
-        bezier119Path.lineJoinStyle = .round
-        bezier119Path.stroke()
-
-
-        //// Bezier 121 Drawing
+        //// Bezier 133 Drawing
         context.saveGState()
-        context.translateBy(x: 774.3, y: 431.91)
+        context.translateBy(x: 879.17, y: 498.91)
         context.rotate(by: 1.1 * CGFloat.pi/180)
         context.scaleBy(x: 1.08, y: 1.08)
 
-        let bezier121Path = UIBezierPath()
-        bezier121Path.move(to: CGPoint(x: 0, y: 8))
-        bezier121Path.addLine(to: CGPoint(x: 22, y: 0))
+        let bezier133Path = UIBezierPath()
+        bezier133Path.move(to: CGPoint(x: 0, y: 8))
+        bezier133Path.addLine(to: CGPoint(x: 22.99, y: -0.35))
         UIColor.darkGray.setStroke()
-        bezier121Path.lineWidth = 2
-        bezier121Path.lineCapStyle = .round
-        bezier121Path.lineJoinStyle = .round
-        bezier121Path.stroke()
+        bezier133Path.lineWidth = 2
+        bezier133Path.lineCapStyle = .round
+        bezier133Path.lineJoinStyle = .round
+        bezier133Path.stroke()
 
         context.restoreGState()
-
-
-        //// Bezier 123 Drawing
-        let bezier123Path = UIBezierPath()
-        bezier123Path.move(to: CGPoint(x: 801, y: 439.3))
-        bezier123Path.addLine(to: CGPoint(x: 830, y: 523.3))
-        UIColor.darkGray.setStroke()
-        bezier123Path.lineWidth = 2
-        bezier123Path.lineCapStyle = .round
-        bezier123Path.lineJoinStyle = .round
-        bezier123Path.stroke()
-
-
-        //// Bezier 124 Drawing
-        let bezier124Path = UIBezierPath()
-        bezier124Path.move(to: CGPoint(x: 829, y: 486))
-        bezier124Path.addLine(to: CGPoint(x: 849, y: 545))
-        UIColor.darkGray.setStroke()
-        bezier124Path.lineWidth = 2
-        bezier124Path.lineCapStyle = .round
-        bezier124Path.lineJoinStyle = .round
-        bezier124Path.stroke()
 
 
         //// Bezier 125 Drawing
-        context.saveGState()
-        context.translateBy(x: 765.17, y: 405.91)
-        context.rotate(by: 1.1 * CGFloat.pi/180)
-        context.scaleBy(x: 1.08, y: 1.08)
-
         let bezier125Path = UIBezierPath()
-        bezier125Path.move(to: CGPoint(x: 0, y: 8))
-        bezier125Path.addLine(to: CGPoint(x: 22, y: 0))
+        bezier125Path.move(to: CGPoint(x: 774, y: 438))
+        bezier125Path.addLine(to: CGPoint(x: 798, y: 430))
+        bezier125Path.addLine(to: CGPoint(x: 763, y: 327))
+        bezier125Path.addLine(to: CGPoint(x: 739, y: 335))
         UIColor.darkGray.setStroke()
         bezier125Path.lineWidth = 2
         bezier125Path.lineCapStyle = .round
         bezier125Path.lineJoinStyle = .round
         bezier125Path.stroke()
 
-        context.restoreGState()
-
-
-        //// Bezier 134 Drawing
-        context.saveGState()
-        context.translateBy(x: 756.17, y: 378.91)
-        context.rotate(by: 1.1 * CGFloat.pi/180)
-        context.scaleBy(x: 1.08, y: 1.08)
-
-        let bezier134Path = UIBezierPath()
-        bezier134Path.move(to: CGPoint(x: 0, y: 8))
-        bezier134Path.addLine(to: CGPoint(x: 22, y: 0))
-        UIColor.darkGray.setStroke()
-        bezier134Path.lineWidth = 2
-        bezier134Path.lineCapStyle = .round
-        bezier134Path.lineJoinStyle = .round
-        bezier134Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 137 Drawing
-        context.saveGState()
-        context.translateBy(x: 747.17, y: 351.91)
-        context.rotate(by: 1.1 * CGFloat.pi/180)
-        context.scaleBy(x: 1.08, y: 1.08)
-
-        let bezier137Path = UIBezierPath()
-        bezier137Path.move(to: CGPoint(x: 0, y: 8))
-        bezier137Path.addLine(to: CGPoint(x: 22, y: 0))
-        UIColor.darkGray.setStroke()
-        bezier137Path.lineWidth = 2
-        bezier137Path.lineCapStyle = .round
-        bezier137Path.lineJoinStyle = .round
-        bezier137Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 138 Drawing
-        context.saveGState()
-        context.translateBy(x: 738.17, y: 325.6)
-        context.rotate(by: 1.1 * CGFloat.pi/180)
-        context.scaleBy(x: 1.08, y: 1.08)
-
-        let bezier138Path = UIBezierPath()
-        bezier138Path.move(to: CGPoint(x: 0, y: 8))
-        bezier138Path.addLine(to: CGPoint(x: 22, y: 0))
-        UIColor.darkGray.setStroke()
-        bezier138Path.lineWidth = 2
-        bezier138Path.lineCapStyle = .round
-        bezier138Path.lineJoinStyle = .round
-        bezier138Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 139 Drawing
-        context.saveGState()
-        context.translateBy(x: 768.39, y: 329.49)
-        context.rotate(by: 1.1 * CGFloat.pi/180)
-        context.scaleBy(x: 1.08, y: 1.08)
-
-        let bezier139Path = UIBezierPath()
-        bezier139Path.move(to: CGPoint(x: -1.12, y: 8.82))
-        bezier139Path.addLine(to: CGPoint(x: 7.16, y: 5.89))
-        UIColor.darkGray.setStroke()
-        bezier139Path.lineWidth = 2
-        bezier139Path.lineCapStyle = .round
-        bezier139Path.lineJoinStyle = .round
-        bezier139Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 140 Drawing
-        context.saveGState()
-        context.translateBy(x: 805.39, y: 401.49)
-        context.rotate(by: 1.1 * CGFloat.pi/180)
-        context.scaleBy(x: 1.08, y: 1.08)
-
-        let bezier140Path = UIBezierPath()
-        bezier140Path.move(to: CGPoint(x: -1.12, y: 8.82))
-        bezier140Path.addLine(to: CGPoint(x: 10.85, y: 4.4))
-        UIColor.darkGray.setStroke()
-        bezier140Path.lineWidth = 2
-        bezier140Path.lineCapStyle = .round
-        bezier140Path.lineJoinStyle = .round
-        bezier140Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 141 Drawing
-        context.saveGState()
-        context.translateBy(x: 777.17, y: 438.91)
-        context.rotate(by: 1.1 * CGFloat.pi/180)
-        context.scaleBy(x: 1.08, y: 1.08)
-
-        let bezier141Path = UIBezierPath()
-        bezier141Path.move(to: CGPoint(x: 0, y: 8))
-        bezier141Path.addLine(to: CGPoint(x: 22, y: 0))
-        UIColor.darkGray.setStroke()
-        bezier141Path.lineWidth = 2
-        bezier141Path.lineCapStyle = .round
-        bezier141Path.lineJoinStyle = .round
-        bezier141Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 142 Drawing
-        context.saveGState()
-        context.translateBy(x: 785.17, y: 463.91)
-        context.rotate(by: 1.1 * CGFloat.pi/180)
-        context.scaleBy(x: 1.08, y: 1.08)
-
-        let bezier142Path = UIBezierPath()
-        bezier142Path.move(to: CGPoint(x: 0, y: 8))
-        bezier142Path.addLine(to: CGPoint(x: 22, y: 0))
-        UIColor.darkGray.setStroke()
-        bezier142Path.lineWidth = 2
-        bezier142Path.lineCapStyle = .round
-        bezier142Path.lineJoinStyle = .round
-        bezier142Path.stroke()
-
-        context.restoreGState()
-
 
         //// Bezier 143 Drawing
         context.saveGState()
-        context.translateBy(x: 796.17, y: 495.91)
+        context.translateBy(x: 756.17, y: 377.91)
         context.rotate(by: 1.1 * CGFloat.pi/180)
         context.scaleBy(x: 1.08, y: 1.08)
 
@@ -2579,13 +2137,13 @@ public class IZGroundfloor : NSObject {
 
         //// Bezier 144 Drawing
         context.saveGState()
-        context.translateBy(x: 806.17, y: 522.91)
+        context.translateBy(x: 765.17, y: 403.91)
         context.rotate(by: 1.1 * CGFloat.pi/180)
         context.scaleBy(x: 1.08, y: 1.08)
 
         let bezier144Path = UIBezierPath()
         bezier144Path.move(to: CGPoint(x: 0, y: 8))
-        bezier144Path.addLine(to: CGPoint(x: 31.27, y: -3.5))
+        bezier144Path.addLine(to: CGPoint(x: 22, y: 0))
         UIColor.darkGray.setStroke()
         bezier144Path.lineWidth = 2
         bezier144Path.lineCapStyle = .round
@@ -2595,10 +2153,619 @@ public class IZGroundfloor : NSObject {
         context.restoreGState()
 
 
+        //// Bezier 112 Drawing
+        context.saveGState()
+        context.translateBy(x: 804.17, y: 402.91)
+        context.rotate(by: 1.1 * CGFloat.pi/180)
+        context.scaleBy(x: 1.08, y: 1.08)
+
+        let bezier112Path = UIBezierPath()
+        bezier112Path.move(to: CGPoint(x: 0, y: 8))
+        bezier112Path.addLine(to: CGPoint(x: 11.95, y: 3.56))
+        UIColor.darkGray.setStroke()
+        bezier112Path.lineWidth = 2
+        bezier112Path.lineCapStyle = .round
+        bezier112Path.lineJoinStyle = .round
+        bezier112Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 45 Drawing
+        context.saveGState()
+        context.translateBy(x: 760.91, y: 1172.54)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier45Path = UIBezierPath()
+        bezier45Path.move(to: CGPoint(x: 0, y: 21))
+        bezier45Path.addLine(to: CGPoint(x: 60, y: 0))
+        UIColor.darkGray.setStroke()
+        bezier45Path.lineWidth = 2
+        bezier45Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 44 Drawing
+        context.saveGState()
+        context.translateBy(x: 745.81, y: 1127.41)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier44Path = UIBezierPath()
+        bezier44Path.move(to: CGPoint(x: 0, y: 21))
+        bezier44Path.addLine(to: CGPoint(x: 60, y: 0))
+        UIColor.darkGray.setStroke()
+        bezier44Path.lineWidth = 2
+        bezier44Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 53 Drawing
+        context.saveGState()
+        context.translateBy(x: 1002.3, y: 1014.64)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier53Path = UIBezierPath()
+        bezier53Path.move(to: CGPoint(x: 0, y: 24))
+        bezier53Path.addLine(to: CGPoint(x: 14, y: 66))
+        bezier53Path.addLine(to: CGPoint(x: 79, y: 43))
+        bezier53Path.addLine(to: CGPoint(x: 64, y: 0))
+        UIColor.darkGray.setStroke()
+        bezier53Path.lineWidth = 2
+        bezier53Path.lineCapStyle = .round
+        bezier53Path.lineJoinStyle = .round
+        bezier53Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 60 Drawing
+        context.saveGState()
+        context.translateBy(x: 1045.11, y: 938.68)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier60Path = UIBezierPath()
+        bezier60Path.move(to: CGPoint(x: 38, y: -0.01))
+        bezier60Path.addLine(to: CGPoint(x: 0, y: 13))
+        UIColor.darkGray.setStroke()
+        bezier60Path.lineWidth = 2
+        bezier60Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 80 Drawing
+        context.saveGState()
+        context.translateBy(x: 1069.11, y: 1007.68)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier80Path = UIBezierPath()
+        bezier80Path.move(to: CGPoint(x: 37, y: 0))
+        bezier80Path.addLine(to: CGPoint(x: 0, y: 13))
+        UIColor.darkGray.setStroke()
+        bezier80Path.lineWidth = 2
+        bezier80Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 54 Drawing
+        context.saveGState()
+        context.translateBy(x: 1083.22, y: 1050.76)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier54Path = UIBezierPath()
+        bezier54Path.move(to: CGPoint(x: 38, y: 0))
+        bezier54Path.addLine(to: CGPoint(x: 0, y: 13.5))
+        UIColor.darkGray.setStroke()
+        bezier54Path.lineWidth = 2
+        bezier54Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 134 Drawing
+        context.saveGState()
+        context.translateBy(x: 1098.22, y: 1092.76)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier134Path = UIBezierPath()
+        bezier134Path.move(to: CGPoint(x: 38, y: 0))
+        bezier134Path.addLine(to: CGPoint(x: 0, y: 13.5))
+        UIColor.darkGray.setStroke()
+        bezier134Path.lineWidth = 2
+        bezier134Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 79 Drawing
+        context.saveGState()
+        context.translateBy(x: 1159.11, y: 1117.69)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier79Path = UIBezierPath()
+        bezier79Path.move(to: CGPoint(x: 36, y: 0))
+        bezier79Path.addLine(to: CGPoint(x: 0, y: 13))
+        UIColor.darkGray.setStroke()
+        bezier79Path.lineWidth = 2
+        bezier79Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 82 Drawing
+        context.saveGState()
+        context.translateBy(x: 1186.94, y: 1037.81)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier82Path = UIBezierPath()
+        bezier82Path.move(to: CGPoint(x: 35, y: 0))
+        bezier82Path.addLine(to: CGPoint(x: 0, y: 12.5))
+        UIColor.darkGray.setStroke()
+        bezier82Path.lineWidth = 2
+        bezier82Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 135 Drawing
+        let bezier135Path = UIBezierPath()
+        bezier135Path.move(to: CGPoint(x: 1153, y: 1110))
+        bezier135Path.addLine(to: CGPoint(x: 1146, y: 1089))
+        UIColor.darkGray.setStroke()
+        bezier135Path.lineWidth = 2
+        bezier135Path.lineCapStyle = .round
+        bezier135Path.lineJoinStyle = .round
+        bezier135Path.stroke()
+
+
+        //// Bezier 136 Drawing
+        let bezier136Path = UIBezierPath()
+        bezier136Path.move(to: CGPoint(x: 1132.2, y: 1047))
+        bezier136Path.addLine(to: CGPoint(x: 1139.4, y: 1068))
+        bezier136Path.addLine(to: CGPoint(x: 1175.2, y: 1056))
+        bezier136Path.addLine(to: CGPoint(x: 1168.1, y: 1035))
+        UIColor.darkGray.setStroke()
+        bezier136Path.lineWidth = 2
+        bezier136Path.lineCapStyle = .round
+        bezier136Path.lineJoinStyle = .round
+        bezier136Path.stroke()
+
+
+        //// Bezier 137 Drawing
+        context.saveGState()
+        context.translateBy(x: 729.12, y: 702.67)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier137Path = UIBezierPath()
+        bezier137Path.move(to: CGPoint(x: 38, y: 0))
+        bezier137Path.addLine(to: CGPoint(x: 0, y: 14))
+        UIColor.darkGray.setStroke()
+        bezier137Path.lineWidth = 2
+        bezier137Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 139 Drawing
+        context.saveGState()
+        context.translateBy(x: 752.61, y: 770.38)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier139Path = UIBezierPath()
+        bezier139Path.move(to: CGPoint(x: 37.4, y: 0.29))
+        bezier139Path.addLine(to: CGPoint(x: 0, y: 14))
+        UIColor.darkGray.setStroke()
+        bezier139Path.lineWidth = 2
+        bezier139Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 141 Drawing
+        context.saveGState()
+        context.translateBy(x: 767.12, y: 814.67)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier141Path = UIBezierPath()
+        bezier141Path.move(to: CGPoint(x: 38, y: 0))
+        bezier141Path.addLine(to: CGPoint(x: 0, y: 14))
+        UIColor.darkGray.setStroke()
+        bezier141Path.lineWidth = 2
+        bezier141Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 142 Drawing
+        context.saveGState()
+        context.translateBy(x: 783.11, y: 858.69)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier142Path = UIBezierPath()
+        bezier142Path.move(to: CGPoint(x: 36, y: 0))
+        bezier142Path.addLine(to: CGPoint(x: 0, y: 13))
+        UIColor.darkGray.setStroke()
+        bezier142Path.lineWidth = 2
+        bezier142Path.lineCapStyle = .round
+        bezier142Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 148 Drawing
+        context.saveGState()
+        context.translateBy(x: 776.11, y: 993.69)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier148Path = UIBezierPath()
+        bezier148Path.move(to: CGPoint(x: 36, y: 0))
+        bezier148Path.addLine(to: CGPoint(x: -0.99, y: 13.5))
+        UIColor.darkGray.setStroke()
+        bezier148Path.lineWidth = 2
+        bezier148Path.lineCapStyle = .round
+        bezier148Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 149 Drawing
+        context.saveGState()
+        context.translateBy(x: 696.11, y: 927.69)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier149Path = UIBezierPath()
+        bezier149Path.move(to: CGPoint(x: 36, y: 0))
+        bezier149Path.addLine(to: CGPoint(x: 0, y: 13))
+        UIColor.darkGray.setStroke()
+        bezier149Path.lineWidth = 2
+        bezier149Path.lineCapStyle = .round
+        bezier149Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 150 Drawing
+        context.saveGState()
+        context.translateBy(x: 703.11, y: 948.69)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier150Path = UIBezierPath()
+        bezier150Path.move(to: CGPoint(x: 36, y: 0))
+        bezier150Path.addLine(to: CGPoint(x: 0, y: 13))
+        UIColor.darkGray.setStroke()
+        bezier150Path.lineWidth = 2
+        bezier150Path.lineCapStyle = .round
+        bezier150Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 152 Drawing
+        context.saveGState()
+        context.translateBy(x: 718.11, y: 990.69)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier152Path = UIBezierPath()
+        bezier152Path.move(to: CGPoint(x: 36, y: 0))
+        bezier152Path.addLine(to: CGPoint(x: 0, y: 13))
+        UIColor.darkGray.setStroke()
+        bezier152Path.lineWidth = 2
+        bezier152Path.lineCapStyle = .round
+        bezier152Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 153 Drawing
+        context.saveGState()
+        context.translateBy(x: 726.11, y: 1011.69)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier153Path = UIBezierPath()
+        bezier153Path.move(to: CGPoint(x: 36, y: 0))
+        bezier153Path.addLine(to: CGPoint(x: 0, y: 13))
+        UIColor.darkGray.setStroke()
+        bezier153Path.lineWidth = 2
+        bezier153Path.lineCapStyle = .round
+        bezier153Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 154 Drawing
+        context.saveGState()
+        context.translateBy(x: 734.11, y: 1033.69)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier154Path = UIBezierPath()
+        bezier154Path.move(to: CGPoint(x: 36, y: 0))
+        bezier154Path.addLine(to: CGPoint(x: 0, y: 13))
+        UIColor.darkGray.setStroke()
+        bezier154Path.lineWidth = 2
+        bezier154Path.lineCapStyle = .round
+        bezier154Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 155 Drawing
+        context.saveGState()
+        context.translateBy(x: 672.11, y: 860.69)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier155Path = UIBezierPath()
+        bezier155Path.move(to: CGPoint(x: 36, y: 0))
+        bezier155Path.addLine(to: CGPoint(x: 0, y: 13))
+        UIColor.darkGray.setStroke()
+        bezier155Path.lineWidth = 2
+        bezier155Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 156 Drawing
+        context.saveGState()
+        context.translateBy(x: 680.11, y: 883.69)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier156Path = UIBezierPath()
+        bezier156Path.move(to: CGPoint(x: 36, y: 0))
+        bezier156Path.addLine(to: CGPoint(x: 0, y: 13))
+        UIColor.darkGray.setStroke()
+        bezier156Path.lineWidth = 2
+        bezier156Path.lineCapStyle = .round
+        bezier156Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 157 Drawing
+        context.saveGState()
+        context.translateBy(x: 688.11, y: 905.69)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier157Path = UIBezierPath()
+        bezier157Path.move(to: CGPoint(x: 36, y: 0))
+        bezier157Path.addLine(to: CGPoint(x: 0, y: 13))
+        UIColor.darkGray.setStroke()
+        bezier157Path.lineWidth = 2
+        bezier157Path.lineCapStyle = .round
+        bezier157Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 147 Drawing
+        context.saveGState()
+        context.translateBy(x: 768.11, y: 972.69)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier147Path = UIBezierPath()
+        bezier147Path.move(to: CGPoint(x: 36, y: 0))
+        bezier147Path.addLine(to: CGPoint(x: -0.99, y: 13.5))
+        UIColor.darkGray.setStroke()
+        bezier147Path.lineWidth = 2
+        bezier147Path.lineCapStyle = .round
+        bezier147Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 151 Drawing
+        context.saveGState()
+        context.translateBy(x: 711.11, y: 968.69)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier151Path = UIBezierPath()
+        bezier151Path.move(to: CGPoint(x: 36, y: 0))
+        bezier151Path.addLine(to: CGPoint(x: -0.99, y: 13.5))
+        UIColor.darkGray.setStroke()
+        bezier151Path.lineWidth = 2
+        bezier151Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 84 Drawing
+        context.saveGState()
+        context.translateBy(x: 756.11, y: 940.69)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier84Path = UIBezierPath()
+        bezier84Path.move(to: CGPoint(x: 36, y: 0))
+        bezier84Path.addLine(to: CGPoint(x: -0.99, y: 13.5))
+        UIColor.darkGray.setStroke()
+        bezier84Path.lineWidth = 2
+        bezier84Path.lineCapStyle = .round
+        bezier84Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 89 Drawing
+        context.saveGState()
+        context.translateBy(x: 746.11, y: 909.69)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier89Path = UIBezierPath()
+        bezier89Path.move(to: CGPoint(x: 36, y: 0))
+        bezier89Path.addLine(to: CGPoint(x: -0.99, y: 13.5))
+        UIColor.darkGray.setStroke()
+        bezier89Path.lineWidth = 2
+        bezier89Path.lineCapStyle = .round
+        bezier89Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 158 Drawing
+        context.saveGState()
+        context.translateBy(x: 378.12, y: 481.64)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier158Path = UIBezierPath()
+        bezier158Path.move(to: CGPoint(x: 0, y: 14))
+        bezier158Path.addLine(to: CGPoint(x: 41, y: 0))
+        UIColor.darkGray.setStroke()
+        bezier158Path.lineWidth = 2
+        bezier158Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 18 Drawing
+        context.saveGState()
+        context.translateBy(x: 380.12, y: 700.94)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+        context.scaleBy(x: 0.98, y: 0.98)
+
+        let bezier18Path = UIBezierPath()
+        bezier18Path.move(to: CGPoint(x: 0, y: 14))
+        bezier18Path.addLine(to: CGPoint(x: 40, y: 0))
+        UIColor.darkGray.setStroke()
+        bezier18Path.lineWidth = 2
+        bezier18Path.lineCapStyle = .round
+        bezier18Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 21 Drawing
+        context.saveGState()
+        context.translateBy(x: 450.97, y: 699.34)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier21Path = UIBezierPath()
+        bezier21Path.move(to: CGPoint(x: 0, y: 14.5))
+        bezier21Path.addLine(to: CGPoint(x: 41, y: 0))
+        UIColor.darkGray.setStroke()
+        bezier21Path.lineWidth = 2
+        bezier21Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 24 Drawing
+        context.saveGState()
+        context.translateBy(x: 433.97, y: 650.34)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier24Path = UIBezierPath()
+        bezier24Path.move(to: CGPoint(x: 0, y: 14.5))
+        bezier24Path.addLine(to: CGPoint(x: 41, y: 0))
+        UIColor.darkGray.setStroke()
+        bezier24Path.lineWidth = 2
+        bezier24Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 27 Drawing
+        context.saveGState()
+        context.translateBy(x: 411.12, y: 578.64)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier27Path = UIBezierPath()
+        bezier27Path.move(to: CGPoint(x: 0, y: 14))
+        bezier27Path.addLine(to: CGPoint(x: 41, y: 0))
+        UIColor.darkGray.setStroke()
+        bezier27Path.lineWidth = 2
+        bezier27Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 37 Drawing
+        context.saveGState()
+        context.translateBy(x: 367.7, y: 546.63)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
+
+        let bezier37Path = UIBezierPath()
+        bezier37Path.move(to: CGPoint(x: 35.18, y: 101.07))
+        bezier37Path.addLine(to: CGPoint(x: 62.88, y: 180.83))
+        UIColor.darkGray.setStroke()
+        bezier37Path.lineWidth = 2
+        bezier37Path.lineCapStyle = .round
+        bezier37Path.lineJoinStyle = .round
+        bezier37Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 104 Drawing
+        context.saveGState()
+        context.translateBy(x: 821.17, y: 457.91)
+        context.rotate(by: 1.1 * CGFloat.pi/180)
+        context.scaleBy(x: 1.08, y: 1.08)
+
+        let bezier104Path = UIBezierPath()
+        bezier104Path.move(to: CGPoint(x: -31.27, y: 19.21))
+        bezier104Path.addLine(to: CGPoint(x: 25.75, y: -1.33))
+        UIColor.darkGray.setStroke()
+        bezier104Path.lineWidth = 2
+        bezier104Path.lineJoinStyle = .round
+        bezier104Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 116 Drawing
+        let bezier116Path = UIBezierPath()
+        bezier116Path.move(to: CGPoint(x: 797, y: 474.5))
+        bezier116Path.addLine(to: CGPoint(x: 788, y: 448.3))
+        bezier116Path.addLine(to: CGPoint(x: 813, y: 440))
+        UIColor.darkGray.setStroke()
+        bezier116Path.lineWidth = 2
+        bezier116Path.lineCapStyle = .round
+        bezier116Path.lineJoinStyle = .round
+        bezier116Path.stroke()
+
+
+        //// Bezier 123 Drawing
+        context.saveGState()
+        context.translateBy(x: 780.17, y: 449.91)
+        context.rotate(by: 1.1 * CGFloat.pi/180)
+        context.scaleBy(x: 1.08, y: 1.08)
+
+        let bezier123Path = UIBezierPath()
+        bezier123Path.move(to: CGPoint(x: 0, y: 8))
+        bezier123Path.addLine(to: CGPoint(x: 9.19, y: 4.54))
+        UIColor.darkGray.setStroke()
+        bezier123Path.lineWidth = 2
+        bezier123Path.lineCapStyle = .round
+        bezier123Path.lineJoinStyle = .round
+        bezier123Path.stroke()
+
+        context.restoreGState()
+
+
+        //// Bezier 124 Drawing
+        context.saveGState()
+        context.translateBy(x: 747.17, y: 351.91)
+        context.rotate(by: 1.1 * CGFloat.pi/180)
+        context.scaleBy(x: 1.08, y: 1.08)
+
+        let bezier124Path = UIBezierPath()
+        bezier124Path.move(to: CGPoint(x: 0, y: 8))
+        bezier124Path.addLine(to: CGPoint(x: 22, y: 0))
+        UIColor.darkGray.setStroke()
+        bezier124Path.lineWidth = 2
+        bezier124Path.lineCapStyle = .round
+        bezier124Path.lineJoinStyle = .round
+        bezier124Path.stroke()
+
+        context.restoreGState()
+
+
         //// Bezier 145 Drawing
         let bezier145Path = UIBezierPath()
-        bezier145Path.move(to: CGPoint(x: 853.5, y: 426.5))
-        bezier145Path.addLine(to: CGPoint(x: 896, y: 551))
+        bezier145Path.move(to: CGPoint(x: 768, y: 303))
+        bezier145Path.addLine(to: CGPoint(x: 779, y: 336))
+        bezier145Path.addLine(to: CGPoint(x: 805, y: 327))
+        bezier145Path.addLine(to: CGPoint(x: 794, y: 294))
         UIColor.darkGray.setStroke()
         bezier145Path.lineWidth = 2
         bezier145Path.lineCapStyle = .round
@@ -2607,99 +2774,60 @@ public class IZGroundfloor : NSObject {
 
 
         //// Bezier 146 Drawing
-        context.saveGState()
-        context.translateBy(x: 840.69, y: 418.42)
-        context.rotate(by: 1.1 * CGFloat.pi/180)
-        context.scaleBy(x: 1.08, y: 1.08)
-
         let bezier146Path = UIBezierPath()
-        bezier146Path.move(to: CGPoint(x: 11.55, y: 7.72))
-        bezier146Path.addLine(to: CGPoint(x: 33.62, y: -0.11))
+        bezier146Path.move(to: CGPoint(x: 766, y: 335))
+        bezier146Path.addLine(to: CGPoint(x: 777, y: 331))
         UIColor.darkGray.setStroke()
         bezier146Path.lineWidth = 2
         bezier146Path.stroke()
 
-        context.restoreGState()
 
-
-        //// Bezier 147 Drawing
+        //// Bezier 109 Drawing
         context.saveGState()
-        context.translateBy(x: 849.69, y: 444.42)
+        context.translateBy(x: 792.17, y: 366.91)
         context.rotate(by: 1.1 * CGFloat.pi/180)
         context.scaleBy(x: 1.08, y: 1.08)
 
-        let bezier147Path = UIBezierPath()
-        bezier147Path.move(to: CGPoint(x: 11.55, y: 7.72))
-        bezier147Path.addLine(to: CGPoint(x: 33.62, y: -0.11))
+        let bezier109Path = UIBezierPath()
+        bezier109Path.move(to: CGPoint(x: 0, y: 8))
+        bezier109Path.addLine(to: CGPoint(x: 23.92, y: -0.37))
         UIColor.darkGray.setStroke()
-        bezier147Path.lineWidth = 2
-        bezier147Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 148 Drawing
-        context.saveGState()
-        context.translateBy(x: 867.69, y: 495.42)
-        context.rotate(by: 1.1 * CGFloat.pi/180)
-        context.scaleBy(x: 1.08, y: 1.08)
-
-        let bezier148Path = UIBezierPath()
-        bezier148Path.move(to: CGPoint(x: 11.55, y: 7.72))
-        bezier148Path.addLine(to: CGPoint(x: 33.62, y: -0.11))
-        UIColor.darkGray.setStroke()
-        bezier148Path.lineWidth = 2
-        bezier148Path.stroke()
+        bezier109Path.lineWidth = 2
+        bezier109Path.lineCapStyle = .round
+        bezier109Path.lineJoinStyle = .round
+        bezier109Path.stroke()
 
         context.restoreGState()
 
 
-        //// Bezier 149 Drawing
+        //// Bezier 81 Drawing
         context.saveGState()
-        context.translateBy(x: 876.69, y: 521.42)
-        context.rotate(by: 1.1 * CGFloat.pi/180)
-        context.scaleBy(x: 1.08, y: 1.08)
+        context.translateBy(x: 689.12, y: 755.67)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
 
-        let bezier149Path = UIBezierPath()
-        bezier149Path.move(to: CGPoint(x: 11.55, y: 7.72))
-        bezier149Path.addLine(to: CGPoint(x: 33.62, y: -0.11))
+        let bezier81Path = UIBezierPath()
+        bezier81Path.move(to: CGPoint(x: 38, y: 0))
+        bezier81Path.addLine(to: CGPoint(x: 0, y: 14))
         UIColor.darkGray.setStroke()
-        bezier149Path.lineWidth = 2
-        bezier149Path.stroke()
+        bezier81Path.lineWidth = 2
+        bezier81Path.lineCapStyle = .round
+        bezier81Path.stroke()
 
         context.restoreGState()
 
 
-        //// Bezier 150 Drawing
+        //// Bezier 111 Drawing
         context.saveGState()
-        context.translateBy(x: 861.69, y: 550.42)
-        context.rotate(by: 1.1 * CGFloat.pi/180)
-        context.scaleBy(x: 1.08, y: 1.08)
+        context.translateBy(x: 760.12, y: 792.67)
+        context.rotate(by: 0.5 * CGFloat.pi/180)
 
-        let bezier150Path = UIBezierPath()
-        bezier150Path.move(to: CGPoint(x: 11.55, y: 7.72))
-        bezier150Path.addLine(to: CGPoint(x: 54.77, y: -7.92))
+        let bezier111Path = UIBezierPath()
+        bezier111Path.move(to: CGPoint(x: 36.01, y: 1.02))
+        bezier111Path.addLine(to: CGPoint(x: 0, y: 14))
         UIColor.darkGray.setStroke()
-        bezier150Path.lineWidth = 2
-        bezier150Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Bezier 151 Drawing
-        context.saveGState()
-        context.translateBy(x: 792.39, y: 365.49)
-        context.rotate(by: 1.1 * CGFloat.pi/180)
-        context.scaleBy(x: 1.08, y: 1.08)
-
-        let bezier151Path = UIBezierPath()
-        bezier151Path.move(to: CGPoint(x: -1.12, y: 8.82))
-        bezier151Path.addLine(to: CGPoint(x: 23.72, y: 0.01))
-        UIColor.darkGray.setStroke()
-        bezier151Path.lineWidth = 2
-        bezier151Path.lineCapStyle = .round
-        bezier151Path.lineJoinStyle = .round
-        bezier151Path.stroke()
+        bezier111Path.lineWidth = 2
+        bezier111Path.lineCapStyle = .round
+        bezier111Path.stroke()
 
         context.restoreGState()
         
@@ -2715,7 +2843,7 @@ public class IZGroundfloor : NSObject {
         }
 
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 1343, height: 1308), false, 0)
-            IZGroundfloor.drawCanvas1()
+            IZSecondFloor.drawCanvas1()
 
         Cache.imageOfCanvas1 = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
@@ -2730,7 +2858,7 @@ public class IZGroundfloor : NSObject {
         set {
             Cache.canvas1Targets = newValue
             for target: AnyObject in newValue {
-                let _ = target.perform(NSSelectorFromString("setImage:"), with: IZGroundfloor.imageOfCanvas1)
+                let _ = target.perform(NSSelectorFromString("setImage:"), with: IZSecondFloor.imageOfCanvas1)
             }
         }
     }
@@ -2738,7 +2866,7 @@ public class IZGroundfloor : NSObject {
 
 
 
-    @objc(IZGroundfloorResizingBehavior)
+    @objc(IZSecondFloorResizingBehavior)
     public enum ResizingBehavior: Int {
         case aspectFit /// The content is proportionally resized to fit into the target rectangle.
         case aspectFill /// The content is proportionally resized to completely fill the target rectangle.
