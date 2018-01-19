@@ -144,8 +144,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         // Add navigation button to toolbar
         self.toolbarItems = [UIBarButtonItem(customView: startNavigationButton)]
-        
-        createTree()
     }
     
     // Prints tapped location in helpful format to quickly get location information to setup markers
