@@ -315,7 +315,7 @@ extension MapViewController: MKMapViewDelegate {
             case 0:
                 return MapOverlayView(overlay: mapOverlay, overlayImage: groundfloorImage)
             case 1:
-                return MapOverlayView(overlay: mapOverlay, overlayImage: groundfloorImage)
+                return MapOverlayView(overlay: mapOverlay, overlayImage: firstFloorImage)
             case 2:
                 return MapOverlayView(overlay: mapOverlay, overlayImage: groundfloorImage)
             case 3:
