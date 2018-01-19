@@ -57,6 +57,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     // The images for the map overlay
     let groundfloorImage: UIImage = IZGroundfloor.imageOfCanvas1
     let basementImage: UIImage = IZBasement.imageOfCanvas1
+    let firstFloorImage: UIImage = IZFirstFloor.imageOfCanvas1
     
     
     override func viewDidLoad() {
