@@ -132,14 +132,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         // Add navigation button to toolbar
         self.toolbarItems = [UIBarButtonItem(customView: startNavigationButton)]
-        
-        
-        // Testing
-        mapView.add(e1Marker!)
-        //mapView.add(e2Marker!)
-        mapView.add(e3Marker!)
-        mapView.add(hauptbauMarker!)
-
     }
     
     // Prints tapped location in helpful format to quickly get location information to setup markers
@@ -307,6 +299,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         UIApplication.shared.open(url)
     }
     
+    // Creates all green overlays for building parts and stairs
     func loadOverlaysForBuildingParts() {
         
         // Saves the marker points
@@ -330,13 +323,45 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         // Remove all entries
         vertices.removeAll()
 
-//        // Set markers for E2
-//
-//        e2Marker = MKPolygon(coordinates: vertices, count: )
-//
-//        // Remove all entries
-//        vertices.removeAll()
-//
+        // Set markers for E2
+        vertices.append(CLLocationCoordinate2D(latitude: 50.777985278837775, longitude: 6.0609780616144979))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778207584740812, longitude: 6.0608612639622734))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778145626680697, longitude: 6.0605782844072609))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778060124417721, longitude: 6.0606202218195557))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778042776105821, longitude: 6.0605920022533892))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778043271786885, longitude: 6.0605920022287592))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778032862801268, longitude: 6.0605606471646158))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778025179969575, longitude: 6.0605261565690105))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778021958132143, longitude: 6.0604916660093329))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778022453813406, longitude: 6.060456391530761))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.777993209494156, longitude: 6.0604720690807961))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.777973878498415, longitude: 6.060444241444765))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.777958017155015, longitude: 6.0604085750517314))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.777945377649189, longitude: 6.0603646779332898))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.77794042098688, longitude: 6.0603356744999326))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.777939181826895, longitude: 6.0603062791072286))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.77794042098688, longitude: 6.0602811950523723))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.777944386330404, longitude: 6.0602565029299917))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778062354913487, longitude: 6.060198496036203))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778054919915746, longitude: 6.0601612618774379))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778017249329963, longitude: 6.0601796829727199))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.777986765848709, longitude: 6.0600475997208489))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778221463351002, longitude: 6.0599311940054763))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778248477017996, longitude: 6.0600507352343973))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778296308552967, longitude: 6.0600205559677853))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778386767010971, longitude: 6.0604434575372697))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778303000017587, longitude: 6.0604850030138318))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778343892211353, longitude: 6.0606715657223216))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778477225294068, longitude: 6.0606045442472309))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778517621670829, longitude: 6.0607938505008665))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778326544016124, longitude: 6.0608922270669687))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.7783493444974, longitude: 6.0609956988090019))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.77802765829631, longitude: 6.0611634484718202))
+        e2Marker = MKPolygon(coordinates: vertices, count: 33)
+
+        // Remove all entries
+        vertices.removeAll()
+
         // Set markers for E3
         vertices.append(CLLocationCoordinate2D(latitude: 50.779409890441173, longitude: 6.0601506048238072))
         vertices.append(CLLocationCoordinate2D(latitude: 50.778994426601344, longitude: 6.0603674114062036))
@@ -385,10 +410,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         vertices.append(CLLocationCoordinate2D(latitude: 50.779280015717063, longitude: 6.059160042103894))
         vertices.append(CLLocationCoordinate2D(latitude: 50.778702607124075, longitude: 6.0594540443294598))
         hauptbauMarker = MKPolygon(coordinates: vertices, count: 36)
-//
-//        // Remove all entries
-//        vertices.removeAll()
-//
+
+        // Remove all entries
+        vertices.removeAll()
+
 //        // Set markers for stairsHauptbau_1
 //
 //        stairsHauptbau_1 = MKPolygon(coordinates: vertices, count: )
