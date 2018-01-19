@@ -18,7 +18,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     // Define marker areas for buildings and stairs
     var e1Marker: MKPolygon?
-    // TODO
     var e2Marker: MKPolygon?
     var e3Marker: MKPolygon?
     var hauptbauMarker: MKPolygon?
@@ -84,22 +83,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         // Init overlay for indoor map, base floor
         self.mapView.add(mapOverlay)
         
-        // Set markers
-        var vertices = Array<CLLocationCoordinate2D>()
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778856766109392, longitude: 6.0599851211412172))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778538833045197, longitude: 6.0601530394202516))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778513038381043, longitude: 6.0600496321184956))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.77831927800711, longitude: 6.0601463985844122))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778295282858508, longitude: 6.0600249661566608))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778278486247125, longitude: 6.0600429912826561))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778256290715724, longitude: 6.059967096015324))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.77860421945573, longitude: 6.0597821013011579))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778622215699464, longitude: 6.0598779190762118))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778788980561892, longitude: 6.0597953829728368))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778810575968222, longitude: 6.0599111232556124))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778838170084008, longitude: 6.0598987902745929))
-        e1Marker = MKPolygon(coordinates: vertices, count: 12)
-        
+        // loads the overlays for each part of the buidling (Hauptbau, E1, E2, ...) and stairs
+        loadOverlaysForBuildingParts()
 
         // Show user location
         locationManager.requestAlwaysAuthorization()
@@ -147,6 +132,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         // Add navigation button to toolbar
         self.toolbarItems = [UIBarButtonItem(customView: startNavigationButton)]
+        
+        
+        // Testing
+        mapView.add(e1Marker!)
+        //mapView.add(e2Marker!)
+        mapView.add(e3Marker!)
+        //mapView.add(hauptbauMarker!)
+
     }
     
     // Prints tapped location in helpful format to quickly get location information to setup markers
@@ -194,7 +187,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         // TODO
         // STRUCTURE
         // Check if yor are at correct building
-            // If yes check if you are at correct floor
+            // If yes check if you are on correct floor
                 // If yes just show pin
                 // If no highlight next stairs
             // If not check if you are on groundfloor
@@ -204,10 +197,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         // Test
         if let destination = self.currentPlace {
             
-            // TODO: Check if yor are at correct building
+            // TODO: Check if you are at correct building
             if (false) {
-                // Check if you are at correct floor
+                // Check if you are on correct floor
                 if (userLevel == destination.floor) {
+                    // you are on the correct floor --> show the pin
                     let text = NSMutableAttributedString(string: "Go to Pin")
                     text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
                                         NSAttributedStringKey.foregroundColor: UIColor.black],
@@ -215,11 +209,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                     startNavigationButton.setAttributedTitle(text, for: .disabled)
                 }
                 else {
+                    // you are not on the correct floor --> highlight closest stairs
                     let text = NSMutableAttributedString(string: "Go to Stairs")
                     text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
                                         NSAttributedStringKey.foregroundColor: UIColor.black],
                                        range: NSMakeRange(0, 5))
                     startNavigationButton.setAttributedTitle(text, for: .disabled)
+                    
+                    // TODO
+                    // Highlight stairs which are closest to the destination
                 }
             }
             
@@ -227,18 +225,26 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             else {
                 // Check if you are at groundfloor to change buildings
                 if (userLevel == 0) {
+                    // you are on the groundfloor --> highlight correct building part
                     let text = NSMutableAttributedString(string: "Go to \((destination.building)!) Building")
                     text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
                                         NSAttributedStringKey.foregroundColor: UIColor.black],
                                        range: NSMakeRange(0, 5))
                     startNavigationButton.setAttributedTitle(text, for: .disabled)
+                    
+                    // TODO
+                    // Highlight correct building part
                 }
                 else {
+                    // you are not on the ground floor
                     let text = NSMutableAttributedString(string: "Go to Stairs")
                     text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
                                         NSAttributedStringKey.foregroundColor: UIColor.black],
                                        range: NSMakeRange(0, 5))
                     startNavigationButton.setAttributedTitle(text, for: .disabled)
+                    
+                    // TODO
+                    // Highlight stairs which are closest to the destination
                 }
             }
         }
@@ -299,6 +305,86 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             return
         }
         UIApplication.shared.open(url)
+    }
+    
+    func loadOverlaysForBuildingParts() {
+        
+        // Saves the marker points
+        var vertices = Array<CLLocationCoordinate2D>()
+        
+        // Set markers for E1
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778859779739122, longitude: 6.0599764393620639))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778537071208433, longitude: 6.0601449308971498))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778512983783457, longitude: 6.0600404173008702))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778322445619636, longitude: 6.0601410238615419))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778295269956459, longitude: 6.060020393681433))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778277049869303, longitude: 6.0600291845452654))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778260991516902, longitude: 6.0599578808641734))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.77860161308422, longitude: 6.0597708308144034))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778627244544765, longitude: 6.0598758328013931))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778791223662381, longitude: 6.0597879241627588))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778819634305677, longitude: 6.0599026937781062))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778839398213307, longitude: 6.059893414529161))
+        e1Marker = MKPolygon(coordinates: vertices, count: 12)
+
+        // Remove all entries
+        vertices.removeAll()
+
+//        // Set markers for E2
+//
+//        e2Marker = MKPolygon(coordinates: vertices, count: )
+//
+//        // Remove all entries
+//        vertices.removeAll()
+//
+        // Set markers for E3
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779409890441173, longitude: 6.0601506048238072))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778994426601344, longitude: 6.0603674114062036))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778944626611889, longitude: 6.0601475075938573))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779359811151352, longitude: 6.0599329133301847))
+        e3Marker = MKPolygon(coordinates: vertices, count: 4)
+//
+//        // Remove all entries
+//        vertices.removeAll()
+//
+//        // Set markers for hauptbauMarker
+//
+//        hauptbauMarker = MKPolygon(coordinates: vertices, count: 12)
+//
+//        // Remove all entries
+//        vertices.removeAll()
+//
+//        // Set markers for stairsHauptbau_1
+//
+//        stairsHauptbau_1 = MKPolygon(coordinates: vertices, count: )
+//
+//        // Remove all entries
+//        vertices.removeAll()
+//
+//        // Set markers for stairsHauptbau_2
+//
+//        stairsHauptbau_2 = MKPolygon(coordinates: vertices, count: )
+//
+//        // Remove all entries
+//        vertices.removeAll()
+//
+//        // Set markers for stairsE1
+//
+//        stairsE1 = MKPolygon(coordinates: vertices, count: )
+//
+//        // Remove all entries
+//        vertices.removeAll()
+//
+//        // Set markers for stairsE2
+//
+//        stairsE2 = MKPolygon(coordinates: vertices, count: )
+//
+//        // Remove all entries
+//        vertices.removeAll()
+//
+//        // Set markers for stairsE3
+//
+//        stairsE3 = MKPolygon(coordinates: vertices, count: )
     }
 }
 
