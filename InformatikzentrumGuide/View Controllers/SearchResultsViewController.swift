@@ -67,7 +67,49 @@ class SearchResultsViewController: UITableViewController {
                   floor: 0,
                   url: "http://tcs.rwth-aachen.de/www-bib/index.php",
                   building: "E1")
-
+        self.save(name: "Sporthallenkomplex Ahornstr",
+                  latitude: 50.7783009,
+                  longitude: 6.0595789,
+                  category: "Room",
+                  floor: 0,
+                  url: "http://hochschulsport.rwth-aachen.de/",
+                  building: "Hauptbau")
+        self.save(name: "InfoSphere - Schülerlabor Informatik",
+                  latitude: 50.7784258,
+                  longitude: 6.0596474,
+                  category: "Room",
+                  floor: 0,
+                  url: "http://schuelerlabor.informatik.rwth-aachen.de/",
+                  building: "E1")
+        self.save(name: "Informatik 11 - Embedded Software",
+                  latitude: 50.7784258,
+                  longitude: 6.0596474,
+                  category: "Chair",
+                  floor: 3,
+                  url: "https://embedded.rwth-aachen.de/",
+                  building: "Hauptbau")
+        self.save(name: "Prof. Dr.-Ing. Stefan Kowalewski",
+                  latitude: 50.7784258,
+                  longitude: 6.0596474,
+                  category: "Person",
+                  floor: 3,
+                  url: "https://embedded.rwth-aachen.de/doku.php?id=lehrstuhl:mitarbeiter:kowalewski",
+                  building: "Hauptbau")
+        self.save(name: "Knowledge-based Systems Group",
+                  latitude: 50.7781795,
+                  longitude: 6.0606387,
+                  category: "Chair",
+                  floor: 2,
+                  url: "https://kbsg.rwth-aachen.de/",   
+                  building: "E2")   
+        self.save(name: "Prof., Ph.D.Gerhard Lakemeyer",
+                  latitude: 50.7781795,
+                  longitude: 6.0606387,
+                  category: "Person",
+                  floor: 2,
+                  url: "https://kbsg.rwth-aachen.de/user/7",   
+                  building: "E2")  
+        
     }
     
     // Reset map for new search
