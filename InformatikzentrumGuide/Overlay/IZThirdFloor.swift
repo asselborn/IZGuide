@@ -2399,7 +2399,7 @@ public class IZThirdFloor : NSObject {
         bezier82Path.addLine(to: CGPoint(x: 91, y: 0))
         bezier82Path.addLine(to: CGPoint(x: 0, y: 34))
         bezier82Path.close()
-        background.setFill()
+        greyedOutBackground.setFill()
         bezier82Path.fill()
         UIColor.darkGray.setStroke()
         bezier82Path.lineWidth = 2
@@ -2935,35 +2935,6 @@ public class IZThirdFloor : NSObject {
         stairs4Path.lineCapStyle = .round
         stairs4Path.lineJoinStyle = .round
         stairs4Path.stroke()
-
-        context.restoreGState()
-
-
-        //// Stairs 2 Drawing
-        context.saveGState()
-        context.translateBy(x: 845.5, y: 385)
-        context.scaleBy(x: 0.5, y: 0.5)
-
-        let stairs2Path = UIBezierPath()
-        stairs2Path.move(to: CGPoint(x: 9, y: 27))
-        stairs2Path.addLine(to: CGPoint(x: 9, y: 18))
-        stairs2Path.addLine(to: CGPoint(x: 18, y: 18))
-        stairs2Path.addLine(to: CGPoint(x: 18, y: 9))
-        stairs2Path.addLine(to: CGPoint(x: 27, y: 9))
-        stairs2Path.addLine(to: CGPoint(x: 27, y: 0))
-        stairs2Path.addLine(to: CGPoint(x: 37, y: 0))
-        stairs2Path.addLine(to: CGPoint(x: 37, y: 37))
-        stairs2Path.addLine(to: CGPoint(x: 0, y: 37))
-        stairs2Path.addLine(to: CGPoint(x: 0, y: 27))
-        stairs2Path.addLine(to: CGPoint(x: 9, y: 27))
-        stairs2Path.close()
-        color.setFill()
-        stairs2Path.fill()
-        UIColor.darkGray.setStroke()
-        stairs2Path.lineWidth = 1
-        stairs2Path.lineCapStyle = .round
-        stairs2Path.lineJoinStyle = .round
-        stairs2Path.stroke()
 
         context.restoreGState()
 
