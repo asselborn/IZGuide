@@ -446,10 +446,53 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
 //
 //        stairsE3 = MKPolygon(coordinates: vertices, count: )
         
+
+        // TODO
+        // Place it in an extra method and use it in the navigation method
         
+        // Testing whether a given point (user location) is inside a rectangle
+        let mapRectTest = (hauptbauMarker!.boundingMapRect)
         
+        // calculate min latitude and longitude
+        let mapPointTestMin = MKMapPointMake(MKMapRectGetMinX(mapRectTest), MKMapRectGetMinY(mapRectTest))
+        let coordinateMin = MKCoordinateForMapPoint(mapPointTestMin)
         
-        // var test: MKMapRect = (e1Marker?.boundingMapRect)!
+        print("Min latitude: ", coordinateMin.latitude)
+        print("Min longitude: ", coordinateMin.longitude)
+        
+        // calculate max latitude and longitude
+        let mapPointTestMax = MKMapPointMake(MKMapRectGetMaxX(mapRectTest), MKMapRectGetMaxY(mapRectTest))
+        let coordinateMax = MKCoordinateForMapPoint(mapPointTestMax)
+        
+        print("Max latitude: ", coordinateMax.latitude)
+        print("Max longitude: ", coordinateMax.longitude)
+        
+        // enter another test position here
+        let testPosition = CLLocationCoordinate2D(latitude: 50.778278911092031, longitude: 6.0586203726098367)
+        
+        let mapPoint = MKMapPointMake(testPosition.latitude, testPosition.longitude)
+        
+        print("tested position: latitude: ", testPosition.latitude, " longitude: ", testPosition.longitude)
+        
+        // try a given method which does not return the correct result
+        // this somehow does not check the point correctly, the given point is inside the rectangle
+        // but this method returns false because the minValue for latitude is greater than the maxValue for latitude
+        // see output for this
+        print("MKMapRectContainsPoint says: ", MKMapRectContainsPoint(mapRectTest, mapPoint))
+        
+        // with this new method, the result is correct
+        // mind that the given latitude value must greater than the maximum and smaller than the minimum
+        // is this really correct ???
+        if (testPosition.latitude <= coordinateMin.latitude && testPosition.latitude >= coordinateMax.latitude) {
+            if (testPosition.longitude >= coordinateMin.longitude && testPosition.longitude <= coordinateMax.longitude) {
+                print("The point is inside the MapRect.")
+            } else {
+                print("The point is NOT inside the MapRect.")
+            }
+        } else {
+            print("The point is NOT inside the MapRect.")
+        }
+
     }
 }
 
