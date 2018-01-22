@@ -414,41 +414,47 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         // Remove all entries
         vertices.removeAll()
 
-//        // Set markers for stairsHauptbau_1
-//
-//        stairsHauptbau_1 = MKPolygon(coordinates: vertices, count: )
-//
-//        // Remove all entries
-//        vertices.removeAll()
-//
-//        // Set markers for stairsHauptbau_2
-//
-//        stairsHauptbau_2 = MKPolygon(coordinates: vertices, count: )
-//
-//        // Remove all entries
-//        vertices.removeAll()
-//
+        // Set markers for stairsHauptbau_1
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779351384988047, longitude: 6.0590414137151321))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779350330237293, longitude: 6.0591170981187119))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779297958066991, longitude: 6.0591170796415721))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779298826171583, longitude: 6.0590397774564364))
+        stairsHauptbau_1 = MKPolygon(coordinates: vertices, count: 4)
+        
+        // Remove all entries
+        vertices.removeAll()
+
+        // Set markers for stairsHauptbau_2
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778707315955188, longitude: 6.0592568382664211))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778708350584992, longitude: 6.0591972783557182))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778744766169439, longitude: 6.0591997950439591))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.77874580440394, longitude: 6.0592578200230429))
+        stairsHauptbau_2 = MKPolygon(coordinates: vertices, count: 4)
+        
+        // Remove all entries
+        vertices.removeAll()
+
 //        // Set markers for stairsE1
 //
-//        stairsE1 = MKPolygon(coordinates: vertices, count: )
+//        stairsE1 = MKPolygon(coordinates: vertices, count: 4)
 //
 //        // Remove all entries
 //        vertices.removeAll()
 //
 //        // Set markers for stairsE2
 //
-//        stairsE2 = MKPolygon(coordinates: vertices, count: )
+//        stairsE2 = MKPolygon(coordinates: vertices, count: 4)
 //
 //        // Remove all entries
 //        vertices.removeAll()
 //
 //        // Set markers for stairsE3
 //
-//        stairsE3 = MKPolygon(coordinates: vertices, count: )
+//        stairsE3 = MKPolygon(coordinates: vertices, count: 4)
         
 
         // TODO
-        // Place it in an extra method and use it in the navigation method
+        // Use it in the navigation method
         
         // Testing whether a given point (user location) is inside a rectangle
         let mapRectTest: MKMapRect = (hauptbauMarker!.boundingMapRect)
