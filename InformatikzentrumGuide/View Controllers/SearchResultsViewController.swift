@@ -95,14 +95,14 @@ class SearchResultsViewController: UITableViewController {
                   floor: 3,
                   url: "https://embedded.rwth-aachen.de/doku.php?id=lehrstuhl:mitarbeiter:kowalewski",
                   building: "Hauptbau")
-        self.save(name: "Knowledge-based Systems Group",
+        self.save(name: "Knowledge-Based Systems Group",
                   latitude: 50.7781795,
                   longitude: 6.0606387,
                   category: "Chair",
                   floor: 2,
                   url: "https://kbsg.rwth-aachen.de/",   
                   building: "E2")   
-        self.save(name: "Prof., Ph.D.Gerhard Lakemeyer",
+        self.save(name: "Prof. Gerhard Lakemeyer, Ph.D.",
                   latitude: 50.7781795,
                   longitude: 6.0606387,
                   category: "Person",
@@ -113,7 +113,7 @@ class SearchResultsViewController: UITableViewController {
     }
     
     // Reset map for new search
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         handleMapSearchDelegate?.reset()
     }
     
@@ -169,7 +169,6 @@ class SearchResultsViewController: UITableViewController {
         filteredPlaces = places.filter({( place : Place) -> Bool in
             let categoryCheck = (scope == "All" || place.category == scope)
             if (searchText == "") {
-                self.handleMapSearchDelegate?.reset()
                 return categoryCheck
             }
             else {

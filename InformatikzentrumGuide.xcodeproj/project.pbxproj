@@ -96,10 +96,10 @@
 		63D67A911FFBCC1300334B9E /* Overlay */ = {
 			isa = PBXGroup;
 			children = (
-				A66C0BA520122076008A449F /* IZGroundFloor.swift */,
 				A66C0BA420122076008A449F /* IZThirdFloor.swift */,
 				A66C0BA2201212CC008A449F /* IZSecondFloor.swift */,
 				A6CB62422011FFA200E45311 /* IZFirstFloor.swift */,
+				A66C0BA520122076008A449F /* IZGroundFloor.swift */,
 				A6CB623E2010EC1C00E45311 /* IZBasement.swift */,
 				63D67A921FFBCC2300334B9E /* MapOverlay.swift */,
 				63D67A941FFBD3D500334B9E /* MapOverlayView.swift */,
