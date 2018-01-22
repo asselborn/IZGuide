@@ -85,6 +85,20 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         // loads the overlays for each part of the buidling (Hauptbau, E1, E2, ...) and stairs
         loadOverlaysForBuildingParts()
+        
+        // Add a button to reset to user location and change tracking modes
+        let userTrackingButton = MKUserTrackingButton(mapView: self.mapView)
+        userTrackingButton.layer.backgroundColor = UIColor(white: 1, alpha: 0.7).cgColor
+        userTrackingButton.layer.cornerRadius = 5
+        userTrackingButton.translatesAutoresizingMaskIntoConstraints = false
+        self.mapView.addSubview(userTrackingButton)
+        
+        // Position it below the default compass
+        NSLayoutConstraint.activate([userTrackingButton.topAnchor.constraint(equalTo: self.mapView.topAnchor, constant: 45),
+                                     userTrackingButton.trailingAnchor.constraint(equalTo: self.mapView.trailingAnchor, constant: -4),
+                                     ])
+        
+        self.mapView.isPitchEnabled = false
 
         // Show user location
         locationManager.requestAlwaysAuthorization()
