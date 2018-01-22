@@ -227,16 +227,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                     // TODO
                     // Highlight correct building part
                     if (destination.building == "Hauptbau") {
-                        self.mapView.add(hauptbauMarker)
+                        self.mapView.add(hauptbauMarker!)
                     }
                     else if (destination.building == "E1") {
-                        self.mapView.add(e1Marker)
+                        self.mapView.add(e1Marker!)
                     }
                     else if (destination.building == "E2") {
-                        self.mapView.add(e2Marker)
+                        self.mapView.add(e2Marker!)
                     }
                     else if (destination.building == "E3") {
-                        self.mapView.add(e3Marker)
+                        self.mapView.add(e3Marker!)
                     }
                 }
                 else {
