@@ -451,7 +451,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         // Place it in an extra method and use it in the navigation method
         
         // Testing whether a given point (user location) is inside a rectangle
-        let mapRectTest = (hauptbauMarker!.boundingMapRect)
+        let mapRectTest: MKMapRect = (hauptbauMarker!.boundingMapRect)
         
         // calculate min latitude and longitude
         let mapPointTestMin = MKMapPointMake(MKMapRectGetMinX(mapRectTest), MKMapRectGetMinY(mapRectTest))
@@ -468,7 +468,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         print("Max longitude: ", coordinateMax.longitude)
         
         // enter another test position here
-        let testPosition = CLLocationCoordinate2D(latitude: 50.778278911092031, longitude: 6.0586203726098367)
+        let testPosition = CLLocationCoordinate2D(latitude: 50.779155215615987, longitude: 6.0606483179860016)
         
         let mapPoint = MKMapPointMake(testPosition.latitude, testPosition.longitude)
         
@@ -480,19 +480,35 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         // see output for this
         print("MKMapRectContainsPoint says: ", MKMapRectContainsPoint(mapRectTest, mapPoint))
         
-        // with this new method, the result is correct
-        // mind that the given latitude value must greater than the maximum and smaller than the minimum
-        // is this really correct ???
-        if (testPosition.latitude <= coordinateMin.latitude && testPosition.latitude >= coordinateMax.latitude) {
-            if (testPosition.longitude >= coordinateMin.longitude && testPosition.longitude <= coordinateMax.longitude) {
-                print("The point is inside the MapRect.")
+        // use new method
+        print("new method says: ", positionInsideOfRectangle(position: testPosition, rectangle: mapRectTest))
+    }
+    
+    // checks whether the given location is inside of the given rectangle
+    // mind that the given latitude value must greater than the maximum and smaller than the minimum
+    // is this really correct ???
+    func positionInsideOfRectangle(position: CLLocationCoordinate2D, rectangle: MKMapRect) -> Bool {
+        
+        // calculate min latitude and min longitude
+        let mapPointMin = MKMapPointMake(MKMapRectGetMinX(rectangle), MKMapRectGetMinY(rectangle))
+        let coordinateMin = MKCoordinateForMapPoint(mapPointMin)
+        
+        // calculate max latitude and max longitude
+        let mapPointMax = MKMapPointMake(MKMapRectGetMaxX(rectangle), MKMapRectGetMaxY(rectangle))
+        let coordinateMax = MKCoordinateForMapPoint(mapPointMax)
+        
+        if (position.latitude <= coordinateMin.latitude && position.latitude >= coordinateMax.latitude) {
+            if (position.longitude >= coordinateMin.longitude && position.longitude <= coordinateMax.longitude) {
+                //print("The point is inside the MapRect.")
+                return true
             } else {
-                print("The point is NOT inside the MapRect.")
+                //print("The point is NOT inside the MapRect.")
+                return false
             }
         } else {
-            print("The point is NOT inside the MapRect.")
+            //print("The point is NOT inside the MapRect.")
+            return false
         }
-
     }
 }
 
