@@ -469,23 +469,32 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         // Remove all entries
         vertices.removeAll()
 
-//        // Set markers for stairsE1
-//
-//        stairsE1 = MKPolygon(coordinates: vertices, count: 4)
-//        
-//        // Remove all entries
-//        vertices.removeAll()
-//
-//        // Set markers for stairsE2
-//
-//        stairsE2 = MKPolygon(coordinates: vertices, count: 4)
-//
-//        // Remove all entries
-//        vertices.removeAll()
-//
-//        // Set markers for stairsE3
-//
-//        stairsE3 = MKPolygon(coordinates: vertices, count: 4)
+        // Set markers for stairsE1
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778525685736639, longitude: 6.0600043258062968))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778562988496816, longitude: 6.0600031098317961))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778562725833524, longitude: 6.0599477111732973))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778526099586401, longitude: 6.059947383918546))
+        stairsE1 = MKPolygon(coordinates: vertices, count: 4)
+        
+        // Remove all entries
+        vertices.removeAll()
+
+        // Set markers for stairsE2
+        vertices.append(CLLocationCoordinate2D(latitude: 50.77822280564564, longitude: 6.0609174448337688))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.77826108757688, longitude: 6.0609184265904927))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778261915281035, longitude: 6.0608585394322647))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778222612147289, longitude: 6.0608593050122339))
+        stairsE2 = MKPolygon(coordinates: vertices, count: 4)
+        
+        // Remove all entries
+        vertices.removeAll()
+
+        // Set markers for stairsE3
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779260900554334, longitude: 6.0602272628574623))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779230501889003, longitude: 6.0602282380227539))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779230229176704, longitude: 6.0601806887398331))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779260899477634, longitude: 6.0601829829127025))
+        stairsE3 = MKPolygon(coordinates: vertices, count: 4)
         
 
         // TODO
