@@ -188,7 +188,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         self.adjustGuidance()
     }
     
-    // Should be called whenever a defined location area is entered (one for Hauptbau, E1, E2, E3) or the userLevel is changed
+    // Should be called whenever a defined location area is entered (one for Hauptbau_1, Hauptbau_2 E1, E2, E3) or the userLevel is changed
     func adjustGuidance() {
         
         // TODO
@@ -204,8 +204,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         // Test
         if let destination = self.currentPlace {
             
+            
+            
             // TODO: Check if you are at correct building
-            if (false) {
+            if (positionInsideOfRectangle(position: localPosition!, rectangle: getMarkerForDestinationBuilding(buildingName: destination.building!).boundingMapRect)) {
                 // Check if you are on correct floor
                 if (userLevel == destination.floor) {
                     // you are on the correct floor --> show the pin
@@ -238,21 +240,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                                         NSAttributedStringKey.foregroundColor: UIColor.black],
                                        range: NSMakeRange(0, 5))
                     startNavigationButton.setAttributedTitle(text, for: .disabled)
-                    
-                    // TODO
-                    // Highlight correct building part
-                    if (destination.building == "Hauptbau") {
-                        self.mapView.add(hauptbau_1_Marker!)
-                    }
-                    else if (destination.building == "E1") {
-                        self.mapView.add(e1Marker!)
-                    }
-                    else if (destination.building == "E2") {
-                        self.mapView.add(e2Marker!)
-                    }
-                    else if (destination.building == "E3") {
-                        self.mapView.add(e3Marker!)
-                    }
+
+                    showMarkerForBuildingOnMap(buildingName: destination.building!)
                 }
                 else {
                     // you are not on the ground floor
@@ -266,6 +255,48 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                     // Highlight stairs which are closest to the destination
                 }
             }
+        }
+    }
+    
+    // Returns the Polygon for a given building name
+    // TODO
+    // better default case
+    func getMarkerForDestinationBuilding(buildingName: String) -> MKPolygon {
+    
+        switch buildingName {
+        case "Hauptbau_1":
+            return hauptbau_1_Marker!
+        case "Hauptbau_2":
+            return hauptbau_2_Marker!
+        case "E1":
+            return e1Marker!
+        case "E2":
+            return e2Marker!
+        case "E3":
+            return e3Marker!
+        default:
+            return hauptbau_1_Marker!
+        }
+    }
+    
+    // Adds the overlay for the given building part to the map
+    // TODO
+    // better default case
+    func showMarkerForBuildingOnMap(buildingName: String) {
+        
+        switch buildingName {
+        case "Hauptbau_1":
+            self.mapView.add(hauptbau_1_Marker!)
+        case "Hauptbau_2":
+            self.mapView.add(hauptbau_2_Marker!)
+        case "E1":
+            self.mapView.add(e1Marker!)
+        case "E2":
+            self.mapView.add(e2Marker!)
+        case "E3":
+            self.mapView.add(e3Marker!)
+        default:
+            self.mapView.add(hauptbau_1_Marker!)
         }
     }
     
