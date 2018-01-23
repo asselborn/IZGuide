@@ -195,18 +195,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         // Check if yor are at correct building
             // If yes check if you are on correct floor
                 // If yes just show pin
-                // If no highlight next stairs
+                // If no highlight next stairs in the building
             // If not check if you are on groundfloor
                 // If yes highlight correct building
-                // If not highlight next stairs
+                // If not highlight next stairs in the building
         
         // Test
         if let destination = self.currentPlace {
             
+            localPosition = locationManager.location?.coordinate
             
-            
-            // TODO: Check if you are at correct building
-            if (positionInsideOfRectangle(position: localPosition!, rectangle: getMarkerForDestinationBuilding(buildingName: destination.building!).boundingMapRect)) {
+            // Check if you are at correct building
+            if (positionInsideOfRectangle(position: localPosition!, rectangle: getMarkerForDestinationBuilding(buildingName: (destination.building)!).boundingMapRect)) {
+                
                 // Check if you are on correct floor
                 if (userLevel == destination.floor) {
                     // you are on the correct floor --> show the pin
@@ -217,7 +218,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                     startNavigationButton.setAttributedTitle(text, for: .disabled)
                 }
                 else {
-                    // you are not on the correct floor --> highlight closest stairs
+                    // you are not on the correct floor --> highlight closest stairs or stairs in this building
                     let text = NSMutableAttributedString(string: "Go to Stairs")
                     text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
                                         NSAttributedStringKey.foregroundColor: UIColor.black],
@@ -225,7 +226,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                     startNavigationButton.setAttributedTitle(text, for: .disabled)
                     
                     // TODO
-                    // Highlight stairs which are closest to the destination
+                    // user is in the correct building
+                    // highlight the stairs in this building
                 }
             }
             
@@ -251,7 +253,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                     startNavigationButton.setAttributedTitle(text, for: .disabled)
                     
                     // TODO
-                    // Highlight stairs which are closest to the destination
+                    // determine in which building the user is
+                    // highlight the best step within this building
                 }
             }
         }
@@ -286,16 +289,22 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         switch buildingName {
         case "Hauptbau_1":
             self.mapView.add(hauptbau_1_Marker!)
+            break
         case "Hauptbau_2":
             self.mapView.add(hauptbau_2_Marker!)
+            break
         case "E1":
             self.mapView.add(e1Marker!)
+            break
         case "E2":
             self.mapView.add(e2Marker!)
+            break
         case "E3":
             self.mapView.add(e3Marker!)
+            break
         default:
             self.mapView.add(hauptbau_1_Marker!)
+            break
         }
     }
     
@@ -308,11 +317,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         levelLabel.text = String(userLevel)
         
         self.adjustAnnotations()
-        self.adjustGuidance()
         
         // change building overlay to the previous level
         mapView.removeOverlays(mapView.overlays)
         mapView.add(mapOverlay)
+        
+        // Call this method at the end so that the green overlay is drawn on top of the building overlay
+        self.adjustGuidance()
     }
     
     @IBAction func minusLevelButtonPressed(_ sender: UIButton) {
@@ -323,11 +334,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         levelLabel.text = String(userLevel)
         
         self.adjustAnnotations()
-        self.adjustGuidance()
         
         // change building overlay to the previous level
         mapView.removeOverlays(mapView.overlays)
         mapView.add(mapOverlay)
+        
+        // Call this method at the end so that the green overlay is drawn on top of the building overlay
+        self.adjustGuidance()
     }
     
     // Reset annotation images to adapt to current floor
@@ -529,46 +542,46 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
 
 
-        // ====================================================================================
-        // TESTING
-        // ====================================================================================
-        
-        // Testing whether a given point (user location) is inside a rectangle
-        let mapRectTest: MKMapRect = (hauptbau_1_Marker!.boundingMapRect)
-        
-        // calculate min latitude and longitude
-        let mapPointTestMin = MKMapPointMake(MKMapRectGetMinX(mapRectTest), MKMapRectGetMinY(mapRectTest))
-        let coordinateMin = MKCoordinateForMapPoint(mapPointTestMin)
-        
-        print("Min latitude: ", coordinateMin.latitude)
-        print("Min longitude: ", coordinateMin.longitude)
-        
-        // calculate max latitude and longitude
-        let mapPointTestMax = MKMapPointMake(MKMapRectGetMaxX(mapRectTest), MKMapRectGetMaxY(mapRectTest))
-        let coordinateMax = MKCoordinateForMapPoint(mapPointTestMax)
-        
-        print("Max latitude: ", coordinateMax.latitude)
-        print("Max longitude: ", coordinateMax.longitude)
-        
-        // enter another test position here
-        let testPosition = CLLocationCoordinate2D(latitude: 50.779155215615987, longitude: 6.0606483179860016)
-        
-        let mapPoint = MKMapPointMake(testPosition.latitude, testPosition.longitude)
-        
-        print("tested position: latitude: ", testPosition.latitude, " longitude: ", testPosition.longitude)
-        
-        // try a given method which does not return the correct result
-        // this somehow does not check the point correctly, the given point is inside the rectangle
-        // but this method returns false because the minValue for latitude is greater than the maxValue for latitude
-        // see output for this
-        print("MKMapRectContainsPoint says: ", MKMapRectContainsPoint(mapRectTest, mapPoint))
-        
-        // use new method
-        print("new method says: ", positionInsideOfRectangle(position: testPosition, rectangle: mapRectTest))
-        
-        // ====================================================================================
-        // TESTING
-        // ====================================================================================
+//        // ====================================================================================
+//        // TESTING
+//        // ====================================================================================
+//        
+//        // Testing whether a given point (user location) is inside a rectangle
+//        let mapRectTest: MKMapRect = (hauptbau_1_Marker!.boundingMapRect)
+//        
+//        // calculate min latitude and longitude
+//        let mapPointTestMin = MKMapPointMake(MKMapRectGetMinX(mapRectTest), MKMapRectGetMinY(mapRectTest))
+//        let coordinateMin = MKCoordinateForMapPoint(mapPointTestMin)
+//        
+//        print("Min latitude: ", coordinateMin.latitude)
+//        print("Min longitude: ", coordinateMin.longitude)
+//        
+//        // calculate max latitude and longitude
+//        let mapPointTestMax = MKMapPointMake(MKMapRectGetMaxX(mapRectTest), MKMapRectGetMaxY(mapRectTest))
+//        let coordinateMax = MKCoordinateForMapPoint(mapPointTestMax)
+//        
+//        print("Max latitude: ", coordinateMax.latitude)
+//        print("Max longitude: ", coordinateMax.longitude)
+//        
+//        // enter another test position here
+//        let testPosition = CLLocationCoordinate2D(latitude: 50.779155215615987, longitude: 6.0606483179860016)
+//        
+//        let mapPoint = MKMapPointMake(testPosition.latitude, testPosition.longitude)
+//        
+//        print("tested position: latitude: ", testPosition.latitude, " longitude: ", testPosition.longitude)
+//        
+//        // try a given method which does not return the correct result
+//        // this somehow does not check the point correctly, the given point is inside the rectangle
+//        // but this method returns false because the minValue for latitude is greater than the maxValue for latitude
+//        // see output for this
+//        print("MKMapRectContainsPoint says: ", MKMapRectContainsPoint(mapRectTest, mapPoint))
+//        
+//        // use new method
+//        print("new method says: ", positionInsideOfRectangle(position: testPosition, rectangle: mapRectTest))
+//        
+//        // ====================================================================================
+//        // TESTING
+//        // ====================================================================================
     }
     
     // checks whether the given location is inside of the given rectangle
