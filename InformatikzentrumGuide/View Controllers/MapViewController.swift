@@ -237,9 +237,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                                        range: NSMakeRange(0, 5))
                     startNavigationButton.setAttributedTitle(text, for: .disabled)
                     self.removeMarkerOverlay()
-                    // TODO
-                    // user is in the correct building
-                    // highlight the stairs in this building
+                    // user is in the correct building --> highlight the stairs in this building
+                    highlightStairsForBuilding(buildingName: (destination.building)!)
                 }
             }
             
@@ -266,7 +265,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                     
                     // TODO
                     // determine in which building the user is
-                    // highlight the best step within this building
+                    // highlight the stairs in this building
                 }
             }
         }
@@ -317,6 +316,47 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         default:
             self.mapView.add(hauptbau_1_Marker!)
             break
+        }
+    }
+    
+    // Highlights the stairs in the building with the given name
+    func highlightStairsForBuilding(buildingName: String) {
+        
+        switch buildingName {
+        case "E1":
+            self.mapView.add(stairsE1!)
+        case "E2":
+            self.mapView.add(stairsE2!)
+        case "E3":
+            self.mapView.add(stairsE3!)
+        case "Hauptbau_1":
+            self.mapView.add(stairsHauptbau_1!)
+        case "Hauptbau_2":
+            localPosition = locationManager.location?.coordinate
+            calculateClosestStairsAndHighlightThem(userLocation: localPosition!)
+        default:
+            self.mapView.add(stairsHauptbau_1!)
+        }
+    }
+    
+    // Calculates the closest stairs depending on the user position
+    // this has only to be done for the decision between stairs_hauptbau_1 and stairs_hauptbau_2 because in the other building parts exists only one staircase
+    func calculateClosestStairsAndHighlightThem(userLocation: CLLocationCoordinate2D) {
+        
+        // Coordinates of the staircases in the Hauptbau
+        let stairsH_1 = CLLocationCoordinate2D(latitude: 50.77931288231099, longitude: 6.0590899734729975)
+        let stairsH_2 = CLLocationCoordinate2D(latitude: 50.778722673651771, longitude: 6.0592344687667428)
+        
+        let distanceToStairsH_1 = sqrt( ( (stairsH_1.latitude - userLocation.latitude) * (stairsH_1.latitude - userLocation.latitude) ) + ( (stairsH_1.longitude - userLocation.longitude) * (stairsH_1.longitude - userLocation.longitude) ) )
+        let distanceToStairsH_2 = sqrt( ( (stairsH_2.latitude - userLocation.latitude) * (stairsH_2.latitude - userLocation.latitude) ) + ( (stairsH_2.longitude - userLocation.longitude) * (stairsH_2.longitude - userLocation.longitude) ) )
+        
+        //print("distanceToStairsH_1: ", distanceToStairsH_1)
+        //print("distanceToStairsH_2: ", distanceToStairsH_2)
+        
+        if (distanceToStairsH_1 <= distanceToStairsH_2) {
+            self.mapView.add(stairsHauptbau_1!)
+        } else if (distanceToStairsH_2 < distanceToStairsH_1) {
+            self.mapView.add(stairsHauptbau_2!)
         }
     }
     
