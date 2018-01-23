@@ -267,8 +267,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     // Returns the Polygon for a given building name
-    // TODO
-    // better default case
+    // TODO: better default case
     func getMarkerForDestinationBuilding(buildingName: String) -> MKPolygon {
     
         switch buildingName {
@@ -288,8 +287,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     // Adds the overlay for the given building part to the map
-    // TODO
-    // better default case
+    // TODO: better default case
     func showMarkerForBuildingOnMap(buildingName: String) {
         
         switch buildingName {
@@ -356,6 +354,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     // returns the building name in which the user currently is
+    // TODO: better default return value
     func determineInWhichBuildingUserIs() -> String {
         
         localPosition = locationManager.location?.coordinate
