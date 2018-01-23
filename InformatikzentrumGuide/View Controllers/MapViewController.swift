@@ -113,8 +113,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         mapView.showsUserLocation = true
         
         navigationItem.title = "IZGuide"
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor(red: 72/255, green: 200/255, blue: 73/255, alpha: 1),
-                                                                   NSAttributedStringKey.font: UIFont(name: "Helvetica Neue", size: 26)!]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: green,                                                                    NSAttributedStringKey.font: UIFont(name: "Helvetica Neue",                                                                                                                                                                                                       size: 26)!]
         
         // Init new view controller to handle display of search results
         searchVC = storyboard!.instantiateViewController(withIdentifier: "SearchResultsViewController") as? SearchResultsViewController
@@ -336,6 +335,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         for annotation in self.mapView.annotations {
             if (annotation is MKPointAnnotation) {
                 let annotationView = self.mapView.view(for: annotation)
+                
                 if (userLevel == currentPlace?.floor) {
                     annotationView?.image = #imageLiteral(resourceName: "Pin_Star")
                 }
@@ -654,15 +654,22 @@ extension MapViewController: MKMapViewDelegate {
         }
         annotationView!.canShowCallout = true
         
+        
+        
+        
         // Set image based on relative position to floor of location
+        
+        // Size of the annotation immages
+        let size = CGSize(width: 37.5, height: 50)
+        
         if (userLevel == currentPlace?.floor) {
-            annotationView?.image = #imageLiteral(resourceName: "Pin_Star")
+            annotationView?.image = resizeAnnotationImage(image: #imageLiteral(resourceName: "Pin_Star"), size: size)
         }
         else if (userLevel < (currentPlace?.floor)!) {
-            annotationView?.image = #imageLiteral(resourceName: "Pin_Star_Up")
+            annotationView?.image = resizeAnnotationImage(image: #imageLiteral(resourceName: "Pin_Star_Up"), size: size)
         }
         else if (userLevel > (currentPlace?.floor)!) {
-            annotationView?.image = #imageLiteral(resourceName: "Pin_Star_Down")
+            annotationView?.image = resizeAnnotationImage(image: #imageLiteral(resourceName: "Pin_Star_Down"), size: size)
         }
         
         // Add an info button if URL is available
@@ -677,6 +684,15 @@ extension MapViewController: MKMapViewDelegate {
         
         return annotationView
     }
+}
+
+// Resized the annotation images to specified size
+private func resizeAnnotationImage(image: UIImage, size: CGSize) -> UIImage {
+    UIGraphicsBeginImageContext(size)
+    image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+    let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    return resizedImage!
 }
 
 
