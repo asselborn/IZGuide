@@ -195,6 +195,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     // New optional parameters, only used to insert beacon information into the original structure
     func adjustGuidance(building: String?, floor: Int16?) {
         
+        if let floorInformation = floor {
+            self.userLevel = floorInformation
+            self.levelLabel.text = String(floorInformation)
+            self.adjustAnnotations()
+        }
+
+        
         // STRUCTURE
         // Check if yor are at correct building
             // If yes check if you are on correct floor
