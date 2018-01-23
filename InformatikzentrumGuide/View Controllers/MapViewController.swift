@@ -195,7 +195,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     // New optional parameters, only used to insert beacon information into the original structure
     func adjustGuidance(building: String?, floor: Int16?) {
         
-        // TODO
         // STRUCTURE
         // Check if yor are at correct building
             // If yes check if you are on correct floor
@@ -211,7 +210,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             localPosition = locationManager.location?.coordinate
             
             // Check if you are at correct building
-            if (positionInsideOfRectangle(position: localPosition!, rectangle: getMarkerForDestinationBuilding(buildingName: (destination.building)!).boundingMapRect) || building == destination.building) {
+            //if (positionInsideOfRectangle(position: localPosition!, rectangle: getMarkerForDestinationBuilding(buildingName: (destination.building)!).boundingMapRect) || building == destination.building) {
+            if (true) {
                 
                 // Check if you are on correct floor
                 if (userLevel == destination.floor || floor == destination.floor) {
@@ -257,9 +257,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                                        range: NSMakeRange(0, 5))
                     startNavigationButton.setAttributedTitle(text, for: .disabled)
                     
-                    // TODO
                     // determine in which building the user is
-                    // highlight the stairs in this building
+                    let userInBuilding: String = determineInWhichBuildingUserIs()
+                    
+                    // highlight the stairs in this building which are closest to the user
+                    highlightStairsForBuilding(buildingName: userInBuilding)
                 }
             }
         }
@@ -353,6 +355,32 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             self.mapView.add(stairsHauptbau_2!)
         }
     }
+    
+    // returns the building name in which the user currently is
+    func determineInWhichBuildingUserIs() -> String {
+        
+        localPosition = locationManager.location?.coordinate
+        
+        if (positionInsideOfRectangle(position: localPosition!, rectangle: hauptbau_1_Marker!.boundingMapRect)) {
+            return "Hauptbau_1"
+            
+        } else if (positionInsideOfRectangle(position: localPosition!, rectangle: hauptbau_2_Marker!.boundingMapRect)) {
+            return "Hauptbau_2"
+            
+        } else if (positionInsideOfRectangle(position: localPosition!, rectangle: e1Marker!.boundingMapRect)) {
+            return "E1"
+            
+        } else if (positionInsideOfRectangle(position: localPosition!, rectangle: e2Marker!.boundingMapRect)) {
+            return "E2"
+            
+        } else if (positionInsideOfRectangle(position: localPosition!, rectangle: e3Marker!.boundingMapRect)) {
+            return "E3"
+            
+        }
+        
+        return "Hauptbau_2"
+    }
+    
     
     
     @IBAction func plusLevelButtonPressed(_ sender: UIButton) {
