@@ -20,7 +20,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     var e1Marker: MKPolygon?
     var e2Marker: MKPolygon?
     var e3Marker: MKPolygon?
-    var hauptbauMarker: MKPolygon?
+    var hauptbau_1_Marker: MKPolygon?
+    var hauptbau_2_Marker: MKPolygon?
     var stairsHauptbau_1: MKPolygon?
     var stairsHauptbau_2: MKPolygon?
     var stairsE1: MKPolygon?
@@ -241,7 +242,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                     // TODO
                     // Highlight correct building part
                     if (destination.building == "Hauptbau") {
-                        self.mapView.add(hauptbauMarker!)
+                        self.mapView.add(hauptbau_1_Marker!)
                     }
                     else if (destination.building == "E1") {
                         self.mapView.add(e1Marker!)
@@ -398,21 +399,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         // Remove all entries
         vertices.removeAll()
 
-        // Set markers for hauptbauMarker
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778712397629647, longitude: 6.0594885020227611))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778612990264293, longitude: 6.0595393472266643))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778545733176912, longitude: 6.0592447957003746))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.77852429951983, longitude: 6.0592453801324364))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778523521567138, longitude: 6.0593654096926306))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.77832031776299, longitude: 6.0593641006886862))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778318455402371, longitude: 6.0594266058571433))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778197154731259, longitude: 6.0594283021559594))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778203151605055, longitude: 6.0590828157073569))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778376106742996, longitude: 6.0590803568628715))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778374492077063, longitude: 6.0591871390437708))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778641781878292, longitude: 6.0591952681380894))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778666173871358, longitude: 6.0591830516174818))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778672795541752, longitude: 6.0592098862951298))
+        // Set markers for hauptbau_1_Marker
         vertices.append(CLLocationCoordinate2D(latitude: 50.779192559351685, longitude: 6.0589426056825131))
         vertices.append(CLLocationCoordinate2D(latitude: 50.7791302450415, longitude: 6.0585672928961989))
         vertices.append(CLLocationCoordinate2D(latitude: 50.779186975627766, longitude: 6.058536629292786))
@@ -434,9 +421,31 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         vertices.append(CLLocationCoordinate2D(latitude: 50.779580721904267, longitude: 6.0596534741482948))
         vertices.append(CLLocationCoordinate2D(latitude: 50.779413990234076, longitude: 6.0597392521767057))
         vertices.append(CLLocationCoordinate2D(latitude: 50.779280015717063, longitude: 6.059160042103894))
+        hauptbau_1_Marker = MKPolygon(coordinates: vertices, count: 21)
+        
+        // Remove all entries
+        vertices.removeAll()
+        
+        // Set markers for hauptbau_2_Marker
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778712397629647, longitude: 6.0594885020227611))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778612990264293, longitude: 6.0595393472266643))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778545733176912, longitude: 6.0592447957003746))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.77852429951983, longitude: 6.0592453801324364))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778523521567138, longitude: 6.0593654096926306))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.77832031776299, longitude: 6.0593641006886862))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778318455402371, longitude: 6.0594266058571433))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778197154731259, longitude: 6.0594283021559594))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778203151605055, longitude: 6.0590828157073569))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778376106742996, longitude: 6.0590803568628715))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778374492077063, longitude: 6.0591871390437708))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778641781878292, longitude: 6.0591952681380894))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778666173871358, longitude: 6.0591830516174818))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778672795541752, longitude: 6.0592098862951298))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779192559351685, longitude: 6.0589426056825131))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779280015717063, longitude: 6.059160042103894))
         vertices.append(CLLocationCoordinate2D(latitude: 50.778702607124075, longitude: 6.0594540443294598))
-        hauptbauMarker = MKPolygon(coordinates: vertices, count: 36)
-
+        hauptbau_2_Marker = MKPolygon(coordinates: vertices, count: 17)
+        
         // Remove all entries
         vertices.removeAll()
 
@@ -463,7 +472,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
 //        // Set markers for stairsE1
 //
 //        stairsE1 = MKPolygon(coordinates: vertices, count: 4)
-//
+//        
 //        // Remove all entries
 //        vertices.removeAll()
 //
@@ -483,7 +492,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         // Use it in the navigation method
         
         // Testing whether a given point (user location) is inside a rectangle
-        let mapRectTest: MKMapRect = (hauptbauMarker!.boundingMapRect)
+        let mapRectTest: MKMapRect = (hauptbau_1_Marker!.boundingMapRect)
         
         // calculate min latitude and longitude
         let mapPointTestMin = MKMapPointMake(MKMapRectGetMinX(mapRectTest), MKMapRectGetMinY(mapRectTest))
