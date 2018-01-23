@@ -16,6 +16,9 @@ protocol HandleMapSearch {
 
 class MapViewController: UIViewController, CLLocationManagerDelegate {
     
+    // Contains different locations for the beacons
+    var beaconLocations = [String:Any]()
+    
     // Define marker areas for buildings and stairs
     var e1Marker: MKPolygon?
     var e2Marker: MKPolygon?
@@ -83,6 +86,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         // Init overlay for indoor map, base floor
         self.mapView.add(mapOverlay)
+        
+        // Setup beacons
+        beaconLocations["6_floor"] = 0
+        beaconLocations["6_building"] = "Hauptbau_2"
+        beaconLocations["25_floor"] = 2
+        beaconLocations["25_building"] = "Hauptbau_2"
         
         // loads the overlays for each part of the buidling (Hauptbau, E1, E2, ...) and stairs
         loadOverlaysForBuildingParts()
@@ -163,32 +172,28 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     // Gets called when registered beacons are in range
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        if beacons.count > 0 {
-            let beacon = beacons[0]
-            update(distance: beacon.proximity)
-        }
-    }
-    
-    func update(distance: CLProximity) {
-        switch distance {
-        case .unknown:
-            print("Unknown")
-        case .far:
-            print("Far")
-        case .near:
-            print("Near")
-        case .immediate:
-            print("Right Here")
+        if let nearestBeacon = beacons.first {
+            // If a registered beacon is close, update the overlays using the associated informations
+            if (nearestBeacon.proximity == .near || nearestBeacon.proximity == .immediate) {
+                if let floor = self.beaconLocations["\(nearestBeacon.minor)_floor"] as? NSNumber, let building = self.beaconLocations["\(nearestBeacon.minor)_building"] as? String {
+                    // Only update if navigation has started
+                    if (startNavigationButton.isEnabled == false) {
+                        print("Beacon says I am at floor \(floor.int16Value) in building \(building)")
+                        self.adjustGuidance(building: building, floor: floor.int16Value)
+                    }
+                }
+            }
         }
     }
     
     @IBAction func startNavigationButtonPressed(_ sender: UIButton) {
         startNavigationButton.isEnabled = false
-        self.adjustGuidance()
+        self.adjustGuidance(building: nil, floor: nil)
     }
     
     // Should be called whenever a defined location area is entered (one for Hauptbau_1, Hauptbau_2 E1, E2, E3) or the userLevel is changed
-    func adjustGuidance() {
+    // New optional parameters, only used to insert beacon information into the original structure
+    func adjustGuidance(building: String?, floor: Int16?) {
         
         // TODO
         // STRUCTURE
@@ -206,11 +211,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             localPosition = locationManager.location?.coordinate
             
             // Check if you are at correct building
-            if (positionInsideOfRectangle(position: localPosition!, rectangle: getMarkerForDestinationBuilding(buildingName: (destination.building)!).boundingMapRect)) {
+            if (positionInsideOfRectangle(position: localPosition!, rectangle: getMarkerForDestinationBuilding(buildingName: (destination.building)!).boundingMapRect) || building == destination.building) {
                 
                 // Check if you are on correct floor
-                if (userLevel == destination.floor) {
-                    // you are on the correct floor --> show the pin
+                if (userLevel == destination.floor || floor == destination.floor) {
+                    // you are on the correct floor --> remove building marker and show the pin
+                    self.removeMarkerOverlay()
                     let text = NSMutableAttributedString(string: "Go to Pin")
                     text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
                                         NSAttributedStringKey.foregroundColor: UIColor.black],
@@ -224,7 +230,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                                         NSAttributedStringKey.foregroundColor: UIColor.black],
                                        range: NSMakeRange(0, 5))
                     startNavigationButton.setAttributedTitle(text, for: .disabled)
-                    
+                    self.removeMarkerOverlay()
                     // TODO
                     // user is in the correct building
                     // highlight the stairs in this building
@@ -234,7 +240,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             // Not at correct building
             else {
                 // Check if you are at groundfloor to change buildings
-                if (userLevel == 0) {
+                if (userLevel == 0 || floor == 0) {
                     // you are on the groundfloor --> highlight correct building part
                     let text = NSMutableAttributedString(string: "Go to \((destination.building)!) Building")
                     text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
@@ -323,7 +329,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         mapView.add(mapOverlay)
         
         // Call this method at the end so that the green overlay is drawn on top of the building overlay
-        self.adjustGuidance()
+        self.adjustGuidance(building: nil, floor: nil)
     }
     
     @IBAction func minusLevelButtonPressed(_ sender: UIButton) {
@@ -340,7 +346,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         mapView.add(mapOverlay)
         
         // Call this method at the end so that the green overlay is drawn on top of the building overlay
-        self.adjustGuidance()
+        self.adjustGuidance(building: nil, floor: nil)
     }
     
     // Reset annotation images to adapt to current floor
@@ -609,6 +615,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             //print("The point is NOT inside the MapRect.")
             return false
         }
+    }
+    
+    func removeMarkerOverlay() {
+        self.mapView.removeOverlays(self.mapView.overlays)
+        self.mapView.add(mapOverlay)
     }
 }
 
