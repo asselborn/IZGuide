@@ -210,8 +210,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             localPosition = locationManager.location?.coordinate
             
             // Check if you are at correct building
-            //if (positionInsideOfRectangle(position: localPosition!, rectangle: getMarkerForDestinationBuilding(buildingName: (destination.building)!).boundingMapRect) || building == destination.building) {
-            if (true) {
+            if (positionInsideOfRectangle(position: localPosition!, rectangle: getMarkerForDestinationBuilding(buildingName: (destination.building)!).boundingMapRect) || building == destination.building) {
                 
                 // Check if you are on correct floor
                 if (userLevel == destination.floor || floor == destination.floor) {
