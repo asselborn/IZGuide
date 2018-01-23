@@ -528,8 +528,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         stairsE3 = MKPolygon(coordinates: vertices, count: 4)
         
 
-        // TODO
-        // Use it in the navigation method
+
+        // ====================================================================================
+        // TESTING
+        // ====================================================================================
         
         // Testing whether a given point (user location) is inside a rectangle
         let mapRectTest: MKMapRect = (hauptbau_1_Marker!.boundingMapRect)
@@ -563,6 +565,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         // use new method
         print("new method says: ", positionInsideOfRectangle(position: testPosition, rectangle: mapRectTest))
+        
+        // ====================================================================================
+        // TESTING
+        // ====================================================================================
     }
     
     // checks whether the given location is inside of the given rectangle
