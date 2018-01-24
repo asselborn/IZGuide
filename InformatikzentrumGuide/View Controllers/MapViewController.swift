@@ -800,10 +800,6 @@ extension MapViewController: MKMapViewDelegate {
         
         
         // Set image based on relative position to floor of location
-        
-        // Size of the annotation immages
-        let size = CGSize(width: 37.5, height: 50)
-        
         if (userLevel == currentPlace?.floor) {
             annotationView?.image = #imageLiteral(resourceName: "Pin_Star")
         }
@@ -827,16 +823,6 @@ extension MapViewController: MKMapViewDelegate {
         return annotationView
     }
 }
-
-// Resized the annotation images to specified size
-private func resizeAnnotationImage(image: UIImage, size: CGSize) -> UIImage {
-    UIGraphicsBeginImageContext(size)
-    image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-    let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
-    UIGraphicsEndImageContext()
-    return resizedImage!
-}
-
 
 // Handle communication coming from SearchResultsVC
 extension MapViewController: HandleMapSearch {
