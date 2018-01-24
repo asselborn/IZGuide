@@ -206,12 +206,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     // New optional parameters, only used to insert beacon information into the original structure
     func adjustGuidance(building: String?, floor: Int16?) {
         
+        // Automatically switch floor, when matching beacon is detected
         if let floorInformation = floor {
             self.userLevel = floorInformation
             self.levelLabel.text = String(floorInformation)
             self.adjustAnnotations()
         }
-
         
         // STRUCTURE
         // Check if yor are at correct building
@@ -233,8 +233,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                     
                     // Check if you are on correct floor
                     if (userLevel == destination.floor || floor == destination.floor) {
-                        // you are on the correct floor --> remove building marker and show the pin
                         self.removeMarkerOverlay()
+                        // you are on the correct floor --> remove building marker and show the pin
                         let text = NSMutableAttributedString(string: "Go to Pin")
                         text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
                                             NSAttributedStringKey.foregroundColor: UIColor.black],
@@ -242,22 +242,23 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                         startNavigationButton.setAttributedTitle(text, for: .disabled)
                     }
                     else {
+                        self.removeMarkerOverlay()
                         // you are not on the correct floor --> highlight closest stairs or stairs in this building
                         let text = NSMutableAttributedString(string: "Go to Stairs")
                         text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
                                             NSAttributedStringKey.foregroundColor: UIColor.black],
                                            range: NSMakeRange(0, 5))
                         startNavigationButton.setAttributedTitle(text, for: .disabled)
-                        self.removeMarkerOverlay()
                         // user is in the correct building --> highlight the stairs in this building
                         highlightStairsForBuilding(buildingName: (destination.building)!)
                     }
                 }
                     
-                    // Not at correct building
+                // Not at correct building
                 else {
                     // Check if you are at groundfloor to change buildings
                     if (userLevel == 0 || floor == 0) {
+                        self.removeMarkerOverlay()
                         // you are on the groundfloor --> highlight correct building part
                         let text = NSMutableAttributedString(string: "Go to \((destination.building)!) Building")
                         text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
@@ -267,8 +268,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                         
                         showMarkerForBuildingOnMap(buildingName: destination.building!)
                     }
+                    // you are not on the ground floor
                     else {
-                        // you are not on the ground floor
+                        self.removeMarkerOverlay()
                         let text = NSMutableAttributedString(string: "Go to Stairs")
                         text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
                                             NSAttributedStringKey.foregroundColor: UIColor.black],
