@@ -582,14 +582,16 @@ extension MapViewController: MKMapViewDelegate {
         return annotationView
     }
     
+    // Resets the center of the map if the user swipes too far
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        if ((mapView.region.span.latitudeDelta > 50.7799 ) || (mapView.region.span.longitudeDelta > 6.0615)) {
+        if (mapView.region.center.latitude > 50.7800) || (mapView.region.center.longitude > 6.0615)
+        || (mapView.region.center.latitude < 50.7779) || (mapView.region.center.longitude < 6.0580){
             
             // Center map on Informatikzentrum
             let position = CLLocationCoordinate2D(latitude: 50.77884, longitude: 6.05975)
             let span = MKCoordinateSpanMake(0.0025, 0.0025)
             let region = MKCoordinateRegionMake(position, span)
-            mapView.region = region
+            mapView.setRegion(region, animated: true)
         }
     }
 }
