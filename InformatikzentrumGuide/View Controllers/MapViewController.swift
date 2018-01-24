@@ -14,10 +14,19 @@ protocol HandleMapSearch {
     func reset()
 }
 
+// Maybe use to replace String
+enum BuildingPart {
+    case Hauptbau
+    case E1
+    case E2
+    case E3
+}
+
 class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     // Contains different locations for the beacons
-    var beaconLocations = [String:Any]()
+    var beaconLocationBuilding = [NSNumber:String]()
+    var beaconLocationFloor = [NSNumber:Int16]()
     
     // Define marker areas for buildings and stairs
     var e1Marker: MKPolygon?
@@ -89,10 +98,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         self.mapView.add(mapOverlay)
         
         // Setup beacons
-        /*beaconLocations["6_floor"] = 0
-        beaconLocations["6_building"] = "Hauptbau"
-        beaconLocations["25_floor"] = 2
-        beaconLocations["25_building"] = "Hauptbau"*/
+        beaconLocationFloor[6] = 0
+        beaconLocationBuilding[6] = "Hauptbau"
+        beaconLocationFloor[25] = 2
+        beaconLocationBuilding[25] = "Hauptbau"
         
         // loads the overlays for each part of the buidling (Hauptbau, E1, E2, ...) and stairs
         loadOverlaysForBuildingParts()
@@ -123,7 +132,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         mapView.showsUserLocation = true
         
         navigationItem.title = "IZGuide"
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: green,                                                                    NSAttributedStringKey.font: UIFont(name: "Helvetica Neue",                                                                                                                                                                                                       size: 26)!]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: green,
+                                                                   NSAttributedStringKey.font: UIFont(name: "Helvetica Neue",                                                                                                                                                                                                       size: 26)!]
         
         // Init new view controller to handle display of search results
         searchVC = storyboard!.instantiateViewController(withIdentifier: "SearchResultsViewController") as? SearchResultsViewController
@@ -176,11 +186,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         if let nearestBeacon = beacons.first {
             // If a registered beacon is close, update the overlays using the associated informations
             if (nearestBeacon.proximity == .near || nearestBeacon.proximity == .immediate) {
-                if let floor = self.beaconLocations["\(nearestBeacon.minor)_floor"] as? NSNumber, let building = self.beaconLocations["\(nearestBeacon.minor)_building"] as? String {
+                if let floor = self.beaconLocationFloor[nearestBeacon.minor], let building = self.beaconLocationBuilding[nearestBeacon.minor] {
                     // Only update if navigation has started
                     if (startNavigationButton.isEnabled == false) {
-                        print("Beacon says I am at floor \(floor.int16Value) in building \(building)")
-                        self.adjustGuidance(building: building, floor: floor.int16Value)
+                        print("Beacon says I am at floor \(floor) in building \(building)")
+                        self.adjustGuidance(building: building, floor: floor)
                     }
                 }
             }
@@ -212,63 +222,65 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                 // If yes highlight correct building
                 // If not highlight next stairs in the building
         
-        // Test
-        if let destination = self.currentPlace {
-            
-            localPosition = locationManager.location?.coordinate
-            
-            // Check if you are at correct building
-            if (positionInsideOfRectangle(position: localPosition!, rectangle: getMarkerForDestinationBuilding(buildingName: (destination.building)!).boundingMapRect) || building == destination.building) {
+        // Only display markers if navigation has started
+        if (self.startNavigationButton.isEnabled == false) {
+            if let destination = self.currentPlace {
                 
-                // Check if you are on correct floor
-                if (userLevel == destination.floor || floor == destination.floor) {
-                    // you are on the correct floor --> remove building marker and show the pin
-                    self.removeMarkerOverlay()
-                    let text = NSMutableAttributedString(string: "Go to Pin")
-                    text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
-                                        NSAttributedStringKey.foregroundColor: UIColor.black],
-                                       range: NSMakeRange(0, 5))
-                    startNavigationButton.setAttributedTitle(text, for: .disabled)
-                }
-                else {
-                    // you are not on the correct floor --> highlight closest stairs or stairs in this building
-                    let text = NSMutableAttributedString(string: "Go to Stairs")
-                    text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
-                                        NSAttributedStringKey.foregroundColor: UIColor.black],
-                                       range: NSMakeRange(0, 5))
-                    startNavigationButton.setAttributedTitle(text, for: .disabled)
-                    self.removeMarkerOverlay()
-                    // user is in the correct building --> highlight the stairs in this building
-                    highlightStairsForBuilding(buildingName: (destination.building)!)
-                }
-            }
-            
-            // Not at correct building
-            else {
-                // Check if you are at groundfloor to change buildings
-                if (userLevel == 0 || floor == 0) {
-                    // you are on the groundfloor --> highlight correct building part
-                    let text = NSMutableAttributedString(string: "Go to \((destination.building)!) Building")
-                    text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
-                                        NSAttributedStringKey.foregroundColor: UIColor.black],
-                                       range: NSMakeRange(0, 5))
-                    startNavigationButton.setAttributedTitle(text, for: .disabled)
-
-                    showMarkerForBuildingOnMap(buildingName: destination.building!)
-                }
-                else {
-                    // you are not on the ground floor
-                    let text = NSMutableAttributedString(string: "Go to Stairs")
-                    text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
-                                        NSAttributedStringKey.foregroundColor: UIColor.black],
-                                       range: NSMakeRange(0, 5))
-                    startNavigationButton.setAttributedTitle(text, for: .disabled)
+                localPosition = locationManager.location?.coordinate
+                
+                // Check if you are at correct building
+                if (positionInsideOfRectangle(position: localPosition!, rectangle: getMarkerForDestinationBuilding(buildingName: (destination.building)!).boundingMapRect) || building == destination.building) {
                     
-                    // determine in which building the user is
-                    let userInBuilding: String = determineInWhichBuildingUserIs()
+                    // Check if you are on correct floor
+                    if (userLevel == destination.floor || floor == destination.floor) {
+                        // you are on the correct floor --> remove building marker and show the pin
+                        self.removeMarkerOverlay()
+                        let text = NSMutableAttributedString(string: "Go to Pin")
+                        text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
+                                            NSAttributedStringKey.foregroundColor: UIColor.black],
+                                           range: NSMakeRange(0, 5))
+                        startNavigationButton.setAttributedTitle(text, for: .disabled)
+                    }
+                    else {
+                        // you are not on the correct floor --> highlight closest stairs or stairs in this building
+                        let text = NSMutableAttributedString(string: "Go to Stairs")
+                        text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
+                                            NSAttributedStringKey.foregroundColor: UIColor.black],
+                                           range: NSMakeRange(0, 5))
+                        startNavigationButton.setAttributedTitle(text, for: .disabled)
+                        self.removeMarkerOverlay()
+                        // user is in the correct building --> highlight the stairs in this building
+                        highlightStairsForBuilding(buildingName: (destination.building)!)
+                    }
+                }
                     
-                    // highlight the stairs in this building which are closest to the user
-                    highlightStairsForBuilding(buildingName: userInBuilding)
+                    // Not at correct building
+                else {
+                    // Check if you are at groundfloor to change buildings
+                    if (userLevel == 0 || floor == 0) {
+                        // you are on the groundfloor --> highlight correct building part
+                        let text = NSMutableAttributedString(string: "Go to \((destination.building)!) Building")
+                        text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
+                                            NSAttributedStringKey.foregroundColor: UIColor.black],
+                                           range: NSMakeRange(0, 5))
+                        startNavigationButton.setAttributedTitle(text, for: .disabled)
+                        
+                        showMarkerForBuildingOnMap(buildingName: destination.building!)
+                    }
+                    else {
+                        // you are not on the ground floor
+                        let text = NSMutableAttributedString(string: "Go to Stairs")
+                        text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
+                                            NSAttributedStringKey.foregroundColor: UIColor.black],
+                                           range: NSMakeRange(0, 5))
+                        startNavigationButton.setAttributedTitle(text, for: .disabled)
+                        
+                        // determine in which building the user is
+                        let userInBuilding: String = determineInWhichBuildingUserIs()
+                        
+                        // highlight the stairs in this building which are closest to the user
+                        highlightStairsForBuilding(buildingName: userInBuilding)
+                    }
                 }
             }
         }
@@ -791,13 +803,13 @@ extension MapViewController: MKMapViewDelegate {
         let size = CGSize(width: 37.5, height: 50)
         
         if (userLevel == currentPlace?.floor) {
-            annotationView?.image = resizeAnnotationImage(image: #imageLiteral(resourceName: "Pin_Star"), size: size)
+            annotationView?.image = #imageLiteral(resourceName: "Pin_Star")
         }
         else if (userLevel < (currentPlace?.floor)!) {
-            annotationView?.image = resizeAnnotationImage(image: #imageLiteral(resourceName: "Pin_Star_Up"), size: size)
+            annotationView?.image = #imageLiteral(resourceName: "Pin_Star_Up")
         }
         else if (userLevel > (currentPlace?.floor)!) {
-            annotationView?.image = resizeAnnotationImage(image: #imageLiteral(resourceName: "Pin_Star_Down"), size: size)
+            annotationView?.image = #imageLiteral(resourceName: "Pin_Star_Down")
         }
         
         // Add an info button if URL is available
