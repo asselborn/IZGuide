@@ -19,6 +19,7 @@
 		A66C0BA3201212CC008A449F /* IZSecondFloor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66C0BA2201212CC008A449F /* IZSecondFloor.swift */; };
 		A66C0BA620122076008A449F /* IZThirdFloor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66C0BA420122076008A449F /* IZThirdFloor.swift */; };
 		A66C0BA720122076008A449F /* IZGroundFloor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66C0BA520122076008A449F /* IZGroundFloor.swift */; };
+		A686CF902018E38900289249 /* BuildingOverlayLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A686CF8F2018E38900289249 /* BuildingOverlayLoader.swift */; };
 		A6CB623F2010EC1C00E45311 /* IZBasement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CB623E2010EC1C00E45311 /* IZBasement.swift */; };
 		A6CB62432011FFA200E45311 /* IZFirstFloor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CB62422011FFA200E45311 /* IZFirstFloor.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +39,7 @@
 		A66C0BA2201212CC008A449F /* IZSecondFloor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IZSecondFloor.swift; sourceTree = "<group>"; };
 		A66C0BA420122076008A449F /* IZThirdFloor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IZThirdFloor.swift; sourceTree = "<group>"; };
 		A66C0BA520122076008A449F /* IZGroundFloor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IZGroundFloor.swift; sourceTree = "<group>"; };
+		A686CF8F2018E38900289249 /* BuildingOverlayLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingOverlayLoader.swift; sourceTree = "<group>"; };
 		A6CB623E2010EC1C00E45311 /* IZBasement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IZBasement.swift; path = InformatikzentrumGuide/Overlay/IZBasement.swift; sourceTree = SOURCE_ROOT; };
 		A6CB62422011FFA200E45311 /* IZFirstFloor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IZFirstFloor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,6 +105,7 @@
 				A6CB623E2010EC1C00E45311 /* IZBasement.swift */,
 				63D67A921FFBCC2300334B9E /* MapOverlay.swift */,
 				63D67A941FFBD3D500334B9E /* MapOverlayView.swift */,
+				A686CF8F2018E38900289249 /* BuildingOverlayLoader.swift */,
 			);
 			path = Overlay;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A686CF902018E38900289249 /* BuildingOverlayLoader.swift in Sources */,
 				A6CB623F2010EC1C00E45311 /* IZBasement.swift in Sources */,
 				A6CB62432011FFA200E45311 /* IZFirstFloor.swift in Sources */,
 				631AA8E720063B6700680591 /* SearchResultsViewController.swift in Sources */,
