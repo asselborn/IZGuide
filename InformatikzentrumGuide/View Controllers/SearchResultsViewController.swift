@@ -31,35 +31,35 @@ class SearchResultsViewController: UITableViewController {
                   category: "Room",
                   floor: 0,
                   url: "https://www.campus.rwth-aachen.de/rwth/all/room.asp?room=2352%7C021&expand=Campus+H%F6rn&building=Aula+und+Mensa&tguid=0x0C459501268AC043A64ED1E2F7FA6BEF",
-                  building: "Hauptbau_1")
+                  building: "Hauptbau")
         self.save(name: "AH 4",
                   latitude: 50.779557255663697,
                   longitude: 6.059148695737858,
                   category: "Room",
                   floor: 0,
                   url: "https://www.campus.rwth-aachen.de/rwth/all/room.asp?room=2354%7C030&expand=Campus+H%F6rn&building=H%F6rsaal+an+der+Mensa&tguid=0x0C459501268AC043A64ED1E2F7FA6BEF",
-                  building: "Hauptbau_1")
+                  building: "Hauptbau")
         self.save(name: "Mensa Ahornstr.",
                   latitude: 50.779549951572719,
                   longitude: 6.059539136996885,
                   category: "Room",
                   floor: 0,
                   url: "http://www.studierendenwerk-aachen.de/de/Gastronomie/mensa-ahornstrasse-wochenplan.html",
-                  building: "Hauptbau_1")
+                  building: "Hauptbau")
         self.save(name: "Informatik 10 - Media Computing Group",
                   latitude: 50.779021862771607,
                   longitude: 6.0591637127093829,
                   category: "Chair",
                   floor: 2,
                   url: "http://hci.rwth-aachen.de",
-                  building: "Hauptbau_2")
+                  building: "Hauptbau")
         self.save(name: "Prof. Dr. Jan Borchers",
                   latitude: 50.779021862771607,
                   longitude: 6.0591637127093829,
                   category: "Person",
                   floor: 2,
                   url: "http://hci.rwth-aachen.de/borchers",
-                  building: "Hauptbau_2")
+                  building: "Hauptbau")
         self.save(name: "Computer Science Library",
                   latitude: 50.778527255204068,
                   longitude: 6.0599260221284084,
@@ -73,7 +73,7 @@ class SearchResultsViewController: UITableViewController {
                   category: "Room",
                   floor: 0,
                   url: "http://hochschulsport.rwth-aachen.de/",
-                  building: "Hauptbau_2")
+                  building: "Hauptbau")
         self.save(name: "InfoSphere - Schülerlabor Informatik",
                   latitude: 50.779014572047124,
                   longitude: 6.060270794456585,
@@ -87,14 +87,14 @@ class SearchResultsViewController: UITableViewController {
                   category: "Chair",
                   floor: 3,
                   url: "https://embedded.rwth-aachen.de/",
-                  building: "Hauptbau_2")
+                  building: "Hauptbau")
         self.save(name: "Prof. Dr.-Ing. Stefan Kowalewski",
                   latitude: 50.778985027020873,
                   longitude: 6.0591560493499452,
                   category: "Person",
                   floor: 3,
                   url: "https://embedded.rwth-aachen.de/doku.php?id=lehrstuhl:mitarbeiter:kowalewski",
-                  building: "Hauptbau_2")
+                  building: "Hauptbau")
         self.save(name: "Knowledge-Based Systems Group",
                   latitude: 50.778276368134215,
                   longitude: 6.0609121860457291,
