@@ -90,7 +90,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         // Center map on Informatikzentrum
         let position = CLLocationCoordinate2D(latitude: 50.77884, longitude: 6.05975)
-        let span = MKCoordinateSpanMake(0.0025, 0.0025)
+        let span = MKCoordinateSpanMake(0.0026, 0.0026)
         let region = MKCoordinateRegionMake(position, span)
         mapView.region = region
         
@@ -589,7 +589,7 @@ extension MapViewController: MKMapViewDelegate {
             
             // Center map on Informatikzentrum
             let position = CLLocationCoordinate2D(latitude: 50.77884, longitude: 6.05975)
-            let span = MKCoordinateSpanMake(0.0025, 0.0025)
+            let span = MKCoordinateSpanMake(0.0026, 0.0026)
             let region = MKCoordinateRegionMake(position, span)
             mapView.setRegion(region, animated: true)
         }
