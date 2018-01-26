@@ -228,10 +228,10 @@ class BuildingOverlayLoader {
     
     static func loadStairsHauptbau1() -> MKPolygon {
         // Set markers for stairsHauptbau_1
-        vertices.append(CLLocationCoordinate2D(latitude: 50.779351384988047, longitude: 6.0590414137151321))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.779350330237293, longitude: 6.0591170981187119))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.779297958066991, longitude: 6.0591170796415721))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.779298826171583, longitude: 6.0590397774564364))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779337527135624, longitude: 6.0590259826313169))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779358012651528, longitude: 6.059114667983593))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779301108424875, longitude: 6.059145102441934))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779280415972011, longitude: 6.0590560898425396))
         let stairsHauptbau_1 = MKPolygon(coordinates: vertices, count: 4)
         
         // Remove all entries

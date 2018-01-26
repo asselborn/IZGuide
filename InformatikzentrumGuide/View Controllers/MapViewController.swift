@@ -497,6 +497,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         stairsE3 = BuildingOverlayLoader.loadStairsE3()
         stairsHauptbau_1 = BuildingOverlayLoader.loadStairsHauptbau1()
         stairsHauptbau_2 = BuildingOverlayLoader.loadStairsHauptbau2()
+        
+        mapView.add(stairsHauptbau_1!)
         }
     
     // Checks whether the given location is inside of the given rectangle
