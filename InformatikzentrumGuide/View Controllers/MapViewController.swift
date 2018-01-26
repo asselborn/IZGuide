@@ -35,6 +35,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     var hauptbau_1_Marker: MKPolygon?
     var hauptbau_2_Marker: MKPolygon?
     var hauptbauMarker: MKPolygon?
+    var hauptbauMarkerAdjusted: MKPolygon?
     var stairsHauptbau_1: MKPolygon?
     var stairsHauptbau_2: MKPolygon?
     var stairsE1: MKPolygon?
@@ -322,7 +323,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
         switch buildingName {
         case "Hauptbau":
-            return hauptbauMarker!
+            return hauptbauMarkerAdjusted!
         case "E1":
             return e1Marker!
         case "E2":
@@ -330,7 +331,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         case "E3":
             return e3Marker!
         default:
-            return hauptbau_1_Marker!
+            return hauptbauMarker!
         }
     }
     
@@ -402,7 +403,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         localPosition = locationManager.location?.coordinate
         
-        if (positionInsideOfRectangle(position: localPosition!, rectangle: hauptbau_1_Marker!.boundingMapRect) || positionInsideOfRectangle(position: localPosition!, rectangle: hauptbau_2_Marker!.boundingMapRect)) {
+        // TODO: Test whether this "positionInsideOfRectangle(position: localPosition!, rectangle: hauptbau_1_Marker!.boundingMapRect) || positionInsideOfRectangle(position: localPosition!, rectangle: hauptbau_2_Marker!.boundingMapRect)" or hauptBauMArkerAdjusted is better
+        if (positionInsideOfRectangle(position: localPosition!, rectangle: hauptbauMarkerAdjusted!.boundingMapRect)) {
             return "Hauptbau"
         } else if (positionInsideOfRectangle(position: localPosition!, rectangle: e1Marker!.boundingMapRect)) {
             return "E1"
@@ -489,12 +491,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         hauptbau_1_Marker = BuildingOverlayLoader.loadHauptbau1Marker()
         hauptbau_2_Marker = BuildingOverlayLoader.loadHauptbau2Marker()
         hauptbauMarker = BuildingOverlayLoader.loadHauptbauMarker()
+        hauptbauMarkerAdjusted = BuildingOverlayLoader.loadHauptbauMarkerAdjusted()
         stairsE1 = BuildingOverlayLoader.loadStairsE1()
         stairsE2 = BuildingOverlayLoader.loadStairsE2()
         stairsE3 = BuildingOverlayLoader.loadStairsE3()
         stairsHauptbau_1 = BuildingOverlayLoader.loadStairsHauptbau1()
         stairsHauptbau_2 = BuildingOverlayLoader.loadStairsHauptbau2()
-    }
+        }
     
     // Checks whether the given location is inside of the given rectangle
     // Mind that the given latitude value must greater than the maximum and smaller than the minimum

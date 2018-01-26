@@ -195,6 +195,37 @@ class BuildingOverlayLoader {
         return hauptbauMarker
     }
     
+    static func loadHauptbauMarkerAdjusted() -> MKPolygon {
+        // Set markers for hauptbauMarker
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778712397629647, longitude: 6.0594885020227611))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778612990264293, longitude: 6.0595393472266643))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778545733176912, longitude: 6.0592447957003746))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.77852429951983, longitude: 6.0592453801324364))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778523521567138, longitude: 6.0593654096926306))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.77832031776299, longitude: 6.0593641006886862))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778318455402371, longitude: 6.0594266058571433))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778197154731259, longitude: 6.0594283021559594))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778203151605055, longitude: 6.0590828157073569))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778376106742996, longitude: 6.0590803568628715))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778374492077063, longitude: 6.0591871390437708))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778641781878292, longitude: 6.0591952681380894))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778666173871358, longitude: 6.0591830516174818))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778672795541752, longitude: 6.0592098862951298))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779170446712044, longitude: 6.0588053803010729))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779469420296635, longitude: 6.0587348707993955))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779630707884053, longitude: 6.0595187703306568))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779552031081607, longitude: 6.059549877456873))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779465486446099, longitude: 6.0595913536566792))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779343536915036, longitude: 6.059394341826196))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779280015717063, longitude: 6.059160042103894))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778702607124075, longitude: 6.0594540443294598))
+        let hauptbauMarkerAdjusted = MKPolygon(coordinates: vertices, count: 21)
+        
+        vertices.removeAll()
+        
+        return hauptbauMarkerAdjusted
+    }
+    
     static func loadStairsHauptbau1() -> MKPolygon {
         // Set markers for stairsHauptbau_1
         vertices.append(CLLocationCoordinate2D(latitude: 50.779351384988047, longitude: 6.0590414137151321))
