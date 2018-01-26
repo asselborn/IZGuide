@@ -39,6 +39,13 @@ class SearchResultsViewController: UITableViewController {
                   floor: 0,
                   url: "https://www.campus.rwth-aachen.de/rwth/all/room.asp?room=2354%7C030&expand=Campus+H%F6rn&building=H%F6rsaal+an+der+Mensa&tguid=0x0C459501268AC043A64ED1E2F7FA6BEF",
                   building: "Hauptbau")
+        self.save(name: "2222",
+                  latitude: 50.779119421686843,
+                  longitude: 6.0590368397416343,
+                  category: "Room",
+                  floor: 2,
+                  url: "http://hci.rwth-aachen.de",
+                  building: "Hauptbau")
         self.save(name: "Mensa Ahornstr.",
                   latitude: 50.779549951572719,
                   longitude: 6.059539136996885,

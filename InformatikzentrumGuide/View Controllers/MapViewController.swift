@@ -98,11 +98,23 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         self.mapView.add(mapOverlay)
         
         // Setup beacons
+
         beaconLocationFloor[6] = 0
-        beaconLocationBuilding[6] = "Hauptbau"
-        beaconLocationFloor[25] = 2
-        beaconLocationBuilding[25] = "Hauptbau"
+        beaconLocationBuilding[6] = "Outside"
         
+        beaconLocationFloor[13] = 0
+        beaconLocationBuilding[13] = "Hauptbau"
+        
+        beaconLocationFloor[14] = 1
+        beaconLocationBuilding[14] = "Hauptbau"
+        
+        beaconLocationFloor[24] = 2
+        beaconLocationBuilding[24] = "Hauptbau"
+        
+        beaconLocationFloor[25] = 2
+        beaconLocationBuilding[25] = "Destination"
+
+    
         // Loads the overlays for each part of the buidling (Hauptbau, E1, E2, ...) and stairs
         loadOverlaysForBuildingParts()
         
@@ -185,7 +197,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         if let nearestBeacon = beacons.first {
             // If a registered beacon is close, update the overlays using the associated informations
-            if (nearestBeacon.proximity == .near || nearestBeacon.proximity == .immediate) {
+            if (nearestBeacon.proximity == .near || nearestBeacon.proximity == .immediate || nearestBeacon.proximity == .far) {
                 if let floor = self.beaconLocationFloor[nearestBeacon.minor], let building = self.beaconLocationBuilding[nearestBeacon.minor] {
                     // Only update if navigation has started
                     if (startNavigationButton.isEnabled == false) {
@@ -205,12 +217,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     // Should be called whenever a defined location area is entered (one for Hauptbau_1, Hauptbau_2 E1, E2, E3) or the userLevel is changed
     // New optional parameters, only used to insert beacon information into the original structure
     func adjustGuidance(building: String?, floor: Int16?) {
+
         
         // Automatically switch floor, when matching beacon is detected
         if let floorInformation = floor {
             self.userLevel = floorInformation
             self.levelLabel.text = String(floorInformation)
             self.adjustAnnotations()
+        }
+        
+        
+        if (building == "Destination") {
+            let text = NSMutableAttributedString(string: "You Reached Your Goal")
+            startNavigationButton.setAttributedTitle(text, for: .disabled)
+            self.removeMarkerOverlay()
+            return
         }
         
         // STRUCTURE
