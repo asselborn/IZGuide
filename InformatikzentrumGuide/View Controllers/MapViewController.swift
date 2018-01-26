@@ -280,8 +280,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                         // Determines in which building the user is
                         let userInBuilding: String = determineInWhichBuildingUserIs()
                         
-                        // Highlights the stairs in this building which are closest to the user
-                        highlightStairsForBuilding(buildingName: userInBuilding)
+                        // Check whether the user is outside
+                        if (userInBuilding == "Outside") {
+                            // User is outside, highlight the building where she wants to go
+                            showMarkerForBuildingOnMap(buildingName: destination.building!)
+                            
+                        } else {
+                            // User is inside a building part, highlights the stairs in this building which are closest to the user
+                            highlightStairsForBuilding(buildingName: userInBuilding)
+                        }
                     }
                 }
             }
@@ -370,7 +377,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     // Returns the building name in which the user currently is
-    // TODO: better default return value
     func determineInWhichBuildingUserIs() -> String {
         
         localPosition = locationManager.location?.coordinate
@@ -388,7 +394,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             
         }
         
-        return "Hauptbau"
+        return "Outside"
     }
     
     // IBAction for the Plus-Button
