@@ -483,18 +483,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     // Creates all green overlays for building parts and stairs
     func loadOverlaysForBuildingParts() {
-        let loader = BuildingOverlayLoader()
-        e1Marker = loader.loadE1Overlay()
-        e2Marker = loader.loadE2Overlay()
-        e3Marker = loader.loadE3Overlay()
-        hauptbau_1_Marker = loader.loadHauptbau1Marker()
-        hauptbau_2_Marker = loader.loadHauptbau2Marker()
-        hauptbauMarker = loader.loadHauptbauMarker()
-        stairsE1 = loader.loadStairsE1()
-        stairsE2 = loader.loadStairsE2()
-        stairsE3 = loader.loadStairsE3()
-        stairsHauptbau_1 = loader.loadStairsHauptbau1()
-        stairsHauptbau_2 = loader.loadStairsHauptbau2()
+        e1Marker = BuildingOverlayLoader.loadE1Overlay()
+        e2Marker = BuildingOverlayLoader.loadE2Overlay()
+        e3Marker = BuildingOverlayLoader.loadE3Overlay()
+        hauptbau_1_Marker = BuildingOverlayLoader.loadHauptbau1Marker()
+        hauptbau_2_Marker = BuildingOverlayLoader.loadHauptbau2Marker()
+        hauptbauMarker = BuildingOverlayLoader.loadHauptbauMarker()
+        stairsE1 = BuildingOverlayLoader.loadStairsE1()
+        stairsE2 = BuildingOverlayLoader.loadStairsE2()
+        stairsE3 = BuildingOverlayLoader.loadStairsE3()
+        stairsHauptbau_1 = BuildingOverlayLoader.loadStairsHauptbau1()
+        stairsHauptbau_2 = BuildingOverlayLoader.loadStairsHauptbau2()
     }
     
     // Checks whether the given location is inside of the given rectangle

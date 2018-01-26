@@ -10,10 +10,10 @@ import MapKit
 
 class BuildingOverlayLoader {
     // Saves the marker points
-    var vertices = Array<CLLocationCoordinate2D>()
+    static var vertices = Array<CLLocationCoordinate2D>()
     
     // Creates all green overlays for building parts and stairs
-    func loadE1Overlay() -> MKPolygon {
+    static func loadE1Overlay() -> MKPolygon {
         // Set markers for E1
         vertices.append(CLLocationCoordinate2D(latitude: 50.778859779739122, longitude: 6.0599764393620639))
         vertices.append(CLLocationCoordinate2D(latitude: 50.778537071208433, longitude: 6.0601449308971498))
@@ -35,7 +35,7 @@ class BuildingOverlayLoader {
         return e1Marker
     }
     
-    func loadE2Overlay() -> MKPolygon {
+    static func loadE2Overlay() -> MKPolygon {
         // Set markers for E2
         vertices.append(CLLocationCoordinate2D(latitude: 50.777985278837775, longitude: 6.0609780616144979))
         vertices.append(CLLocationCoordinate2D(latitude: 50.778207584740812, longitude: 6.0608612639622734))
@@ -78,7 +78,7 @@ class BuildingOverlayLoader {
         return e2Marker
     }
     
-    func loadE3Overlay() -> MKPolygon {
+    static func loadE3Overlay() -> MKPolygon {
         // Set markers for E3
         vertices.append(CLLocationCoordinate2D(latitude: 50.779409890441173, longitude: 6.0601506048238072))
         vertices.append(CLLocationCoordinate2D(latitude: 50.778994426601344, longitude: 6.0603674114062036))
@@ -92,7 +92,7 @@ class BuildingOverlayLoader {
         return e3Marker
     }
     
-    func loadHauptbau1Marker() -> MKPolygon {
+    static func loadHauptbau1Marker() -> MKPolygon {
         // Set markers for hauptbau_1_Marker
         vertices.append(CLLocationCoordinate2D(latitude: 50.779192559351685, longitude: 6.0589426056825131))
         vertices.append(CLLocationCoordinate2D(latitude: 50.7791302450415, longitude: 6.0585672928961989))
@@ -123,7 +123,7 @@ class BuildingOverlayLoader {
         return hauptbau_1_Marker
     }
     
-    func loadHauptbau2Marker() -> MKPolygon {
+    static func loadHauptbau2Marker() -> MKPolygon {
         // Set markers for hauptbau_2_Marker
         vertices.append(CLLocationCoordinate2D(latitude: 50.778712397629647, longitude: 6.0594885020227611))
         vertices.append(CLLocationCoordinate2D(latitude: 50.778612990264293, longitude: 6.0595393472266643))
@@ -150,7 +150,7 @@ class BuildingOverlayLoader {
         return hauptbau_2_Marker
     }
     
-    func loadHauptbauMarker() -> MKPolygon {
+    static func loadHauptbauMarker() -> MKPolygon {
         // Set markers for hauptbauMarker
         vertices.append(CLLocationCoordinate2D(latitude: 50.778712397629647, longitude: 6.0594885020227611))
         vertices.append(CLLocationCoordinate2D(latitude: 50.778612990264293, longitude: 6.0595393472266643))
@@ -195,7 +195,7 @@ class BuildingOverlayLoader {
         return hauptbauMarker
     }
     
-    func loadStairsHauptbau1() -> MKPolygon {
+    static func loadStairsHauptbau1() -> MKPolygon {
         // Set markers for stairsHauptbau_1
         vertices.append(CLLocationCoordinate2D(latitude: 50.779351384988047, longitude: 6.0590414137151321))
         vertices.append(CLLocationCoordinate2D(latitude: 50.779350330237293, longitude: 6.0591170981187119))
@@ -209,7 +209,7 @@ class BuildingOverlayLoader {
         return stairsHauptbau_1
     }
     
-    func loadStairsHauptbau2() -> MKPolygon {
+    static func loadStairsHauptbau2() -> MKPolygon {
         // Set markers for stairsHauptbau_2
         vertices.append(CLLocationCoordinate2D(latitude: 50.778707315955188, longitude: 6.0592568382664211))
         vertices.append(CLLocationCoordinate2D(latitude: 50.778708350584992, longitude: 6.0591972783557182))
@@ -223,7 +223,7 @@ class BuildingOverlayLoader {
         return stairsHauptbau_2
     }
     
-    func loadStairsE1() -> MKPolygon {
+    static func loadStairsE1() -> MKPolygon {
         // Set markers for stairsE1
         vertices.append(CLLocationCoordinate2D(latitude: 50.778525685736639, longitude: 6.0600043258062968))
         vertices.append(CLLocationCoordinate2D(latitude: 50.778562988496816, longitude: 6.0600031098317961))
@@ -237,7 +237,7 @@ class BuildingOverlayLoader {
         return stairsE1
     }
     
-    func loadStairsE2() -> MKPolygon {
+    static func loadStairsE2() -> MKPolygon {
         // Set markers for stairsE2
         vertices.append(CLLocationCoordinate2D(latitude: 50.77822280564564, longitude: 6.0609174448337688))
         vertices.append(CLLocationCoordinate2D(latitude: 50.77826108757688, longitude: 6.0609184265904927))
@@ -251,7 +251,7 @@ class BuildingOverlayLoader {
         return stairsE2
     }
     
-    func loadStairsE3() -> MKPolygon {
+    static func loadStairsE3() -> MKPolygon {
         // Set markers for stairsE3
         vertices.append(CLLocationCoordinate2D(latitude: 50.779260900554334, longitude: 6.0602272628574623))
         vertices.append(CLLocationCoordinate2D(latitude: 50.779230501889003, longitude: 6.0602282380227539))
@@ -266,7 +266,7 @@ class BuildingOverlayLoader {
     }
     
     // Not functional
-    func testingMethod() {
+    static func testingMethod() {
         //        // ====================================================================================
         //        // TESTING
         //        // ====================================================================================
