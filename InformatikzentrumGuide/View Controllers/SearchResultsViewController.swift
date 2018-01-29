@@ -46,20 +46,41 @@ class SearchResultsViewController: UITableViewController {
                   floor: 2,
                   url: "http://hci.rwth-aachen.de",
                   building: "Hauptbau")
-        self.save(name: "Mensa Ahornstr.",
+        self.save(name: "Mensa",
                   latitude: 50.779549951572719,
                   longitude: 6.059539136996885,
                   category: "Room",
                   floor: 0,
                   url: "http://www.studierendenwerk-aachen.de/de/Gastronomie/mensa-ahornstrasse-wochenplan.html",
                   building: "Hauptbau")
-        self.save(name: "Informatik 10 - Media Computing Group",
+        self.save(name: "Informatik 10",
                   latitude: 50.779021862771607,
                   longitude: 6.0591637127093829,
                   category: "Chair",
                   floor: 2,
                   url: "http://hci.rwth-aachen.de",
                   building: "Hauptbau")
+        self.save(name: "Communication and Distributed Systems",
+                  latitude: 50.7787061,
+                  longitude: 6.0599361,
+                  category: "Chair",
+                  floor: 1,
+                  url: "https://www.comsys.rwth-aachen.de/home/",
+                  building: "E3")
+        self.save(name: "Klaus Wehrle, Dr.-Ing., Professor",
+                  latitude: 50.7787061,
+                  longitude: 6.0599361,
+                  category: "Person",
+                  floor: 1,
+                  url: "https://www.comsys.rwth-aachen.de/team/klaus/",
+                  building: "E3")
+        self.save(name: "Prof. em. Dr. Dr. h.c. Otto Spaniol",
+                  latitude: 50.7787061,
+                  longitude: 6.0599361,
+                  category: "Person",
+                  floor: 1,
+                  url: "https://www.comsys.rwth-aachen.de/team/klaus/",
+                  building: "E3")
         self.save(name: "Prof. Dr. Jan Borchers",
                   latitude: 50.779021862771607,
                   longitude: 6.0591637127093829,
@@ -67,51 +88,51 @@ class SearchResultsViewController: UITableViewController {
                   floor: 2,
                   url: "http://hci.rwth-aachen.de/borchers",
                   building: "Hauptbau")
-        self.save(name: "Computer Science Library",
+        self.save(name: "Library",
                   latitude: 50.778527255204068,
                   longitude: 6.0599260221284084,
                   category: "Room",
                   floor: 0,
                   url: "http://tcs.rwth-aachen.de/www-bib/index.php",
                   building: "E1")
-        self.save(name: "Sporthallenkomplex Ahornstr.",
-                  latitude: 50.778521512278203,
-                  longitude: 6.0592188711139707,
+        self.save(name: "Sporthallenkomplex Ahornstr",
+                  latitude: 50.7783009,
+                  longitude: 6.0595789,
                   category: "Room",
                   floor: 0,
                   url: "http://hochschulsport.rwth-aachen.de/",
                   building: "Hauptbau")
         self.save(name: "InfoSphere - Schülerlabor Informatik",
-                  latitude: 50.779014572047124,
-                  longitude: 6.060270794456585,
+                  latitude: 50.7784258,
+                  longitude: 6.0596474,
                   category: "Room",
-                  floor: -1,
+                  floor: 0,
                   url: "http://schuelerlabor.informatik.rwth-aachen.de/",
-                  building: "E3")
+                  building: "E1")
         self.save(name: "Informatik 11 - Embedded Software",
-                  latitude: 50.778985027020873,
-                  longitude: 6.0591560493499452,
+                  latitude: 50.7784258,
+                  longitude: 6.0596474,
                   category: "Chair",
                   floor: 3,
                   url: "https://embedded.rwth-aachen.de/",
                   building: "Hauptbau")
         self.save(name: "Prof. Dr.-Ing. Stefan Kowalewski",
-                  latitude: 50.778985027020873,
-                  longitude: 6.0591560493499452,
+                  latitude: 50.7784258,
+                  longitude: 6.0596474,
                   category: "Person",
                   floor: 3,
                   url: "https://embedded.rwth-aachen.de/doku.php?id=lehrstuhl:mitarbeiter:kowalewski",
                   building: "Hauptbau")
-        self.save(name: "Knowledge-Based Systems Group",
-                  latitude: 50.778276368134215,
-                  longitude: 6.0609121860457291,
+        self.save(name: "Knowledge-based Systems Group",
+                  latitude: 50.7781795,
+                  longitude: 6.0606387,
                   category: "Chair",
                   floor: 2,
                   url: "https://kbsg.rwth-aachen.de/",   
                   building: "E2")   
-        self.save(name: "Prof. Gerhard Lakemeyer, Ph.D.",
-                  latitude: 50.778276368134215,
-                  longitude: 6.0609121860457291,
+        self.save(name: "Prof., Ph.D.Gerhard Lakemeyer",
+                  latitude: 50.7781795,
+                  longitude: 6.0606387,
                   category: "Person",
                   floor: 2,
                   url: "https://kbsg.rwth-aachen.de/user/7",   
@@ -120,7 +141,7 @@ class SearchResultsViewController: UITableViewController {
     }
     
     // Reset map for new search
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         handleMapSearchDelegate?.reset()
     }
     
@@ -176,6 +197,7 @@ class SearchResultsViewController: UITableViewController {
         filteredPlaces = places.filter({( place : Place) -> Bool in
             let categoryCheck = (scope == "All" || place.category == scope)
             if (searchText == "") {
+                self.handleMapSearchDelegate?.reset()
                 return categoryCheck
             }
             else {
