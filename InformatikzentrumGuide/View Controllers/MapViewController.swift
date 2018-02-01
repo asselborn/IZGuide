@@ -307,6 +307,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                             // User is outside, highlight the building where she wants to go
                             showMarkerForBuildingOnMap(buildingName: destination.building!)
                             
+                            let text = NSMutableAttributedString(string: "Go to \((destination.building)!) Building")
+                            text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
+                                                NSAttributedStringKey.foregroundColor: UIColor.black],
+                                               range: NSMakeRange(0, 5))
+                            startNavigationButton.setAttributedTitle(text, for: .disabled)
                         } else {
                             // User is inside a building part, highlights the stairs in this building which are closest to the user
                             highlightStairsForBuilding(buildingName: userInBuilding)
