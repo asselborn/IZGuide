@@ -38,6 +38,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     var hauptbauMarkerAdjusted: MKPolygon?
     var stairsHauptbau_1: MKPolygon?
     var stairsHauptbau_2: MKPolygon?
+    var stairsHauptbau_3: MKPolygon?
     var stairsE1: MKPolygon?
     var stairsE2: MKPolygon?
     var stairsE3: MKPolygon?
@@ -376,7 +377,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             self.mapView.add(stairsE3!)
         case "Hauptbau":
             localPosition = locationManager.location?.coordinate
-            calculateClosestStairsAndHighlightThem(userLocation: localPosition!)
+            if (userLevel == -1) {
+                // user in on level -1, at this level in Hauptbau only
+                // TODO: Is there a connection so that stairsHauptbau_2 would be a possibility?
+                self.mapView.add(stairsHauptbau_3!)
+            } else {
+                // decide whether stairsHauptbau_1 or stairsHauptbau_2 are closer to the user
+                calculateClosestStairsH1OrH2AndHighlightThem(userLocation: localPosition!)
+            }
+            
         default:
             self.mapView.add(stairsHauptbau_1!)
         }
@@ -385,7 +394,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     // Calculates the closest stairs depending on the user position
     // This has only to be done for the decision between stairs_hauptbau_1
     // and stairs_hauptbau_2 because in the other building parts exists only one staircase
-    func calculateClosestStairsAndHighlightThem(userLocation: CLLocationCoordinate2D) {
+    func calculateClosestStairsH1OrH2AndHighlightThem(userLocation: CLLocationCoordinate2D) {
         
         // Coordinates of the staircases in the Hauptbau
         let stairsH_1 = CLLocationCoordinate2D(latitude: 50.77931288231099, longitude: 6.0590899734729975)
@@ -402,7 +411,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    // Returns the distance between two points on the Earth in meters
+    // Returns the distance between two points on the Earth in meters given the latitude and longitude values
     func distanceBetweenTwoPointsOnEarth(lat1d: Double, lon1d: Double, lat2d: Double, lon2d: Double) -> Double {
         let earthRadiusKm = 6371.0
         var lat1r: Double
@@ -532,6 +541,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         stairsE3 = BuildingOverlayLoader.loadStairsE3()
         stairsHauptbau_1 = BuildingOverlayLoader.loadStairsHauptbau1()
         stairsHauptbau_2 = BuildingOverlayLoader.loadStairsHauptbau2()
+        stairsHauptbau_3 = BuildingOverlayLoader.loadStairsHauptbau3()
         }
     
     // Checks whether the given location is inside of the given rectangle

@@ -242,10 +242,10 @@ class BuildingOverlayLoader {
     
     static func loadStairsHauptbau2() -> MKPolygon {
         // Set markers for stairsHauptbau_2
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778707315955188, longitude: 6.0592568382664211))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778708350584992, longitude: 6.0591972783557182))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778744766169439, longitude: 6.0591997950439591))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.77874580440394, longitude: 6.0592578200230429))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778740146410996, longitude: 6.0591745600076115))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778759804473623, longitude: 6.0592619363529918))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778700416393946, longitude: 6.0592936798142594))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778680758287464, longitude: 6.0592049944650368))
         let stairsHauptbau_2 = MKPolygon(coordinates: vertices, count: 4)
         
         // Remove all entries
@@ -254,12 +254,26 @@ class BuildingOverlayLoader {
         return stairsHauptbau_2
     }
     
+    static func loadStairsHauptbau3() -> MKPolygon {
+        // Set markers for stairsHauptbau_3
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779283395180329, longitude: 6.0591600023513372))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.77928939600838, longitude: 6.0591865097820703))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779370096535445, longitude: 6.0591433124874365))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779363888806046, longitude: 6.0591158232999796))
+        let stairsHauptbau_3 = MKPolygon(coordinates: vertices, count: 4)
+        
+        // Remove all entries
+        vertices.removeAll()
+        
+        return stairsHauptbau_3
+    }
+    
     static func loadStairsE1() -> MKPolygon {
         // Set markers for stairsE1
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778525685736639, longitude: 6.0600043258062968))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778562988496816, longitude: 6.0600031098317961))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778562725833524, longitude: 6.0599477111732973))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778526099586401, longitude: 6.059947383918546))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778569336325745, longitude: 6.060004332339207))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778531468512398, longitude: 6.0600252764937119))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778512431136477, longitude: 6.0599454269402475))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778550342083832, longitude: 6.0599235295083673))
         let stairsE1 = MKPolygon(coordinates: vertices, count: 4)
         
         // Remove all entries
@@ -270,10 +284,10 @@ class BuildingOverlayLoader {
     
     static func loadStairsE2() -> MKPolygon {
         // Set markers for stairsE2
-        vertices.append(CLLocationCoordinate2D(latitude: 50.77822280564564, longitude: 6.0609174448337688))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.77826108757688, longitude: 6.0609184265904927))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778261915281035, longitude: 6.0608585394322647))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.778222612147289, longitude: 6.0608593050122339))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778246244996978, longitude: 6.0608411701516065))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778265282479822, longitude: 6.0609216742009364))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778227621358781, longitude: 6.0609422910916306))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.778208376924823, longitude: 6.0608621142895212))
         let stairsE2 = MKPolygon(coordinates: vertices, count: 4)
         
         // Remove all entries
@@ -284,59 +298,15 @@ class BuildingOverlayLoader {
     
     static func loadStairsE3() -> MKPolygon {
         // Set markers for stairsE3
-        vertices.append(CLLocationCoordinate2D(latitude: 50.779260900554334, longitude: 6.0602272628574623))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.779230501889003, longitude: 6.0602282380227539))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.779230229176704, longitude: 6.0601806887398331))
-        vertices.append(CLLocationCoordinate2D(latitude: 50.779260899477634, longitude: 6.0601829829127025))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779217606853564, longitude: 6.0601885502595314))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779256183079809, longitude: 6.060169454580306))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.7792683034574, longitude: 6.0602235662384967))
+        vertices.append(CLLocationCoordinate2D(latitude: 50.779229961014693, longitude: 6.060243351156644))
         let stairsE3 = MKPolygon(coordinates: vertices, count: 4)
         
         // Remove all entries
         vertices.removeAll()
         
         return stairsE3
-    }
-    
-    // Not functional
-    static func testingMethod() {
-        //        // ====================================================================================
-        //        // TESTING
-        //        // ====================================================================================
-        //
-        //        // Testing whether a given point (user location) is inside a rectangle
-        //        let mapRectTest: MKMapRect = (hauptbau_1_Marker!.boundingMapRect)
-        //
-        //        // calculate min latitude and longitude
-        //        let mapPointTestMin = MKMapPointMake(MKMapRectGetMinX(mapRectTest), MKMapRectGetMinY(mapRectTest))
-        //        let coordinateMin = MKCoordinateForMapPoint(mapPointTestMin)
-        //
-        //        print("Min latitude: ", coordinateMin.latitude)
-        //        print("Min longitude: ", coordinateMin.longitude)
-        //
-        //        // calculate max latitude and longitude
-        //        let mapPointTestMax = MKMapPointMake(MKMapRectGetMaxX(mapRectTest), MKMapRectGetMaxY(mapRectTest))
-        //        let coordinateMax = MKCoordinateForMapPoint(mapPointTestMax)
-        //
-        //        print("Max latitude: ", coordinateMax.latitude)
-        //        print("Max longitude: ", coordinateMax.longitude)
-        //
-        //        // enter another test position here
-        //        let testPosition = CLLocationCoordinate2D(latitude: 50.779155215615987, longitude: 6.0606483179860016)
-        //
-        //        let mapPoint = MKMapPointMake(testPosition.latitude, testPosition.longitude)
-        //
-        //        print("tested position: latitude: ", testPosition.latitude, " longitude: ", testPosition.longitude)
-        //
-        //        // try a given method which does not return the correct result
-        //        // this somehow does not check the point correctly, the given point is inside the rectangle
-        //        // but this method returns false because the minValue for latitude is greater than the maxValue for latitude
-        //        // see output for this
-        //        print("MKMapRectContainsPoint says: ", MKMapRectContainsPoint(mapRectTest, mapPoint))
-        //
-        //        // use new method
-        //        print("new method says: ", positionInsideOfRectangle(position: testPosition, rectangle: mapRectTest))
-        //
-        //        // ====================================================================================
-        //        // TESTING
-        //        // ====================================================================================
     }
 }
