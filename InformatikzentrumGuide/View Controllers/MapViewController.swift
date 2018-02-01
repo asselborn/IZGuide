@@ -307,6 +307,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                             // User is outside, highlight the building where she wants to go
                             showMarkerForBuildingOnMap(buildingName: destination.building!)
                             
+                            // set text to "Go to Building ..."
                             let text = NSMutableAttributedString(string: "Go to \((destination.building)!) Building")
                             text.setAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20),
                                                 NSAttributedStringKey.foregroundColor: UIColor.black],
@@ -390,17 +391,46 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         let stairsH_1 = CLLocationCoordinate2D(latitude: 50.77931288231099, longitude: 6.0590899734729975)
         let stairsH_2 = CLLocationCoordinate2D(latitude: 50.778722673651771, longitude: 6.0592344687667428)
         
-        let distanceToStairsH_1 = sqrt( ( (stairsH_1.latitude - userLocation.latitude) * (stairsH_1.latitude - userLocation.latitude) ) + ( (stairsH_1.longitude - userLocation.longitude) * (stairsH_1.longitude - userLocation.longitude) ) )
-        let distanceToStairsH_2 = sqrt( ( (stairsH_2.latitude - userLocation.latitude) * (stairsH_2.latitude - userLocation.latitude) ) + ( (stairsH_2.longitude - userLocation.longitude) * (stairsH_2.longitude - userLocation.longitude) ) )
+        let distanceToStairsH_1 = distanceBetweenTwoPointsOnEarth(lat1d: stairsH_1.latitude, lon1d: stairsH_1.longitude, lat2d: userLocation.latitude, lon2d: userLocation.longitude)
         
-        //print("distanceToStairsH_1: ", distanceToStairsH_1)
-        //print("distanceToStairsH_2: ", distanceToStairsH_2)
+        let distanceToStairsH_2 = distanceBetweenTwoPointsOnEarth(lat1d: stairsH_2.latitude, lon1d: stairsH_2.longitude, lat2d: userLocation.latitude, lon2d: userLocation.longitude)
         
         if (distanceToStairsH_1 <= distanceToStairsH_2) {
             self.mapView.add(stairsHauptbau_1!)
         } else if (distanceToStairsH_2 < distanceToStairsH_1) {
             self.mapView.add(stairsHauptbau_2!)
         }
+    }
+    
+    // Returns the distance between two points on the Earth in meters
+    func distanceBetweenTwoPointsOnEarth(lat1d: Double, lon1d: Double, lat2d: Double, lon2d: Double) -> Double {
+        let earthRadiusKm = 6371.0
+        var lat1r: Double
+        var lon1r: Double
+        var lat2r: Double
+        var lon2r: Double
+        var u: Double
+        var v: Double
+        
+        lat1r = deg2rad(deg: lat1d)
+        lon1r = deg2rad(deg: lon1d)
+        lat2r = deg2rad(deg: lat2d)
+        lon2r = deg2rad(deg: lon2d)
+        
+        u = sin((lat2r - lat1r)/2)
+        v = sin((lon2r - lon1r)/2)
+        
+        return 1000.0 * 2.0 * earthRadiusKm * asin(sqrt(u * u + cos(lat1r) * cos(lat2r) * v * v))
+    }
+    
+    // Converts decimal degrees to radians
+    func deg2rad(deg: Double ) -> Double {
+        return (deg * Double.pi / 180);
+    }
+    
+    // Converts radians to decimal degrees
+    func rad2deg(rad: Double ) -> Double {
+        return (rad * 180 / Double.pi);
     }
     
     // Returns the building name in which the user currently is
