@@ -378,9 +378,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         case "Hauptbau":
             localPosition = locationManager.location?.coordinate
             if (userLevel == -1) {
-                // user in on level -1, at this level in Hauptbau only
-                // TODO: Is there a connection so that stairsHauptbau_2 would be a possibility?
-                self.mapView.add(stairsHauptbau_3!)
+                // user in on level -1, at this level in Hauptbau only stairsHauptbau_2 is reachable
+                self.mapView.add(stairsHauptbau_2!)
             } else {
                 // decide whether stairsHauptbau_1 or stairsHauptbau_2 are closer to the user
                 calculateClosestStairsH1OrH2AndHighlightThem(userLocation: localPosition!)
