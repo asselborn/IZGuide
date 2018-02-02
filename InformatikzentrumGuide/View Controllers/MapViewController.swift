@@ -20,7 +20,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     var timer = Timer()
     var timerRunning = false
     
-    // Contains different locations for the beacons
+    // Contains the location information for the beacons, could also be combined in one dictionary using a tuple
     var beaconLocationBuilding = [NSNumber:String]()
     var beaconLocationFloor = [NSNumber:Int16]()
     
@@ -192,11 +192,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    // Prints tapped location in helpful format to quickly get location information to setup markers
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let position = touches.first?.preciseLocation(in: self.mapView)
-        print("vertices.append(\(self.mapView.convert(position!, toCoordinateFrom: self.mapView)))")
-    }
+//    // Prints tapped location in helpful format to quickly get location information to setup markers
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        let position = touches.first?.preciseLocation(in: self.mapView)
+//        print("vertices.append(\(self.mapView.convert(position!, toCoordinateFrom: self.mapView)))")
+//    }
     
     func startScanning() {
         let uuid = UUID(uuidString: "C2A94B61-726C-4954-3230-313478303031")
