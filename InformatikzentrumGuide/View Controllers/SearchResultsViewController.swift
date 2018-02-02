@@ -12,128 +12,24 @@ import CoreData
 
 class SearchResultsViewController: UITableViewController {
     
-    // All places fetched from Core Data
-    var places: [Place] = []
-    
     // Places matching the search, at beginning containing all places
     var filteredPlaces: [Place] = []
     
     // Can be used to transfer search data to map VC
     var handleMapSearchDelegate: HandleMapSearch? = nil
     
+    // Helper function waiting until data is fetched/crawled
+    func waitForPlaces() -> [Place] {
+        if handleMapSearchDelegate != nil {
+            return handleMapSearchDelegate!.waitForPlaces()
+        }
+        else {
+            return []
+        }
+    }
+    
     override func viewDidLoad() {
-        
-        /*
-        // Sample data for testing
-        self.save(name: "Aula 2",
-                  latitude: 50.779346565464131,
-                  longitude: 6.058560755739216,
-                  category: "Room",
-                  floor: 0,
-                  url: "https://www.campus.rwth-aachen.de/rwth/all/room.asp?room=2352%7C021&expand=Campus+H%F6rn&building=Aula+und+Mensa&tguid=0x0C459501268AC043A64ED1E2F7FA6BEF",
-                  building: "Hauptbau")
-        self.save(name: "AH 4",
-                  latitude: 50.779557255663697,
-                  longitude: 6.059148695737858,
-                  category: "Room",
-                  floor: 0,
-                  url: "https://www.campus.rwth-aachen.de/rwth/all/room.asp?room=2354%7C030&expand=Campus+H%F6rn&building=H%F6rsaal+an+der+Mensa&tguid=0x0C459501268AC043A64ED1E2F7FA6BEF",
-                  building: "Hauptbau")
-        self.save(name: "2222",
-                  latitude: 50.779119421686843,
-                  longitude: 6.0590368397416343,
-                  category: "Room",
-                  floor: 2,
-                  url: "http://hci.rwth-aachen.de",
-                  building: "Hauptbau")
-        self.save(name: "Mensa Ahornstr.",
-                  latitude: 50.779549951572719,
-                  longitude: 6.059539136996885,
-                  category: "Room",
-                  floor: 0,
-                  url: "http://www.studierendenwerk-aachen.de/de/Gastronomie/mensa-ahornstrasse-wochenplan.html",
-                  building: "Hauptbau")
-        self.save(name: "Informatik 10 - Media Computing Group",
-                  latitude: 50.779021862771607,
-                  longitude: 6.0591637127093829,
-                  category: "Chair",
-                  floor: 2,
-                  url: "http://hci.rwth-aachen.de",
-                  building: "Hauptbau")
-        self.save(name: "Communication and Distributed Systems",
-                  latitude: 50.779202137019055,
-                  longitude: 6.0601875398203111,
-                  category: "Chair",
-                  floor: 1,
-                  url: "https://www.comsys.rwth-aachen.de/home/",
-                  building: "E3")
-        self.save(name: "Prof. Dr.-Ing Klaus Wehrle",
-                  latitude: 50.779202137019055,
-                  longitude: 6.0601875398203111,
-                  category: "Person",
-                  floor: 1,
-                  url: "https://www.comsys.rwth-aachen.de/team/klaus/",
-                  building: "E3")
-        self.save(name: "Prof. Dr. Jan Borchers",
-                  latitude: 50.779021862771607,
-                  longitude: 6.0591637127093829,
-                  category: "Person",
-                  floor: 2,
-                  url: "http://hci.rwth-aachen.de/borchers",
-                  building: "Hauptbau")
-        self.save(name: "Computer Science Library",
-                  latitude: 50.778527255204068,
-                  longitude: 6.0599260221284084,
-                  category: "Room",
-                  floor: 0,
-                  url: "http://tcs.rwth-aachen.de/www-bib/index.php",
-                  building: "E1")
-        self.save(name: "Sporthallenkomplex Ahornstr.",
-                  latitude: 50.778521512278203,
-                  longitude: 6.0592188711139707,
-                  category: "Room",
-                  floor: 0,
-                  url: "http://hochschulsport.rwth-aachen.de/",
-                  building: "Hauptbau")
-        self.save(name: "InfoSphere - Schülerlabor Informatik",
-                  latitude: 50.779014572047124,
-                  longitude: 6.060270794456585,
-                  category: "Room",
-                  floor: -1,
-                  url: "http://schuelerlabor.informatik.rwth-aachen.de/",
-                  building: "E3")
-        self.save(name: "Informatik 11 - Embedded Software",
-                  latitude: 50.778985027020873,
-                  longitude: 6.0591560493499452,
-                  category: "Chair",
-                  floor: 3,
-                  url: "https://embedded.rwth-aachen.de/",
-                  building: "Hauptbau")
-        self.save(name: "Prof. Dr.-Ing. Stefan Kowalewski",
-                  latitude: 50.778985027020873,
-                  longitude: 6.0591560493499452,
-                  category: "Person",
-                  floor: 3,
-                  url: "https://embedded.rwth-aachen.de/doku.php?id=lehrstuhl:mitarbeiter:kowalewski",
-                  building: "Hauptbau")
-        self.save(name: "Knowledge-Based Systems Group",
-                  latitude: 50.778276368134215,
-                  longitude: 6.0609121860457291,
-                  category: "Chair",
-                  floor: 2,
-                  url: "https://kbsg.rwth-aachen.de/",   
-                  building: "E2")   
-        self.save(name: "Prof. Gerhard Lakemeyer, Ph.D.",
-                  latitude: 50.778276368134215,
-                  longitude: 6.0609121860457291,
-                  category: "Person",
-                  floor: 2,
-                  url: "https://kbsg.rwth-aachen.de/user/7",   
-                  building: "E2")  
-        */
-        
-        places = Crawler().run()
-        filteredPlaces = places
+        filteredPlaces = waitForPlaces()
     }
     
     // Reset map for new search
@@ -143,7 +39,7 @@ class SearchResultsViewController: UITableViewController {
     
     // Search for appearance of entered string in any place name
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-        filteredPlaces = places.filter({( place : Place) -> Bool in
+        filteredPlaces = waitForPlaces().filter({( place : Place) -> Bool in
             // Filter categories based on scope
             let categoryCheck = (scope == "All" || place.category == scope)
             if (searchText == "") {

@@ -12,10 +12,15 @@ import MapKit
 protocol HandleMapSearch {
     func placePin(location: Place)
     func reset()
+    func waitForPlaces() -> [Place]
 }
 
 class MapViewController: UIViewController, CLLocationManagerDelegate {
     
+    // All places fetched from Core Data
+    var places: [Place] = []
+    let group = DispatchGroup() // for handling async execution
+
     // Init timer for periodic updates
     var timer = Timer()
     var timerRunning = false
@@ -72,6 +77,22 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     let secondFloorImage: UIImage = IZSecondFloor.imageOfCanvas1
     let thirdFloorImage: UIImage = IZThirdFloor.imageOfCanvas1
     
+    
+    func refresh() {
+        searchResult?.searchBar.placeholder = "Fetching data, please wait ..."
+        searchResult?.searchBar.isUserInteractionEnabled = false
+        
+        self.group.enter()
+        
+        DispatchQueue.global(qos: .default).async {
+            self.places = Crawler().run()
+            DispatchQueue.main.async {
+                self.searchResult?.searchBar.placeholder = "Search for places"
+                self.searchResult?.searchBar.isUserInteractionEnabled = true
+            }
+            self.group.leave()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -150,7 +171,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         searchResult = UISearchController(searchResultsController: searchVC)
         searchResult?.searchBar.tintColor = green
         searchResult?.searchResultsUpdater = searchVC
-        searchResult?.searchBar.placeholder = "Search for places"
         navigationItem.searchController = searchResult
         definesPresentationContext = true
         
@@ -160,6 +180,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         // Setup connection between the two VC to exchange information to set pin
         searchVC?.handleMapSearchDelegate = self
+        
+        // Fetch data, this also inits the search bar placeholder
+        refresh()
         
         startScanning()
         
@@ -720,6 +743,11 @@ extension MapViewController: HandleMapSearch {
         startNavigationButton.isEnabled = true
         startNavigationButton.setTitle("Guide Me", for: .normal)
         navigationController?.isToolbarHidden = true
+    }
+    
+    func waitForPlaces() -> [Place] {
+        self.group.wait()
+        return self.places
     }
 }
 
