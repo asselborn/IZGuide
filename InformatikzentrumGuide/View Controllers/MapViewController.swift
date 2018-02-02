@@ -24,6 +24,9 @@ enum BuildingPart {
 
 class MapViewController: UIViewController, CLLocationManagerDelegate {
     
+    var timer = Timer()
+    var timerRunning = false
+    
     // Contains different locations for the beacons
     var beaconLocationBuilding = [NSNumber:String]()
     var beaconLocationFloor = [NSNumber:Int16]()
@@ -79,6 +82,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.startTimer()
         
         navigationController?.isToolbarHidden = true
         
@@ -99,8 +104,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         // Init overlay for indoor map, base floor
         self.mapView.add(mapOverlay)
         
-        // Setup beacons
-
+        // Setup beacons for video
         beaconLocationFloor[6] = 0
         beaconLocationBuilding[6] = "Outside"
         
@@ -112,9 +116,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         beaconLocationFloor[24] = 2
         beaconLocationBuilding[24] = "Hauptbau"
-        
-        beaconLocationFloor[25] = 2
-        beaconLocationBuilding[25] = "Destination"
 
     
         // Loads the overlays for each part of the buidling (Hauptbau, E1, E2, ...) and stairs
@@ -182,6 +183,22 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         self.toolbarItems = [UIBarButtonItem(customView: startNavigationButton)]
     }
     
+    func startTimer() {
+        if (!timerRunning) {
+            print("Timer started")
+            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.periodicCheck), userInfo: nil, repeats: true)
+            timerRunning = true
+        }
+    }
+    
+    func stopTimer() {
+        if (timerRunning) {
+            print("Timer stopped")
+            timer.invalidate()
+            timerRunning = false
+        }
+    }
+    
     // Prints tapped location in helpful format to quickly get location information to setup markers
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let position = touches.first?.preciseLocation(in: self.mapView)
@@ -198,6 +215,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     // Gets called when registered beacons are in range
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         if let nearestBeacon = beacons.first {
+            // Beacon in range, use beacon instead of inprecise GPS indoors
+            self.stopTimer()
             // If a registered beacon is close, update the overlays using the associated informations
             if (nearestBeacon.proximity == .near || nearestBeacon.proximity == .immediate || nearestBeacon.proximity == .far) {
                 if let floor = self.beaconLocationFloor[nearestBeacon.minor], let building = self.beaconLocationBuilding[nearestBeacon.minor] {
@@ -209,6 +228,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                 }
             }
         }
+        // Beacon went out of range, start periodic update only based on GPS again
+        else {
+            self.startTimer()
+        }
     }
     
     @IBAction func startNavigationButtonPressed(_ sender: UIButton) {
@@ -216,10 +239,24 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         self.adjustGuidance(building: nil, floor: nil)
     }
     
+    @objc func periodicCheck() {
+        self.adjustGuidance(building: nil, floor: nil)
+    }
+    
+    
     // Should be called whenever a defined location area is entered (one for Hauptbau_1, Hauptbau_2 E1, E2, E3) or the userLevel is changed
     // New optional parameters, only used to insert beacon information into the original structure
     func adjustGuidance(building: String?, floor: Int16?) {
-
+        
+        // STRUCTURE
+        // Check specific beacon information
+        // Check if yor are at correct building
+        // If yes check if you are on correct floor
+        // If yes just show pin
+        // If no highlight next stairs in the building
+        // If not check if you are on groundfloor
+        // If yes highlight correct building
+        // If not highlight next stairs in the building
         
         // Automatically switch floor, when matching beacon is detected
         if let floorInformation = floor {
@@ -227,23 +264,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             self.levelLabel.text = String(floorInformation)
             self.adjustAnnotations()
         }
-        
-        
-        if (building == "Destination") {
-            let text = NSMutableAttributedString(string: "You Reached Your Goal")
-            startNavigationButton.setAttributedTitle(text, for: .disabled)
-            self.removeMarkerOverlay()
-            return
-        }
-        
-        // STRUCTURE
-        // Check if yor are at correct building
-            // If yes check if you are on correct floor
-                // If yes just show pin
-                // If no highlight next stairs in the building
-            // If not check if you are on groundfloor
-                // If yes highlight correct building
-                // If not highlight next stairs in the building
         
         // Only display markers if navigation has started
         if (self.startNavigationButton.isEnabled == false) {
