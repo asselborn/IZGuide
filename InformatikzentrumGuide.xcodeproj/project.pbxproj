@@ -22,6 +22,7 @@
 		A686CF902018E38900289249 /* BuildingOverlayLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A686CF8F2018E38900289249 /* BuildingOverlayLoader.swift */; };
 		A6CB623F2010EC1C00E45311 /* IZBasement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CB623E2010EC1C00E45311 /* IZBasement.swift */; };
 		A6CB62432011FFA200E45311 /* IZFirstFloor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CB62422011FFA200E45311 /* IZFirstFloor.swift */; };
+		ACBCB4E92024A1FB00BB876F /* Crawler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBCB4E82024A1FB00BB876F /* Crawler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		A686CF8F2018E38900289249 /* BuildingOverlayLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingOverlayLoader.swift; sourceTree = "<group>"; };
 		A6CB623E2010EC1C00E45311 /* IZBasement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IZBasement.swift; path = InformatikzentrumGuide/Overlay/IZBasement.swift; sourceTree = SOURCE_ROOT; };
 		A6CB62422011FFA200E45311 /* IZFirstFloor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IZFirstFloor.swift; sourceTree = "<group>"; };
+		ACBCB4E82024A1FB00BB876F /* Crawler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crawler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			children = (
 				63D67A8F1FFBA9E700334B9E /* MapViewController.swift */,
 				631AA8E620063B6700680591 /* SearchResultsViewController.swift */,
+				ACBCB4E82024A1FB00BB876F /* Crawler.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 			files = (
 				A686CF902018E38900289249 /* BuildingOverlayLoader.swift in Sources */,
 				A6CB623F2010EC1C00E45311 /* IZBasement.swift in Sources */,
+				ACBCB4E92024A1FB00BB876F /* Crawler.swift in Sources */,
 				A6CB62432011FFA200E45311 /* IZFirstFloor.swift in Sources */,
 				631AA8E720063B6700680591 /* SearchResultsViewController.swift in Sources */,
 				A66C0BA620122076008A449F /* IZThirdFloor.swift in Sources */,
@@ -333,6 +337,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FZPP2C84W4;
 				INFOPLIST_FILE = InformatikzentrumGuide/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = iOSDev.i10.asselborn.InformatikzentrumGuide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -348,6 +353,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FZPP2C84W4;
 				INFOPLIST_FILE = InformatikzentrumGuide/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = iOSDev.i10.asselborn.InformatikzentrumGuide;
 				PRODUCT_NAME = "$(TARGET_NAME)";

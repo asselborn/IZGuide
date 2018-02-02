@@ -22,8 +22,8 @@ class SearchResultsViewController: UITableViewController {
     var handleMapSearchDelegate: HandleMapSearch? = nil
     
     override func viewDidLoad() {
-        self.load()
         
+        /*
         // Sample data for testing
         self.save(name: "Aula 2",
                   latitude: 50.779346565464131,
@@ -130,59 +130,15 @@ class SearchResultsViewController: UITableViewController {
                   floor: 2,
                   url: "https://kbsg.rwth-aachen.de/user/7",   
                   building: "E2")  
+        */
         
+        places = Crawler().run()
+        filteredPlaces = places
     }
     
     // Reset map for new search
     override func viewDidAppear(_ animated: Bool) {
         handleMapSearchDelegate?.reset()
-    }
-    
-    // Fetch data from storage into places array to use it for search
-    func load() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Place")
-        
-        do {
-            places = try managedContext.fetch(fetchRequest) as! [Place]
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-        
-        filteredPlaces = places
-    }
-
-    // Used to enter data into persistent storage
-    func save(name: String, latitude: Double, longitude: Double, category: String, floor: Int16, url: String?, building: String) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-        
-        // Check first to avoid duplicates
-        for place in places {
-            if (place.name == name) {
-                return
-            }
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Place", in: managedContext)!
-        let place = NSManagedObject(entity: entity, insertInto: managedContext)
-
-        place.setValue(name, forKeyPath: "name")
-        place.setValue(latitude, forKey: "latitude")
-        place.setValue(longitude, forKey: "longitude")
-        place.setValue(category, forKey: "category")
-        place.setValue(floor, forKey: "floor")
-        place.setValue(url, forKey: "url")
-        place.setValue(building, forKey: "building")
-
-        do {
-            try managedContext.save()
-            places.append(place as! Place)
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
     }
     
     // Search for appearance of entered string in any place name
