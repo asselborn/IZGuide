@@ -285,7 +285,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         if (self.startNavigationButton.isEnabled == false) {
             if let destination = self.currentPlace {
                 
-                localPosition = locationManager.location?.coordinate
+                // if no location is available, assume to be at main entrance (should probably be changed someday)
+                let location = locationManager.location
+                if location != nil {
+                    localPosition = location!.coordinate
+                }
+                else {
+                    localPosition = CLLocationCoordinate2D(latitude: 50.779346565464131, longitude: 6.058560755739216)
+                }
                 
                 // Check if you are at correct building
                 if (positionInsideOfRectangle(position: localPosition!, rectangle: getMarkerForDestinationBuilding(buildingName: (destination.building)!).boundingMapRect) || building == destination.building) {
