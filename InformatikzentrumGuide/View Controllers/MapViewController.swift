@@ -656,7 +656,7 @@ extension MapViewController: MKMapViewDelegate {
         }
         
         // Add an info button if URL is available
-        if (self.currentPlace?.url) != nil {
+        if (self.currentPlace?.url) != nil && (self.currentPlace?.url) != "" {
             let infoButton = UIButton(type: .infoLight)
             infoButton.addTarget(self, action: #selector(infoButtonPressed), for: .touchUpInside)
             annotationView?.rightCalloutAccessoryView = infoButton
