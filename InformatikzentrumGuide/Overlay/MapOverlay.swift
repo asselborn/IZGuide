@@ -25,7 +25,5 @@ class MapOverlay: NSObject, MKOverlay {
                              height: fabs(MKMapPointForCoordinate(topLeft).y - MKMapPointForCoordinate(bottomLeft).y))
         self.boundingMapRect = MKMapRect(origin: origin, size: size)
     }
-    
-    
-    
+
 }

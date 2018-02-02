@@ -14,16 +14,9 @@ protocol HandleMapSearch {
     func reset()
 }
 
-// Maybe use to replace String
-enum BuildingPart {
-    case Hauptbau
-    case E1
-    case E2
-    case E3
-}
-
 class MapViewController: UIViewController, CLLocationManagerDelegate {
     
+    // Init timer for periodic updates
     var timer = Timer()
     var timerRunning = false
     
@@ -46,7 +39,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     var stairsE2: MKPolygon?
     var stairsE3: MKPolygon?
     
-    // Define stylish green color used throughout the app, can of course be changed
+    // Define stylish green color used throughout the app
     let green = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
     
     @IBOutlet weak var startNavigationButton: UIButton!
@@ -83,6 +76,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Update map apperance every second
         self.startTimer()
         
         navigationController?.isToolbarHidden = true
@@ -117,7 +111,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         beaconLocationFloor[24] = 2
         beaconLocationBuilding[24] = "Hauptbau"
 
-    
         // Loads the overlays for each part of the buidling (Hauptbau, E1, E2, ...) and stairs
         loadOverlaysForBuildingParts()
         
@@ -669,7 +662,7 @@ extension MapViewController: MKMapViewDelegate {
             annotationView?.rightCalloutAccessoryView = infoButton
         }
         
-        // Shift image position, at default location would be in center of custom image
+        // Shift image position. At default the location would be in the center of the custom image, we want it at the bottom of the pin
         annotationView?.centerOffset = CGPoint(x: 0, y: -(annotationView?.frame.size.height)! / 2)
         
         return annotationView
@@ -678,7 +671,7 @@ extension MapViewController: MKMapViewDelegate {
     // Resets the center of the map if the user swipes too far
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         if (mapView.region.center.latitude > 50.7800) || (mapView.region.center.longitude > 6.0615)
-        || (mapView.region.center.latitude < 50.7779) || (mapView.region.center.longitude < 6.0580){
+        || (mapView.region.center.latitude < 50.7779) || (mapView.region.center.longitude < 6.0580) {
             
             // Center map on Informatikzentrum
             let position = CLLocationCoordinate2D(latitude: 50.77884, longitude: 6.05975)
@@ -694,7 +687,6 @@ extension MapViewController: HandleMapSearch {
     
     // Place a pin for the selected Place
     func placePin(location: Place) {
-        
         // Set current location
         self.currentPlace = location
         
@@ -716,7 +708,6 @@ extension MapViewController: HandleMapSearch {
 
     // Remove annotation pin and any marker overlay. Enable "Guide Me" button again, toolbar is hidden till a new pin is placed.
     func reset() {
-        
         // Reset location
         self.currentPlace = nil
         mapView.removeAnnotations(mapView.annotations)

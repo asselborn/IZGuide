@@ -15,7 +15,7 @@ class SearchResultsViewController: UITableViewController {
     // All places fetched from Core Data
     var places: [Place] = []
     
-    // Places matching the search, at beginning containing also all places
+    // Places matching the search, at beginning containing all places
     var filteredPlaces: [Place] = []
     
     // Can be used to transfer search data to map VC
@@ -188,11 +188,13 @@ class SearchResultsViewController: UITableViewController {
     // Search for appearance of entered string in any place name
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
         filteredPlaces = places.filter({( place : Place) -> Bool in
+            // Filter categories based on scope
             let categoryCheck = (scope == "All" || place.category == scope)
             if (searchText == "") {
                 return categoryCheck
             }
             else {
+                // If any search text is entered, additionally filter according to that
                 return categoryCheck && (place.name?.lowercased().contains(searchText.lowercased()))!
             }
         })
